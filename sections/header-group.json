@@ -1,0 +1,52 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "custom_announcement_bar_PwtbTc": {
+      "type": "custom-announcement-bar",
+      "settings": {}
+    },
+    "topbar_ctwXzB": {
+      "type": "topbar",
+      "settings": {
+        "number": "01786 447 647",
+        "topbar_button_url": "https://book.grampian-blinds.co.uk",
+        "topbar_button_text": "Request Your Free Appointment"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_position": "top-center",
+        "menu": "main-menu",
+        "menu_type_desktop": "mega",
+        "sticky_header_type": "none",
+        "show_line_separator": true,
+        "mobile_logo_position": "left"
+      }
+    },
+    "advert_a3xDxf": {
+      "type": "advert",
+      "settings": {
+        "left_image": "shopify://shop_images/grampian_png.webp",
+        "right_image": "shopify://shop_images/grampian_png.webp",
+        "external": "shopify://collections/all"
+      }
+    }
+  },
+  "order": [
+    "custom_announcement_bar_PwtbTc",
+    "topbar_ctwXzB",
+    "header",
+    "advert_a3xDxf"
+  ]
+}

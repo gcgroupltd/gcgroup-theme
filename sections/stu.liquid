@@ -1,0 +1,187 @@
+<style>
+    .bnr { 
+        max-width: 1439px;
+        margin: 0 auto;
+        width: 100%;
+        display:grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        overflow:hidden;
+      }    
+
+    .bnr__aside {   
+      overflow:hidden;
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+
+      
+    .bnr-title {
+      text-align:center; 
+      font-size:72px;
+      font-weight:800;
+      line-height:1;
+      margin:0;
+      padding:0;
+    }
+    .bnr-para{
+      text-align:center;
+      padding:18px;
+    }
+    .bnr-c{
+      display:flex;
+      gap:1.2rem;
+      margin:0 auto;
+      align-items:center;
+      justify-content:center;
+      margin-top:24px;
+    }
+    .bnr-c a { 
+      flex:1;
+    }
+    @media screen and (max-width: 860px){
+      .bnr { 
+        flex-direction:column;
+      }
+      .bnr__aside { 
+        min-height:unset;
+      }
+      .bnr-para { 
+        text-align:left;
+        padding:1.5rem 0;
+        margin:0;
+      }
+      .bnr-title { 
+        font-size:52px;
+        text-align:left;
+      }
+      .bnr-c { 
+        {% comment %} transform:scale(0.8); {% endcomment %}
+        {% comment %} margin-right:auto; {% endcomment %}
+        flex-wrap:wrap;
+        margin-right:auto;
+      }
+  }
+  @media screen and (max-width: 461px){
+    .bnr-c {
+      display:grid; 
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    .bnr-c a  { 
+      min-width:100%;
+      width:100%;
+    }
+  }
+ 
+
+
+      .bnr-img-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 83.25%; /* 62.25% aspect ratio (height/width) */
+  overflow: hidden;
+}
+
+.bnr-img {
+  height:100%;
+  width:100%;
+}
+.bnr-img-wrap img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+.bnr__aside__content{
+  padding:2.4rem;
+}
+ @media screen and (max-width:990px){
+      .bnr { 
+          grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+      .bnr-img-wrap { 
+      padding-top:52.25%;
+      }
+      .bnr__aside__content{
+        padding:2.4rem 1.2rem;
+      }
+    }
+       @media screen and (max-width:540px){
+    .bnr { 
+          grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+      .bnr-img-wrap { 
+      padding-top:62.25%}
+
+      }
+</style>
+{% comment %} {{ collection.metafields["custom"]["marketing_image"] }}  {% endcomment %}
+{%- assign url = section.settings.external -%}
+    {%- if url != blank -%}
+      <a href="{{- url -}}" class="bnr color-{{ section.settings.section_color_scheme }}">
+    {%- else -%}
+      <div class="bnr color-{{ section.settings.section_color_scheme }}">
+    {%- endif -%}
+      <aside class="bnr__aside">
+        <div class="bnr-img">
+          <div class="bnr-img-wrap">
+                    <img
+          src="{{ collection.image | image_url: width: 2400 }}"
+          alt="{{ collection.image.alt | default: collection.title }}"
+          loading="lazy"
+        >
+            </div>
+        </div>
+      </aside>
+    <aside class="bnr__aside">
+        <div class="bnr__aside__content">
+            <h1 class="bnr-title"> {{ collection.title }}</h1>
+            <p class="bnr-para">
+                {{ collection.description }}
+            </p>
+              <div class="bnr-c">
+              <a  href="{{ section.settings.button_url }}" style="max-width:max-content;" class="container-btn button button--primary">{{ section.settings.button_text }}</a>
+            </div>
+        </div>
+    </aside>
+    
+    {%- if url != blank -%}
+      </a>
+    {%- else  -%}
+      </div>
+    {%- endif -%}
+
+
+{% schema %}
+{
+  "name": "Collection Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Information",
+      "info": "This component uses the upper most Block content. This allows us to save presets for future sales and manage our content easily.",
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL",      
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Request Your Free Appointment",
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Collection Header",
+    }
+  ]
+}
+{% endschema %} 

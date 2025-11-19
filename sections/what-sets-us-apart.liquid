@@ -1,0 +1,146 @@
+{{ 'mui.css' | asset_url | stylesheet_tag }}
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+<style>
+  #mui .wsua {
+    {% comment %} padding:0 1.5rem 0 3rem; {% endcomment %}
+    display:flex;
+    gap:1.2rem;
+    {% comment %} gap:0.8rem; {% endcomment %}
+  }
+  #mui .wsua-header { 
+    border: 1px solid rgba(var(--color-foreground), 0.05);
+    padding:1.5rem!important;
+    background: rgb(var(--color-background)) linear-gradient(rgba(var(--color-foreground), 0.04), rgba(var(--color-foreground), 0.04)) !important;
+  }
+  #mui .wsua-body { 
+    border-bottom:inherit!important;
+    border-top:0!important;
+  }
+
+  #mui .wsua-title { 
+      text-align:center; 
+      font-size:48px;
+      font-weight:800;
+      line-height:1;
+      margin:0;
+      padding:0;
+  }
+  @media screen and (max-width:524px){
+    #mui .wsua-title { 
+    font-size:36px;
+    }
+  }
+      .wsua-para{
+      text-align:center;
+      padding:18px;
+      max-width:620px;
+      margin:0 auto;
+    }
+
+    .wsua-grid { 
+      display:grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap:1.2rem;
+        margin:0 auto;
+        padding:1.2rem;
+    }
+    .wsua-grid-item { 
+    }
+    @media screen and (max-width:754px){
+      .wsua-grid { 
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap:0;
+      }
+    }
+</style>
+
+{%- assign half = section.blocks.size | divided_by: 2 -%}
+<div id="mui" class="page-width sec-gap" >
+<p class="title image-with-text__heading h1 rte wsua-title">{{ section.settings.title }}</p>
+<p class="wsua-para">{{ section.settings.text }}</p>
+<div class="wsua-grid">
+      <div class="wsua-grid-item">
+      <ul class="collapsible wsua">
+        {%- for block in section.blocks -%}
+          {%- if forloop.index > half -%}
+            <li>
+              <div class="collapsible-header wsua-header"><i class="material-icons">expand_more</i>{{ block.settings.text }}</div>
+              <div class="collapsible-body wsua-body"><span>{{ block.settings.description }}</span></div>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+      </div>
+      <div class="wsua-grid-item">
+        <ul class="collapsible wsua">
+          {%- for block in section.blocks -%}
+            {%- if forloop.index <= half -%}
+              <li>
+                <div class="collapsible-header wsua-header"><i class="material-icons">expand_more</i>{{ block.settings.text }}</div>
+                <div class="collapsible-body wsua-body"><span>{{ block.settings.description }}</span></div>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+</div>
+    
+{% schema %}
+{
+  "name": "What Sets Us Apart",
+  "settings": [
+        {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-6"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+    }
+  ],
+    "blocks": [
+    {
+      "type": "text_block",
+      "name": "wsua Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "What Sets Us Apart",
+    }
+  ]
+}
+{% endschema %}
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.wsua');
+    var instances = M.Collapsible.init(elems, {});
+  });
+
+</script>

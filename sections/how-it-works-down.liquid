@@ -1,0 +1,266 @@
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .how-it-works-down {
+    /* background-color: {{ section.settings.background_color }}; */
+    padding: 80px 0;
+  }
+
+  .how-it-works-down .page-width {
+    background-color: {{  section.settings.background_color }};
+  }
+
+  .how-it-works-down__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+    align-items: start; /* keep original sizing; don't stretch the grid */
+  }
+
+  @media (max-width: 990px) {
+    .how-it-works-down {
+        padding: 40px 0;
+    }
+    .how-it-works-down__grid {
+        grid-template-columns: 1fr;
+    }
+  }
+
+  .how-it-works-down__image {
+    border-radius: 8px;
+    overflow: visible;
+    margin: -40px auto 0;
+    height: 100%;
+  }
+
+  @media (max-width: 990px) {
+    .how-it-works-down__image {
+        display: none;
+    }
+  }
+  .how-it-works-down__image img {
+    width: auto;
+    max-width: 100%;
+    height: calc(100% + 80px); 
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: 8px;
+  }
+
+
+  /* Left column layout stays the same (button sits in last row) */
+  .how-it-works-down__steps {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 40px 0;
+  }
+
+  .how-it-works-down__steps h2 {
+        text-align: left;
+        margin: 0 0 0.75rem;
+        {% comment %} font-family: Didot, "Bodoni MT", "Times New Roman", serif; {% endcomment %}
+        font-size: 30px;
+        line-height: 1.15;
+        letter-spacing: .3px;
+  }
+
+  .how-it-works-down__steps .intro-text {
+        max-width: 860px;
+        margin: 0 0 2.2rem;
+        text-align: left;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        opacity: .92;
+  }
+
+  .how-it-works-down__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .how-it-works-down__steps .button {
+    background-color: {{ section.settings.button_color }};
+    color: #FFFFFF;
+    border: 1px solid {{ section.settings.button_color }};
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  .how-it-works-down__steps .button:hover {
+    background-color: {{ section.settings.button_color | color_modify: 'alpha', 0.8 }};
+    border-color: {{ section.settings.button_color | color_modify: 'alpha', 0.8 }};
+  }
+
+  .how-it-works-down__step {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    background: white;
+    border: 1px solid var(--hiw-border);
+    border-radius: 14px;
+    padding: 22px 22px 20px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    width: calc(50% - 15px);
+  }
+
+  .how-it-works-down__step:nth-last-child(-n+2):nth-child(even) {
+    margin-bottom: 0;
+  }
+
+    .how-it-works-down__step:nth-last-child(1):nth-child(odd) {
+        margin-bottom: 0;
+    }
+
+    @media (max-width: 990px) {
+        .how-it-works-down__step {
+            width: 100%;
+        }
+
+          .how-it-works-down__step:nth-last-child(-n+2):nth-child(even) {
+                margin-bottom: 30px;
+            }
+    }
+
+  .how-it-works-down__content {
+    max-width: calc(100% - 60px);
+  }
+
+  .how-it-works-down__icon img {
+    max-widtH: 50px;
+    max-height: 50px;
+    height: auto;
+    width: 100%;
+    margin-right: 10px;
+  }
+
+  .how-it-works-down__title {
+    font-size: 28px;
+   font-weight: 900;
+    margin: 4px 0 12px;
+    line-height: 1.25;
+    color: #D31A2F;
+  }
+
+  .how-it-works-down__label {
+        display: block;
+        text-align: left;
+        margin: 0 auto 12px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 300;
+        font-size: 16px;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: var(--hiw-arrow);
+  }
+
+  .how-it-works-down__text {
+        opacity: .95;
+    font-size: var(--hiw-body-size);
+    line-height: 1.6;
+  }
+
+  /* Mobile: stack, hide image, no special heights */
+  @media (max-width: 768px) {
+    .how-it-works-down__grid { grid-template-columns: 1fr; }
+    .how-it-works-down__image { order: -1; display: none; }
+  }
+{%- endstyle -%}
+
+<div class="how-it-works-down color-{{ section.settings.color_scheme }}" data-section-id="{{ section.id }}">
+  <div class="page-width">
+    <div class="how-it-works-down__grid">
+
+        
+      <div class="how-it-works-down__image">
+        {%- if section.settings.main_image != blank -%}
+          <img
+            src="{{ section.settings.main_image | image_url: width: 1200 }}"
+            srcset="
+              {{ section.settings.main_image | image_url: width: 640 }} 640w,
+              {{ section.settings.main_image | image_url: width: 960 }} 960w,
+              {{ section.settings.main_image | image_url: width: 1200 }} 1200w,
+              {{ section.settings.main_image | image_url: width: 1600 }} 1600w,
+              {{ section.settings.main_image | image_url: width: 2000 }} 2000w
+            "
+            sizes="(max-width: 768px) 0px, 50vw"
+            alt="{{ section.settings.main_image.alt | default: 'Customer testimonial' }}"
+            loading="lazy"
+          >
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+
+      <div class="how-it-works-down__steps">
+        <div  class="how-it-works-down__wrapper">
+          <div>
+            <h2>{{ section.settings.title }}</h2>
+            <p class="intro-text">{{ section.settings.intro_text }}</p>
+          </div>
+
+          {%- for block in section.blocks -%}
+            <article class="how-it-works-down__step" role="listitem" {{ block.shopify_attributes }}>
+
+            {% if block.settings.icon != blank %}
+            <div class="how-it-works-down__icon">
+              <img
+                src="{{ block.settings.icon | image_url: width: 200 }}"
+                alt=""
+                width="{{ block.settings.icon.width }}"
+                height="{{ block.settings.icon.height }}"
+                loading="lazy"
+              >
+            </div>
+          {% endif %}
+
+          <div class="how-it-works-down__content">
+                <div class="how-it-works-down__label">Step {{ forloop.index }}</div>
+                {% comment %} {% if block.settings.title != blank %}
+                    <h3 class="how-it-works-down__title">{{ block.settings.title }}</h3>
+                {% endif %} {% endcomment %}
+                {% if block.settings.text != blank %}
+                    <div class="how-it-works-down__text rte">{{ block.settings.text }}</div>
+                {% endif %}
+          </div>
+
+        </article>
+            {% endfor %}
+        </div>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "How it works down",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "color", "id": "background_color", "label": "Background Color", "default": "#F5F5F5" },
+    { "type": "text",  "id": "title",  "label": "Title",  "default": "How it works" },
+    { "type": "text",  "id": "intro_text",  "label": "Intro Text",  "default": "From first visit to final fit, here’s our simple four‑step process." },
+    { "type": "url",   "id": "button_link", "label": "Button Link" },
+    { "type": "text",  "id": "button_label",    "label": "Button Label", "default": "Book appointment now" },
+    { "type": "color", "id": "button_color",    "label": "Button Color", "default": "#0F2C4C" },
+    { "type": "image_picker", "id": "main_image", "label": "Main Image" },
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "limit": 4,
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon (optional)" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Book your appointment" },
+        { "type": "richtext", "id": "text", "label": "Description", "default": "<p>Choose a time that suits you and we’ll visit to discuss ideas.</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "How it works down" }]
+}
+{% endschema %}
+
+

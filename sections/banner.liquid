@@ -1,0 +1,276 @@
+<style>
+  /* ---------- layout (left image, right content) ---------- */
+  #section-{{ section.id }}.bnr{
+    max-width:1439px; margin:0 auto; width:100%;
+    display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+    overflow:hidden;
+  }
+  #section-{{ section.id }} .bnr__aside{
+    overflow:hidden; width:100%;
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  #section-{{ section.id }} .bnr-title{
+    text-align:center; font-size:72px; font-weight:800; line-height:1; margin:0; padding:0;
+  }
+  #section-{{ section.id }} .bnr-para{ text-align:center; font-size: 24px; padding:18px; }
+  #section-{{ section.id }} .bnr-c{
+    display:flex; gap:1.2rem; margin:0 auto; align-items:center; justify-content:center; margin-top:24px;
+    /* --- MODIFIED: Added padding to this container --- */
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  #section-{{ section.id }} .bnr-c a{ flex:1; }
+
+  /* ---------- image area (ratio wrapper so it doesn't look zoomed) ---------- */
+  #section-{{ section.id }} .bnr-img{ position:relative; width:100%; }
+  #section-{{ section.id }} .bnr-img-wrap{
+    position:relative; width:100%;
+    padding-top:83.25%;      /* ← same ratio you had when it looked right */
+    overflow:hidden; background:#f6f6f6;
+  }
+
+  /* ---------- slideshow core + fallback for first image ---------- */
+  #section-{{ section.id }} .bnr__slides{ position:absolute; inset:0; }
+  #section-{{ section.id }} .bnr__slide{
+    position:absolute; inset:0;
+    opacity:0; pointer-events:none;
+    transition:opacity var(--bnr-dur,600ms) ease;
+  }
+  #section-{{ section.id }} .bnr__slide:first-child{ opacity:1; }      /* shows first if JS hasn’t run */
+  #section-{{ section.id }} .bnr__slides.js-on .bnr__slide:first-child:not(.is-active){ opacity:0; }
+/* cancel fallback once JS is on */
+  #section-{{ section.id }} .bnr__slide.is-active{ opacity:1; z-index:1; }
+  #section-{{ section.id }} .bnr__slide img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; display:block;
+  }
+
+  /* ---------- dots (circular, on brand) ---------- */
+  #section-{{ section.id }} .bnr__dots{
+    position:absolute; left:50%; bottom:14px; transform:translateX(-50%);
+    display:flex; gap:10px; z-index:5;
+  }
+  #section-{{ section.id }} .bnr__dot{
+    width:12px; aspect-ratio:1/1; padding:0; border-radius:50%;
+    background:#ffffffcc; border:1px solid rgba(0,0,0,.25);
+    -webkit-appearance:none; appearance:none; box-sizing:border-box;
+    opacity:.9; cursor:pointer;
+    transition:transform .16s ease, opacity .16s ease, background-color .16s ease, border-color .16s ease;
+  }
+  #section-{{ section.id }} .bnr__dot:hover{ transform:scale(1.08); }
+  #section-{{ section.id }} .bnr__dot.is-active{
+    background:var(--primary-button-colour);
+    border-color: var(--primary-button-colour);
+    box-shadow:0 0 0 2px #fff;
+    background:var(--primary-button-colour);
+    border-color: var(--primary-button-colour);
+    box-shadow:0 0 0 2px #fff;
+  }
+  #section-{{ section.id }} .bnr__dot:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
+  @media (max-width:480px){ #section-{{ section.id }} .bnr__dot{ width:10px; } }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:990px){
+    #section-{{ section.id }}.bnr{ grid-template-columns:1fr; }
+    #section-{{ section.id }} .bnr-img-wrap{ padding-top:62.25%; }  /* a little shallower for mobile */
+    #section-{{ section.id }} .bnr__aside__content{ padding:2.4rem 1.2rem; }
+    #section-{{ section.id }} .bnr-title{ font-size:52px; text-align:left; }
+    #section-{{ section.id }} .bnr-para{ text-align:left; padding:1.5rem 0; margin:0; }
+    #section-{{ section.id }} .bnr-c{ flex-wrap:wrap; margin-right:auto; }
+  }
+  @media (max-width:540px){
+    #section-{{ section.id }} .bnr-c{ display:grid; grid-template-columns:1fr; }
+    #section-{{ section.id }} .bnr-c a{ min-width:100%; width:100%; }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion:reduce){
+    #section-{{ section.id }} .bnr__slide{ transition:none; }
+  }
+
+  /* ► Buttons in this section use brand red */
+  #section-{{ section.id }} .bnr-c .button{
+    background:#de162a; border-color:#de162a; color:#fff; font-size: 24px;
+  }
+  #section-{{ section.id }} .bnr-c .button:hover,
+  #section-{{ section.id }} .bnr-c .button:focus-visible{
+    background:#c62a2a; border-color:#c62a2a; color:#fff; text-decoration:none;
+  }
+  #section-{{ section.id }} .bnr-c .button:active{ transform:translateY(1px); }
+  /* Keep the three buttons off the edges on very wide screens */
+@media (min-width: 1200px){
+  #section-{{ section.id }} .bnr-c{
+    padding-left: 18px;      /* tweak 12–24px to taste */
+    padding-right: 18px;
+  }
+}
+
+/* Optional: also cap the total width so the row never looks too stretched */
+@media (min-width: 1400px){
+  #section-{{ section.id }} .bnr-c{
+    max-width: 760px;      /* adjust 680–840px if you prefer */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+</style>
+
+{%- assign url = section.settings.external -%}
+{%- if url != blank -%}
+  <a id="section-{{ section.id }}" href="{{ url }}" class="bnr">
+{%- else -%}
+  <div id="section-{{ section.id }}" class="bnr">
+{%- endif -%}
+
+  <!-- Left: slideshow -->
+  <aside class="bnr__aside">
+    <div class="bnr-img">
+      <div class="bnr-img-wrap">
+        <div id="bnr-{{ section.id }}"
+             class="bnr__slides"
+             data-interval="{{ section.settings.interval_ms }}"
+             data-transition="{{ section.settings.transition_ms }}">
+
+
+          {% if section.blocks.size > 0 %}
+            {% for block in section.blocks %}
+              <div class="bnr__slide" {{ block.shopify_attributes }}>
+                {% if block.settings.image %}
+                  {{ block.settings.image
+                    | image_url: width: 2400
+                    | image_tag: alt: block.settings.alt, loading: 'lazy' }} <----This is the bit that doesnt show!!!!>
+                {% endif %}
+              </div>
+            {% endfor %}
+          {% elsif section.settings.image %}
+            <div class="bnr__slide is-active">
+              {{ section.settings.image
+                | image_url: width: 2400
+                | image_tag: alt: section.settings.title, loading: 'lazy' }}
+            </div>
+          {% endif %}
+        </div>
+
+        {% if section.settings.show_dots and section.blocks.size > 1 %}
+          <div class="bnr__dots" aria-hidden="true">
+            {% for block in section.blocks %}
+              <button type="button" class="bnr__dot" data-index="{{ forloop.index0 }}"></button>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </aside>
+
+  <!-- Right: text/buttons -->
+  <aside class="bnr__aside">
+    <div class="bnr__aside__content">
+      <h1 class="bnr-title">{{ section.settings.title }}</h1>
+      <p class="bnr-para">{{ section.settings.text }}</p>
+      <div class="bnr-c">
+        <a href="/collections/blinds"   class="container-btn button button--primary">Blinds</a>
+        <a href="/collections/curtains" class="container-btn button button--primary">Curtains</a>
+        <a href="/collections/shutters" class="container-btn button button--primary">Shutters</a>
+      </div>
+    </div>
+  </aside>
+
+{%- if url != blank -%}
+  </a>
+{%- else -%}
+  </div>
+{%- endif -%}
+
+<script>
+(function () {
+  function init() {
+    const slider = document.getElementById('bnr-{{ section.id }}');
+    if (!slider) return;
+
+    const slides = slider.querySelectorAll('.bnr__slide');
+    if (!slides.length) return;
+
+    // cancel the CSS first-slide fallback now that JS is running
+    slider.classList.add('js-on');
+
+    const interval = parseInt(slider.dataset.interval || '5000', 10);
+    const dur      = parseInt(slider.dataset.transition || '600', 10);
+    slider.style.setProperty('--bnr-dur', dur + 'ms');
+
+    const dots = slider.parentElement.querySelectorAll('.bnr__dot');
+
+    let i = 0, timer = null;
+
+    const setActive = (idx) => {
+      slides[i].classList.remove('is-active');
+      if (dots[i]) dots[i].classList.remove('is-active');
+
+      i = (idx + slides.length) % slides.length;
+
+      slides[i].classList.add('is-active');
+      if (dots[i]) dots[i].classList.add('is-active');
+    };
+
+    // initial state: show the first slide + first dot
+    slides.forEach(s => s.classList.remove('is-active'));
+    if (dots.length) dots.forEach(d => d.classList.remove('is-active'));
+    setActive(0);
+
+    const next   = () => setActive(i + 1);
+    const start  = () => { if (!timer && slides.length > 1) timer = setInterval(next, interval); };
+    const stop   = () => { if (timer) { clearInterval(timer); timer = null; } };
+
+    // dot clicks
+    dots.forEach(btn => btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.index || '0', 10);
+      setActive(idx); stop(); start();
+    }));
+
+    // pause on hover (desktop)
+    slider.addEventListener('mouseenter', stop);
+    slider.addEventListener('mouseleave', start);
+
+    // pause when off-screen
+    if ('IntersectionObserver' in window){
+      const io = new IntersectionObserver((ents)=> {
+        ents.forEach(e => e.isIntersecting ? start() : stop());
+      }, { threshold: 0.2 });
+      io.observe(slider);
+    }
+
+    start();
+  }
+
+  init();
+  document.addEventListener('shopify:section:load', (e) => {
+    if (e.detail && e.detail.sectionId === '{{ section.id }}') init();
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "bnr",
+  "settings": [
+    { "type": "url", "id": "external", "label": "Optional link (wrap entire banner)" },
+    { "type": "image_picker", "id": "image", "label": "Fallback image (used if no slides are added)" },
+    { "type": "text", "id": "title", "label": "Title", "default": "This is a basic section" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Add your custom text here." },
+    { "type": "checkbox", "id": "show_dots", "label": "Show navigation dots", "default": true },
+    { "type": "range", "id": "interval_ms", "label": "Slide interval (ms)", "min": 2000, "max": 9000, "step": 500, "default": 5000 },
+    { "type": "range", "id": "transition_ms", "label": "Fade duration (ms)", "min": 0, "max": 2000, "step": 50, "default": 600 }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "alt", "label": "Alt text" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "bnr" } ]
+}
+{% endschema %}

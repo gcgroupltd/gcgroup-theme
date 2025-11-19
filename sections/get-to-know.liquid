@@ -1,0 +1,284 @@
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+
+<style>
+  /* ===== Original mobile/tablet styles (unchanged) ===== */
+  .get-to-know-section {
+    padding: 40px 0;
+    background-color: {{ section.settings.background_color }};
+  }
+
+  .get-to-know__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .get-to-know__title {
+    margin: 0;
+    font-size: clamp(28px, 6.5vw, 36px);
+  }
+
+  .get-to-know__nav {
+    display: flex;
+    gap: 10px;
+  }
+
+  .get-to-know__nav-btn {
+    background: white;
+    border: 1px solid #ccc;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .get-to-know__nav-btn svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .get-to-know__slider-wrapper {
+    position: relative;
+  }
+
+  .get-to-know__slider {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 90%;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+  }
+
+  .get-to-know__slider::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+  }
+
+  @media screen and (min-width: 768px) {
+    .get-to-know__slider {
+      grid-auto-columns: 31%;
+    }
+  }
+
+  .get-to-know__slide {
+    scroll-snap-align: start;
+  }
+
+  .get-to-know__card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF; /* card background white */
+  }
+
+  .get-to-know__card-image-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .get-to-know__card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .get-to-know__card-title {
+    font-size: 30px;
+    margin: 0 0 10px 0;
+  }
+
+  .get-to-know__card-text {
+    flex-grow: 1;
+    margin: 0 0 20px 0;
+    font-size: 16px;
+  }
+
+  .get-to-know__card-link {
+    text-decoration: underline;
+    font-weight: bold;
+    color: inherit;
+  }
+
+  /* ===== Desktop-only downsizing (applies ≥1024px only) ===== */
+  @media (min-width: 1024px) {
+    .get-to-know-section { padding: 40px 0; }                 /* was 40px */
+    .get-to-know__header { margin-bottom: 16px; }             /* was 30px */
+    .get-to-know__title { font-size: 30px; line-height: 34.5px }                /*changed to match how it works section title */  /* was 28px */
+
+    .get-to-know__slider {
+      grid-auto-columns: 28%;                                 /* was 31% */
+      gap: 14px;                                              /* was 20px */
+    }
+
+    .get-to-know__card-content { padding: 14px; }             /* was 20px */
+    .get-to-know__card-title { font-size: 20px; margin: 0 0 8px; } /* was 30px/10px */
+    .get-to-know__card-text { font-size: 15px; margin: 0 0 12px; line-height: 1.45; }
+
+    /* shorter image to reduce card height on desktop */
+    .get-to-know__card-image-wrapper img { aspect-ratio: 16 / 9; } /* was 4/3 */
+  }
+</style>
+
+<div class="get-to-know-section" data-section-id="{{ section.id }}">
+  <div class="page-width">
+    <div class="get-to-know__header">
+      <div class="get-to-know__text">
+        {%- if section.settings.other_products -%}
+          <h2 class="get-to-know__title">{{ section.settings.heading }}</h2>
+          <p>{{ section.settings.subheading }}.</p>
+        {%- else -%}
+          <h2 class="get-to-know__title">Get to know {{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+      {%- if section.blocks.size > 3 -%}
+        <div class="get-to-know__nav">
+          <button class="get-to-know__nav-btn get-to-know__prev-btn" aria-label="Previous slide">
+            <svg viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 0.999849L9.5 2.00002L5 6.50002L9.5 11L8.5 12L3 6.50002L8.5 0.999849Z" fill="currentColor"/></svg>
+          </button>
+          <button class="get-to-know__nav-btn get-to-know__next-btn" aria-label="Next slide">
+            <svg viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 12L4.5 11L9 6.5L4.5 2.00001L5.5 0.99999L11 6.5L5.5 12Z" fill="currentColor"/></svg>
+          </button>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="get-to-know__slider-wrapper">
+      <div class="get-to-know__slider">
+        {%- for block in section.blocks -%}
+          <div class="get-to-know__slide" {{ block.shopify_attributes }}>
+            <div class="get-to-know__card">
+              {%- if block.settings.card_image != blank -%}
+                <div class="get-to-know__card-image-wrapper">
+                  <img src="{{ block.settings.card_image | image_url: width: 400 }}"
+                       alt="{{ block.settings.card_image.alt | default: block.settings.card_title | escape }}"
+                       loading="lazy">
+                </div>
+              {%- else -%}
+                <div class="get-to-know__card-image-wrapper">
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+              {%- endif -%}
+              <div class="get-to-know__card-content">
+                {%- if block.settings.card_title != blank -%}
+                  <h3 class="get-to-know__card-title">{{ block.settings.card_title }}</h3>
+                {%- endif -%}
+                {%- if block.settings.card_text != blank -%}
+                  <div class="get-to-know__card-text">{{ block.settings.card_text }}</div>
+                {%- endif -%}
+                {%- if block.settings.card_button_link != blank and block.settings.card_button_label != blank -%}
+                  <a href="{{ block.settings.card_button_link }}" class="get-to-know__card-link">{{ block.settings.card_button_label }}</a>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function handleGetToKnowSlider(sectionId) {
+    const section = document.querySelector(`[data-section-id="${sectionId}"]`);
+    if (!section) return;
+
+    const slider = section.querySelector('.get-to-know__slider');
+    const nextBtn = section.querySelector('.get-to-know__next-btn');
+    const prevBtn = section.querySelector('.get-to-know__prev-btn');
+
+    if (!slider || !nextBtn || !prevBtn) return;
+
+    const slide = slider.querySelector('.get-to-know__slide');
+    if (!slide) return;
+
+    const slideWidth = slide.offsetWidth;
+    const gap = parseInt(window.getComputedStyle(slider).gap, 10);
+
+    nextBtn.addEventListener('click', () => {
+      slider.scrollBy({ left: slideWidth + gap, behavior: 'smooth' });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      slider.scrollBy({ left: -slideWidth - gap, behavior: 'smooth' });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    handleGetToKnowSlider('{{ section.id }}');
+  });
+
+  document.addEventListener('shopify:section:load', (event) => {
+    if (event.detail.sectionId === '{{ section.id }}') {
+      handleGetToKnowSlider('{{ section.id }}');
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Get to Know Carousel",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "other_products",
+      "default": false,
+      "label": "Use as other products?"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading Brand Name",
+      "default": "Goldcrest Blinds"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "If these blinds aren't your thing, take a look at these alternatives"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section Background Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "limit": 9,
+      "settings": [
+        { "type": "image_picker", "id": "card_image", "label": "Image" },
+        { "type": "text", "id": "card_title", "label": "Title", "default": "Card Title" },
+        { "type": "richtext", "id": "card_text", "label": "Text", "default": "<p>Add a description for your card here.</p>" },
+        { "type": "text", "id": "card_button_label", "label": "Button Label", "default": "Learn More" },
+        { "type": "url", "id": "card_button_link", "label": "Button Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Get to Know Carousel",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

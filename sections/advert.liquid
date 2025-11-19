@@ -1,0 +1,64 @@
+{% assign banner = shop.metaobjects.banner.first %}
+{% assign images = banner.images %}
+
+<style>
+.advert { 
+  padding: 1rem 0;
+  max-width: 1440px;
+  overflow:hidden;
+  margin: 0 auto;    
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}    
+.advert-item {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+@media screen and (max-width:990px){
+  .advert { 
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }  
+  .advert-item:nth-child(2){
+    display:none;
+  }
+}
+</style>
+
+<div class="advert">
+  {% for image in images %}
+    <a href="{{ settings.external }}">
+      <img class="advert-item" src="{{ image | image_url }}" alt="{{ image.alt }}">
+    </a>
+  {% endfor %}
+</div>
+
+
+{% schema %}
+{
+  "name": "Advert",
+  "settings": [
+    {
+      "type": "image_picker",
+      "label": "Select Left Image",
+      "id": "left_image"
+    },
+    {
+      "type": "image_picker",
+      "label": "Select Right Image",
+      "id": "right_image"
+    },
+    {
+      "type": "url",
+      "label": "External Link",
+      "id": "external"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Advert"
+    }
+  ]
+}
+{% endschema %}

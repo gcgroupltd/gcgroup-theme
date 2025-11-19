@@ -1,0 +1,649 @@
+{{ 'mui.css' | asset_url | stylesheet_tag }}
+{% comment %} rgba(var(--color-foreground), 0.75); {% endcomment %}
+<style>
+    #mui .info ul, #mui .info .trust { 
+        margin:0;
+    }
+    #mui .info-item-title { 
+        color: rgba(var(--color-foreground), 0.75)!important;
+        font-size:1.6rem!important;
+    }
+    #mui .remove-sd { 
+      box-shadow:none!important;
+      border: 1px solid rgb(77 124 15);
+      background: rgba(34, 197, 94, 0.125);
+      color: rgb(22 101 52);
+    }
+    #mui .info { 
+        margin-top:2rem;
+        padding-top:2rem;
+        gap:2.2rem;
+        display:flex;
+        justify-content:space-between;
+        border-top: 1px solid rgba(var(--color-foreground),0.05);
+    }
+    #mui .trust-title {
+        color: rgba(var(--color-foreground), 0.75)!important;
+        font-size:1.6rem!important;
+        margin:0!important;
+    }
+    #mui .trust {
+        padding:0; margin:0;
+        font-size: 1.2rem;
+        color:#9e9e9e;
+    }
+    
+    #mui .info p {
+        padding:0; margin:0;
+        font-size: 1.2rem;
+        color:#9e9e9e;
+    }
+    #mui .info-item { 
+        max-width:300px;
+    }
+    #mui .info-item-end {
+        max-width:max-content;
+        align-items:flex-end;
+    }
+    #mui .info-times { 
+        display:flex; 
+        gap:0 2rem;
+        padding:0;
+        margin:0;
+        align-items:flex-start;
+    }
+    #mui .info-times li p, #mui .trust ul li   {
+        padding:0;
+        line-height:1.6;
+        margin:0;
+        display:flex;
+        align-items:center;
+    }
+    #mui .trust ul {
+        display:grid;
+        gap:0.6rem;
+        margin:0;
+    }
+
+    #mui .row-item-left { 
+      padding:0 2rem 0 0!important;
+    }
+    #mui .row-item-right { 
+      padding: 0 0 0 2rem!important;
+    }
+    @media screen and (max-width:600px){
+    #mui .row-item-left { 
+      padding:0 0 0 0!important;
+    }
+    #mui .row-item-right { 
+      padding: 0 0 0 0rem!important;
+      margin-top:4rem;
+    }
+    #mui .info { 
+      flex-direction: column
+    }
+    #mui .info-item { 
+      max-width:unset;
+    }
+    }
+</style>
+<div id="mui"style="max-width:1000px;margin:2rem auto 0 auto;padding:2rem;">
+  <div id='success-msg'></div>
+    <div class="row" id="hide-on-submit">
+    <div class="row-item-left col m8 s12">
+        <h1 id="form-title">{{ section.settings.title }}</h1>
+        <span class="container-spacer" style="padding:0.1rem 0; display:block;"></span>
+        <p>{{ section.settings.text }}</p>
+        <span class="container-spacer" style="padding:1rem 0; display:block;"></span>
+        <form id="form"></form>
+        <div class="info">
+            <div class="info-item">
+                <p class="info-item-title">Any questions?</p>
+                <p>Our dedicated UK call centre will be happy to help with any queries</p>
+                <p class="info-item-title">01786 447 647</p>
+            </div>
+            <div class="info-item info-item-end">
+                <p class="info-item-title">Opening Times</p>
+                <ul>
+                    <li class="info-times">
+                        <p>Mon-Fri</p>
+                        <p>09:00am - 5:00pm</p>
+                    </li>
+                    <li class="info-times">
+                        <p>Sun-Sat</p>
+                        <p>Closed</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col m4 s12 row-item-right">
+            <div class="trust">
+                <p class="trust-title">What to expect</p>
+                <p>Our appointments are always relaxed and enjoyable, with plenty of practical advice to help you get it right.</p>
+        </div>
+
+                 <div class="trust" style="margin-top:1.6rem;">
+                <p class="trust-title">Your advisor will</p>
+                       <ul>
+                    <li class="trust-list">
+                        
+  <i class="material-icons" style="margin-bottom:4px;margin-right:0.8rem;">check</i>
+            Share advice and ideas if you need it
+                    </li>
+                  <li class="trust-list">
+                           <i class="material-icons" style="margin-bottom:4px;margin-right:0.8rem;">check</i>Stay as long as you need, usually only around 45 minutes, a little longer for shutters and conservatory blinds
+                    </li>
+                      <li class="trust-list">
+                          <i class="material-icons" style="margin-bottom:4px;margin-right:0.8rem;">check</i>Measure your windows and give you a quote
+                    </li>
+                      <li class="trust-list">
+                          <i class="material-icons" style="margin-bottom:4px;margin-right:0.8rem;">check</i> Be happy to give you time and space to think it over
+                    </li>
+                </ul>
+            </div>
+          </div>
+    </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Basic Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "This is a basic section"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Add your custom text here."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Basic Section",
+    }
+  ]
+}
+{% endschema %}
+
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+
+<script>
+
+
+const types = [
+  { key: "Blinds", value: "blinds" },
+  { key: "Curtains", value: "curtains" },
+  { key: "Shutters", value: "shutters" },
+  { key: "Electric Blinds", value: "electric-blinds" },
+];
+
+const myCustomEvent = new CustomEvent('myCustomEvent', {
+  detail: { message: 'Hello, world!' }
+});
+
+function getDefaultDates(numDates = 1) {
+  const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() + 1);
+
+  let dates = [];
+  let count = 0;
+
+  while (dates.length < numDates) {
+    let defaultDate = new Date(currentDate);
+    defaultDate.setDate(currentDate.getDate() + count * 4);
+
+    while (defaultDate.getDay() === 6 || defaultDate.getDay() === 0) {
+      defaultDate.setDate(defaultDate.getDate() + 1);
+    }
+
+    dates.push(new Date(defaultDate));
+    count++;
+  }
+
+  return dates;
+}
+
+function validateFields(fields) {
+  const errors = [];
+  fields.forEach((field, index) => {
+    // Check if the field is required and if the value is empty
+    if (field.required && !field.value) {
+      errors.push(`${field.name} is required.`);
+      return; // Skip further checks for required fields with empty value
+    }
+
+    // Validate for 'text' type
+    if (field.type === "text") {
+      if (field.min > -1 && field.value.length < field.min) {
+        errors.push(
+          `${field.name} must have at least ${field.min} characters.`
+        );
+      }
+      if (field.max > -1 && field.value.length > field.max) {
+        errors.push(
+          `${field.name} must have no more than ${field.max} characters.`
+        );
+      }
+    }
+
+    // Validate for 'email' type
+    if (field.type === "email") {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (field.value && !emailPattern.test(field.value)) {
+        errors.push(`${field.name} must be a valid email address.`);
+      }
+    }
+
+    // Validate for 'number' type
+    if (field.type === "number") {
+      const number = parseFloat(field.value);
+      if (field.value && isNaN(number)) {
+        errors.push(`${field.name} must be a valid number.`);
+      }
+      if (field.min > -1 && number < field.min) {
+        errors.push(
+          `${field.name} must be greater than or equal to ${field.min}.`
+        );
+      }
+      if (field.max > -1 && number > field.max) {
+        errors.push(
+          `${field.name} must be less than or equal to ${field.max}.`
+        );
+      }
+    }
+  });
+
+  return errors;
+}
+
+class __FormClass {
+  constructor(formId) {
+    this.formId = formId;
+    this.step = 0;
+  }
+
+  getForm() {
+    return document.getElementById(this.formId);
+  }
+
+  validate(idx) {
+    const section = document
+      .querySelector(".collapsible")
+      .children[idx].id.split("_")[1];
+
+    const fields = [...document.querySelectorAll(".input-field > input")]
+      .filter((input) => input.id.includes(section))
+      .map((i) => ({
+        type: i.type,
+        value: i.value,
+        min: i.minLength,
+        max: i.maxLength,
+        required: i.required,
+        name: i.name
+          .split("_")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" "),
+      }));
+
+    const errors = [];
+    fields.forEach((field) => {
+      // Create a key for each field based on a normalized name
+      const fieldKey = field.name.toLowerCase().replace(/\s+/g, "_"); // Convert to snake_case
+
+      // Check if the field is required and if the value is empty
+      if (field.required && !field.value) {
+        errors[fieldKey] = `${field.name} is required.`;
+        return; // Skip further checks for required fields with empty value
+      }
+
+      // Validate for 'email' type
+      if (field.type === "email") {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (field.value && !emailPattern.test(field.value)) {
+          errors[fieldKey] = `${field.name} must be a valid email address.`;
+        }
+      }
+
+      // Validate for 'number' type
+      if (field.type === "number") {
+        const number = parseFloat(field.value);
+        if (field.value && isNaN(number)) {
+          errors[fieldKey] = `${field.name} must be a valid number.`;
+        }
+        if (field.min > -1 && number < field.min) {
+          errors[
+            fieldKey
+          ] = `${field.name} must be greater than or equal to ${field.min}.`;
+        }
+        if (field.max > -1 && number > field.max) {
+          errors[
+            fieldKey
+          ] = `${field.name} must be less than or equal to ${field.max}.`;
+        }
+      }
+
+      // Validate for 'text' type
+      if (field.type === "text") {
+        if (field.min > -1 && field.value.length < field.min) {
+          errors[
+            fieldKey
+          ] = `${field.name} must have at least ${field.min} characters.`;
+        }
+        if (field.max > -1 && field.value.length > field.max) {
+          errors[
+            fieldKey
+          ] = `${field.name} must have no more than ${field.max} characters.`;
+        }
+      }
+    });
+    return errors;
+  }
+  registerFormEventListeners() {
+    document.addEventListener("DOMContentLoaded", () => {
+      const buttons = document.querySelectorAll(".btn-next");
+      const collapsible = document.querySelector(".collapsible");
+
+      buttons.forEach((btn, idx) => {
+        btn.addEventListener("click", (event) => {
+          event.preventDefault();
+          const errors = this.validate(idx);
+
+          if (Object.entries(errors).length > 0) {
+            Object.keys(errors).forEach((err, idx) => {
+              const input = document.getElementById(err);
+              const element = document.getElementById(err + "_message");
+              if (!element) {
+                return;
+              }
+              input.classList.add("invalid");
+              element.setAttribute("data-error", Object.values(errors)[idx]);
+              M.updateTextFields();
+            });
+            return;
+          }
+
+          const next = idx + 1;
+          M.Collapsible.getInstance(collapsible).open(next);
+        });
+      });
+
+      M.Collapsible.init(document.querySelectorAll(".collapsible"), {});
+      M.FormSelect.init(document.querySelectorAll("select"), {});
+
+      const datepickers = document.querySelectorAll(".datepicker");
+      const dates = getDefaultDates(datepickers.length);
+
+      datepickers.forEach((datepicker, index) => {
+        M.Datepicker.init(datepicker, {
+          defaultDate: dates[index],
+          disableWeekends: true,
+          setDefaultDate: true,
+          autoClose: true,
+        });
+      });
+
+      const btn = document.getElementById("btn-submit")
+      btn.addEventListener("click", async (event) => {
+
+          event.preventDefault();
+          let prevBtnContent = btn.innerHTML;
+          btn.innerHTML = ('Submitting...')
+          {% comment %} window.alert('success') {% endcomment %}
+          let data = new FormData(this.getForm());
+          data = Array.from(data.entries()).reduce((acc, [key, value]) => {
+            const [category, ...fieldParts] = key.split("_");
+            const field = fieldParts.join("_");
+            // If category is "product", handle it as an array
+            if (category === "product") {
+              if (!acc[category]) acc[category] = [];
+              acc[category].push(value); // Add product to the array
+            } else {
+              if (!acc[category]) acc[category] = {};
+              acc[category][field] = value;
+            }
+
+            return acc;
+          }, {});
+        
+          try {
+          const response = await fetch('http://goldcrest-blinds-api.up.railway.app/form', {
+          {% comment %} const response = await fetch('http://localhost:8080/form', { {% endcomment %}
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          });
+          if (response.ok) {
+            const responseData = await response.json();
+            if(responseData.status === 200) { 
+              const form = document.getElementById('success-msg');
+              const hide = document.getElementById('hide-on-submit')
+              hide.style.opacity = 0.3;
+              hide.style.cursor = 'not-allowed'
+              const html = `
+              <div class="col s12" style="margin-bottom:3rem;">
+              <div class="card blue-grey darken-1 remove-sd">
+                <div class="card-content white-text green-success-board">
+                  <span class="card-title">Thanks for your appointment request. </span>
+                  <p>Hi, ${data.contact.first_name.charAt(0).toUpperCase() + data.contact.first_name.slice(1)} we have recieved your appointment request for ${data.calendar.one_date
+        } or ${data.calendar.two_date}. Our team will be in touch shortly to confirm the details. 
+We have sent you a confirmation email, if you haven't received it, please check your junk folder. </p>
+                </div>
+              </div>
+            </div>`  
+          form.insertAdjacentHTML("afterbegin", html);
+                  window.dataLayer.push({event: 'sunrite_form_completion'});
+                  window.scrollTo(0, 0);
+          }
+          } else {
+            console.error('Error:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Request failed', error);
+        }
+        btn.innerHTML = prevBtnContent;
+        });
+      });
+  }
+
+  async render() {
+    const html = `
+      <ul class="collapsible">
+        <li class="active" id="form_products"> 
+          <div class="collapsible-header"><span class="badge">1</span>Which products are you interested in?</div>
+          <div class="collapsible-body">
+            ${this.__renderStepOne()}
+            ${this.__renderButton()}
+          </div>
+        </li>
+        <li id="form_contact">
+          <div class="collapsible-header"><span class="badge">2</span>Your contact details</div>
+          <div class="collapsible-body">${this.__renderStepTwo()}</div>
+        </li>
+        <li id="form_address">
+          <div class="collapsible-header"><span class="badge">3</span>Find your address</div>
+          <div class="collapsible-body"><span>${this.__renderStepThree()}</span></div>
+        </li>
+
+        <li class="form_calendar">
+          <div class="collapsible-header"><span class="badge">4</span>Select your date & time</div>
+          <div class="collapsible-body"><span>${this.__renderStepFour()}
+          ${this.__renderPrivacyPolicy()}
+          ${this.__renderConfirmButton()}
+
+          
+          </span></div>
+        </li>
+      </ul>    
+    `;
+    const form = this.getForm();
+    form.insertAdjacentHTML("afterbegin", html);
+    this.registerFormEventListeners(form);
+  }
+
+  __renderPrivacyPolicy() {
+    return `<div class="helper-text" style="margin-top:1rem; max-width:372px;">By submitting this form you are agreeing to provide us with personal data in line with our <a href="#" style="color:rgba(var(--color-foreground),1);text-decoration:underline;">Privacy Policy</a></div>`;
+  }
+
+  __renderStepFour() {
+    return `
+    <div class="row">
+      <p class="col s12" style="padding:0 0.4rem;margin:0 0 0.12rem 0;">
+       Choose which times work for you. We'll then contact you to confirm your appointment time, usually within a few hours of your request.
+      </p>
+      <div class="col s6">
+        <label>First Choice</label>
+        <input type="text" name="calendar_one_date" id="calendar_one_date" class="datepicker">
+      </div>
+      <div class="input-field col s6">
+        <select name="calendar_one_time" id="calendar_one_time">
+          <option value="morning" selected>9am-12pm</option>
+          <option value="afternoon">12pm-5pm</option>
+          <option value="evening">5pm-8pm</option>
+        </select>
+      </div>
+
+      <div class="col s6">
+        <label>Second Choice</label>
+        <input type="text" name="calendar_two_date" id="calendar_two_date" class="datepicker">
+      </div>
+      <div class="input-field col s6">
+         <select name="calendar_two_time" id="calendar_two_time">
+          <option value="morning" selected>9am-12pm</option>
+          <option value="afternoon">12pm-5pm</option>
+          <option value="evening">5pm-8pm</option>
+        </select>
+      </div>
+    </div>`;
+  }
+
+  __renderStepOne() {
+    return `<div class="row">${types
+      .map((type, idx) => {
+        return `<div class="col s12 m4 l6"><label><input type="checkbox" id="product_${type.value}" name="product_${type.value}" value="${type.value}" class="filled-in"/><span>${type.key}</span></label></div>`;
+      })
+      .join(" ")}</div>`;
+  }
+
+  __renderStepThree() {
+    return `
+      <div class="row">
+        <p style="padding:0 0.4rem;margin:0 0 0.4rem 0;">
+          We'll use this information to find you for your appointment
+        </p>
+        <div class="col s6">
+          <div class="input-field">
+            <input id="address_number" name="address_number" type="text" minLength="1" required class="validate">
+            <label for="address_number">Address number</label>
+            <span id="address_number_message" class="helper-text"></span>
+          </div>
+        </div>
+        <div class="col s6">
+          <div class="input-field">
+            <input id="address_postcode" name="address_postcode" type="text" minLength="1" required class="validate">
+            <label for="address_postcode">Postcode</label>
+            <span id="address_postcode_message" class="helper-text"></span>
+          </div>
+        </div>
+          <div class="col s12">
+          <div class="input-field">
+            <input id="address_line_1" name="address_line_1" type="text" minLength="1" required class="validate">
+            <label for="address_line_1">Address Line 1</label>
+            <span id="address_line_1_message" class="helper-text"></span>
+          </div>
+        </div>
+        <div class="col s12">
+          <div class="input-field">
+            <input id="address_town" name="address_town" type="text" minLength="1" required class="validate">
+            <label for="address_town">Address Town</label>
+            <span id="address_town_message" class="helper-text"></span>
+          </div>
+        </div>
+      </div>
+      ${this.__renderButton()}
+    `;
+  }
+
+  __renderStepTwo() {
+    return `
+      <div class="row">
+        <p style="padding:0 0.4rem;margin:0 0 0.4rem 0;">
+          We'll use this information to contact you about your appointment
+        </p>
+        <div class="col s6">
+          <div class="input-field">
+            <input id="contact_first_name" name="contact_first_name" type="text" minLength="1" required class="validate">
+            <label for="contact_first_name">First name</label>
+            <span id="contact_first_name_message" class="helper-text"></span>
+          </div>
+        </div>
+        <div class="col s6">
+          <div class="input-field">
+            <input id="contact_last_name" name="contact_last_name" type="text" minLength="1" required class="validate">
+            <label for="contact_last_name">Last name</label>
+            <span id="contact_last_name_message" class="helper-text"></span>
+          </div>
+        </div>
+        <div class="col s12">
+          <div class="input-field">
+           <input id="contact_email" name="contact_email" type="email" minLength="1" required class="validate">
+            <label for="contact_email">Contact email address</label>
+            <span id="contact_email_message" class="helper-text">We'll send an inquiry confirmation</span>
+          </div>
+        </div>
+        <div class="col s12">
+          <div class="input-field">
+            <input id="contact_number" name="contact_number" type="number" minLength="1" required class="validate">
+            <label for="contact_number">Contact number</label>
+            <span id="contact_number_message" class="helper-text">We'll call to confirm a date you provide.</span>
+          </div>
+      </div>
+      <div class="col s12 select-custom">
+        <label class="select-custom-label">How did you hear about us?</label>
+        <select name="contact_source" id="contact_source">
+          <option value="not-selected" selected>N/A</option>
+          <option value="google">Google</option>
+          <option value="social-media">Social media</option>
+          <option value="recommended">Recommended</option>          
+          <option value="saw-van">Saw our van</option>
+          <option value="previous-customer">Previous customer</option>
+          </select>
+      </div>
+      ${this.__renderButton()}
+    `;
+  }
+
+  __renderButton() {
+    return `
+      <button class="btn waves-effect waves-light btn-small btn-next">
+        Next step
+      </button>
+    `;
+  }
+
+  __renderConfirmButton() {
+    return `
+      <button class="btn waves-effect waves-light btn-small" id="btn-submit" stype="margin-top:1.6rem!important" type="submit">
+        Request your appointment
+      </button>
+    `;
+  }
+}
+
+const FormClass = new __FormClass("form");
+window.FormClass = FormClass;
+FormClass.render();
+</script>

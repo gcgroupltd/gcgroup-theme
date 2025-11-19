@@ -1,0 +1,219 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .custom-collection-section {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .custom-collection-section {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .custom-collection-grid__header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  
+  .custom-collection-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .custom-collection-grid {
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  .custom-collection-grid__card {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+
+  .custom-collection-grid__image-wrapper {
+    display: block;
+    aspect-ratio: 1 / 1;
+    background-color: #f0f0f0;
+  }
+
+  .custom-collection-grid__image-wrapper img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .custom-collection-grid__card:hover img {
+    transform: scale(1.03);
+  }
+
+  .custom-collection-grid__title-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* MODIFIED: Reduced the padding to make the box shorter */
+    padding: 0.2rem 1rem;
+    background-color: rgba(0, 0, 0, 0.6); 
+  }
+  
+  .custom-collection-grid__title {
+    color: white;
+    font-size: 1.7rem;
+    margin: 0;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 749px) {
+    .custom-collection-grid {
+      padding: 0 1.5rem;
+    }
+    .custom-collection-grid__title {
+      font-size: 1.5rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="custom-collection-section color-{{ section.settings.color_scheme }}">
+  <div class="page-width isolate">
+    {%- if section.settings.title != blank -%}
+      <div class="custom-collection-grid__header">
+        <h2>{{ section.settings.title }}</h2>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="page-width isolate">
+    <div class="custom-collection-grid">
+      {%- for block in section.blocks -%}
+        {%- assign collection = block.settings.collection -%}
+        {%- if collection != blank -%}
+          <a href="{{ collection.url }}" class="custom-collection-grid__card" {{ block.shopify_attributes }}>
+            <div class="custom-collection-grid__image-wrapper">
+              
+              {%- assign image_to_use = block.settings.custom_image | default: collection.image -%}
+              {%- assign alt_text = block.settings.custom_alt_text | default: collection.title | escape -%}
+
+              {%- if image_to_use != blank -%}
+                <img
+                  src="{{ image_to_use | image_url: width: 550 }}"
+                  alt="{{ alt_text }}"
+                  width="550"
+                  height="{{ 550 | divided_by: image_to_use.aspect_ratio | round }}"
+                  loading="lazy"
+                >
+              {%- else -%}
+                  {%- assign placeholder_image = 'collection-apparel-1' -%}
+                  {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+            <div class="custom-collection-grid__title-bar">
+              <p class="custom-collection-grid__title">{{ block.settings.custom_title | default: collection.title }}</p>
+            </div>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Collection Grid",
+  "tag": "section",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Our Collections"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "Number of columns on desktop"
+    },
+    {
+      "type": "checkbox",
+      "id": "make_full_width",
+      "label": "Make section full width",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom Image",
+          "info": "Optional. Overrides the collection's default featured image."
+        },
+        {
+          "type": "text",
+          "id": "custom_alt_text",
+          "label": "Custom image alt text"
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom Title",
+          "info": "Optional. Overrides the collection's default title."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Collection Grid"
+    }
+  ]
+}
+{% endschema %}

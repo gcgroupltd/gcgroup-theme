@@ -1,0 +1,143 @@
+<style>
+    .bullet-list-columns {
+        padding: 40px 0;
+        background-color: {{ section.settings.background_color }};
+    }
+
+    .bullet-list-columns__columns {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .bullet-list-columns__title {
+        margin: 0 0 0 0;
+    }
+
+    .bullet-list-columns__column {
+        width: calc(50% - 15px);
+    }
+
+    .bullet-list-columns__bullets {
+        margin:0;
+        padding: 0;
+    }
+
+    .bullet-list-columns__bullets li {
+        list-style: none;
+        margin: 0 0 15px 35px;
+        padding: 0;
+        position: relative;
+    }
+
+    .bullet-list-columns__bullets li svg {
+        position: absolute;
+        top: 0;
+        left: -35px;
+    }
+
+    @media (max-width: 768px) {
+        .bullet-list-columns__column {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="bullet-list-columns" data-section-id="bullet-list-sections--{{ section.id }}">
+  <div class="page-width">
+    <div class="bullet-list-columns__header">
+        <h2 class="bullet-list-columns__title"><strong>What we say about {{ collection.title | remove: 'Stirling' }}</strong></h2>
+    </div>
+
+    <div class="bullet-list-columns__columns">
+        <div class="bullet-list-columns__column">
+          {%- if collection.metafields['custom']['bullet_list_columns_col_1_title'] != blank -%}
+            <h3><strong>{{ collection.metafields['custom']['bullet_list_columns_col_1_title'] }}</strong></h3>
+          {%- endif -%}
+
+          {%- assign bullets = collection.metafields['custom']['bullet_list_columns_col_1'] | newline_to_br | split: '<br />' -%}
+          <ul class="bullet-list-columns__bullets">
+            {%- for bullet in bullets -%}
+              {%- if bullet != blank -%}
+                <li>
+                    <svg class="custom-bullet-icon" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#28a745" stroke-width="1"/>
+                        <path d="M16 9L11 14L8 11" stroke="#28a745" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  <p>{{ bullet | strip }}</p>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+
+        <div class="bullet-list-columns__column">
+          {%- if collection.metafields['custom']['bullet_list_columns_col_2_title'] != blank -%}
+            <h3><strong>{{ collection.metafields['custom']['bullet_list_columns_col_2_title'] }}</strong></h3>
+          {%- endif -%}
+
+          {%- assign bullets = collection.metafields['custom']['bullet_list_columns_col_2'] | newline_to_br | split: '<br />' -%}
+          <ul class="bullet-list-columns__bullets">
+            {%- for bullet in bullets -%}
+              {%- if bullet != blank -%}
+                <li>
+                    <svg class="custom-bullet-icon" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#28a745" stroke-width="1"/>
+                        <path d="M16 9L11 14L8 11" stroke="#28a745" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  <p>{{ bullet | strip }}</p>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Bullet List Columns",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section  Title",
+      "default": "What we say about blinds"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section Background Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column",
+      "limit": 2,
+      "settings": [
+        {
+        "type": "text",
+        "id": "column_heading",
+        "label": "Column Heading"
+        },
+        {
+        "type": "textarea",
+        "id": "bullet_points",
+        "label": "Bullet Points (one per line)"
+        },
+      ]
+    }
+  ],
+    "presets": [
+    {
+      "name": "Bullet List Columns",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

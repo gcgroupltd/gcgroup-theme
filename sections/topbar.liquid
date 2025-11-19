@@ -1,0 +1,141 @@
+<style>
+  #topbar {
+  width:100%;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+  #topbar .container-itm { 
+    grid-column: span 1 / span 1;
+  }
+  #topbar .container { 
+    align-items:center;
+    height:100%;
+    min-height:72px;
+    height:auto;
+    display:grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+#topbar .container .container-logo {
+    display: flex;
+    align-items:center;
+    height: 100%;
+    width: auto;
+    overflow:hidden;
+    margin-left:-1rem;
+}
+#topbar .container .container-logo img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-width:200px;
+    margin: auto 0;
+}
+  #topbar .container .container-number {
+    margin:0 auto;
+    padding-left:4.6rem;
+    display:flex;
+    flex-direction:column;
+  }
+  #topbar .container .container-number p:nth-child(1) {
+    padding:0!important;
+    margin:0!important;
+    font-size: 1.2rem;
+  }
+  #topbar .container .container-number p:nth-child(2){
+    padding:0!important;
+    margin:0!important;
+    font-size: 2.2rem;
+    line-height:1;
+  }
+  #topbar .container .container-itm:last-child{
+    grid-column: span 2 / span 2;
+    display:flex;
+    justify-self:flex-end;
+  }
+  #topbar .container .container-btn {
+    width:100%;
+    margin-left:auto;
+    max-width:max-content;    
+  }
+  @media screen and (max-width: 860px){
+  #topbar .container  {
+    display:flex;
+    flex-wrap:wrap;
+    }
+    #topbar .container .container-number { 
+    margin-left:auto;
+    width:100%;
+    text-align:right;
+    padding-left:0;
+    }
+    #topbar .container .container-itm { 
+      flex: 0 0 50%
+    }
+    #topbar .container .container-itm:last-child{
+    grid-column: span 1 / span 1;
+    display:flex;
+    justify-self:flex-end;
+    flex:0 0 100%;
+    margin-bottom:12px;
+    display:none;
+  }
+  #topbar .container .container-btn { 
+    max-width:100%;
+  }
+  } 
+</style>
+
+
+<section id='topbar' class="color-{{ section.settings.section_color_scheme }}">
+  <div class="page-width container">
+    <a href="{{ shop.domain }}" class="container-itm container-logo"> <img src="{{ settings.logo.src  | img_url: 'medium' }}" height="auto" width="auto"></a>
+    <a class="container-itm container-number full-unstyled-link" href="tel:{{ section.settings.number | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', '' }}">
+      <p>Call today: 8am-5pm</p>
+      <p>{{ section.settings.number }}</p>
+    </a>
+    <div class="container-itm">
+      <a href="{{ section.settings.topbar_button_url }}"  class="container-btn button button--primary">{{ section.settings.topbar_button_text }}</a>
+    </div> 
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Topbar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "number",
+      "label": "Phone Number"
+    },
+    {
+      "type": "url",
+      "id": "topbar_button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "text",
+      "id": "topbar_button_text",
+      "label": "Button Text",
+      "default": "Request Your Free Appointment"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Text Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Topbar",
+    }
+  ]
+}
+{% endschema %}

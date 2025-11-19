@@ -1,0 +1,79 @@
+<style>
+.topbar-trust-container { 
+    padding: 1rem 0;
+}
+.topbar-trust { 
+    margin: 0 auto;    
+    display:grid;
+    font-size: 1.2rem;
+    color:rgb(113, 113, 113);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.topbar-trust-item { 
+}
+.topbar-trust-item:nth-child(2) {
+    text-align:center; 
+}
+.topbar-trust-item:nth-child(3) {
+    text-align:center; 
+}
+.topbar-trust-item:nth-child(4) {
+    text-align:right; 
+}
+  @media screen and (max-width: 860px){
+    .topbar-trust { 
+      width:100%;
+      overflow-x:hidden;
+      display:flex;
+      gap:12px;
+    }
+    .topbar-trust-item {
+      flex:0 0 50%;
+      white-space:nowrap;
+    }
+  }
+</style>
+
+<div class="topbar-trust-container color-{{ section.settings.color_scheme }}">
+    <div class="topbar-trust page-width">
+         {%- if section.blocks.size > 0 %}
+            {%- for block in section.blocks -%}
+                <div class="topbar-trust-item rte">
+                    {{ block.settings.heading }}
+                </div>
+            {%- endfor -%}
+
+         {%- endif -%}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Topbar Trust",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+  ],
+  "blocks": [{
+      "type": "text",
+      "name": "t:sections.footer.blocks.text.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.footer.blocks.text.settings.heading.default",
+          "label": "t:sections.footer.blocks.text.settings.heading.label"
+        },
+      ]
+    }],
+  "presets": [
+    {
+      "name": "Topbar Trust"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,321 @@
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .testimonial-section {
+    background-color: {{ section.settings.background_color }};
+    padding: 40px 0;
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px; 
+    align-items: center;
+  }
+
+  .testimonial-right {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .testimonial-trustpilot-summary {
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .testimonial-summary-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .summary-divider {
+    color: #a0a0a0;
+  }
+  
+  .testimonial-summary-link--underlined {
+    text-decoration: underline;
+    color: inherit;
+  }
+
+  .testimonial-slide {
+    display: none;
+    text-align: left;
+    min-height: 220px; 
+  }
+
+  .testimonial-slide.is-active {
+    display: block;
+  }
+
+  .testimonial-headline {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+
+  .testimonial-text {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  .testimonial-author {
+    font-weight: bold;
+    text-align: right;
+    font-style: italic;
+    margin-bottom: 15px;
+  }
+  
+  .testimonial-review-image {
+    text-align: right;
+  }
+  
+  .testimonial-review-image img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 4px;
+  }
+  
+  .testimonial-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .testimonial-controls-footer {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .testimonial-slider-nav {
+    display: flex;
+    gap: 10px;
+  }
+
+  .testimonial-slider-nav button {
+    background: white;
+    border: 1px solid #ccc;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+  
+  .testimonial-left .button {
+    background-color: #0F2C4C;
+    color: #FFFFFF;
+    border: 1px solid #0F2C4C;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  
+  .testimonial-left .button:hover {
+    background-color: #1a4a82;
+    border-color: #1a4a82;
+  }
+
+  @media screen and (max-width: 768px) {
+    .testimonial-grid {
+      grid-template-columns: 1fr;
+    }
+    .testimonial-right {
+      order: -1;
+      display: none;
+    }
+  }
+{%- endstyle -%}
+
+<div class="testimonial-section color-{{ section.settings.color_scheme }}" data-section-id="{{ section.id }}">
+  <div class="page-width">
+    <div class="testimonial-grid">
+      
+      <div class="testimonial-left">
+        <div class="testimonial-trustpilot-summary">
+          <div class="testimonial-summary-container">
+            {%- if section.settings.trustpilot_summary_left != blank -%}
+              <p>{{ section.settings.trustpilot_summary_left }}</p>
+            {%- endif -%}
+
+            {%- if section.settings.trustpilot_summary_left != blank and section.settings.trustpilot_summary_right != blank -%}
+              <span class="summary-divider">|</span>
+            {%- endif -%}
+
+            {%- if section.settings.trustpilot_summary_right != blank and section.settings.trustpilot_link != blank -%}
+              <a href="{{ section.settings.trustpilot_link }}" class="testimonial-summary-link--underlined" target="_blank" rel="noopener">
+                {{ section.settings.trustpilot_summary_right }}
+              </a>
+            {%- elsif section.settings.trustpilot_summary_right != blank -%}
+              <p>{{ section.settings.trustpilot_summary_right }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+
+        <div class="testimonial-slider">
+          {%- for block in section.blocks -%}
+            <div class="testimonial-slide" {{ block.shopify_attributes }}>
+              {%- if block.settings.headline != blank -%}
+                <h3 class="testimonial-headline">{{ block.settings.headline }}</h3>
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}
+                <div class="testimonial-text">{{ block.settings.text }}</div>
+              {%- endif -%}
+              {%- if block.settings.author != blank -%}
+                <p class="testimonial-author">- {{ block.settings.author }}</p>
+              {%- endif -%}
+
+              {%- if block.settings.review_image != blank -%}
+                <div class="testimonial-review-image">
+                  <img src="{{ block.settings.review_image | image_url: width: 200 }}" alt="{{ block.settings.review_image.alt | default: 'Customer review image' }}" loading="lazy">
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+        
+        <div class="testimonial-controls-footer">
+          <div class="testimonial-slider-nav">
+            {%- if section.blocks.size > 1 -%}
+              <button class="testimonial-prev-btn" aria-label="Previous testimonial">&#8592;</button>
+              <button class="testimonial-next-btn" aria-label="Next testimonial">&#8594;</button>
+            {%- endif -%}
+          </div>
+
+          {%- if section.settings.trustpilot_link != blank -%}
+            <a href="{{ section.settings.trustpilot_link }}" class="button" target="_blank" rel="noopener">Go to Trustpilot</a>
+          {%- endif -%}
+        </div>
+
+      </div>
+      
+      <div class="testimonial-right">
+        {%- if section.settings.main_image != blank -%}
+          <img src="{{ section.settings.main_image | image_url: width: 800 }}" alt="{{ section.settings.main_image.alt | default: 'Customer testimonial' }}" loading="lazy">
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  function handleTestimonialSlider(sectionId) {
+    const section = document.querySelector(`[data-section-id="${sectionId}"]`);
+    if (!section) return;
+    const slides = section.querySelectorAll('.testimonial-slide');
+    if (slides.length < 2) return;
+    const nextBtn = section.querySelector('.testimonial-next-btn');
+    const prevBtn = section.querySelector('.testimonial-prev-btn');
+    let currentSlide = 0;
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('is-active');
+        if (i === index) {
+          slide.classList.add('is-active');
+        }
+      });
+    }
+    showSlide(currentSlide);
+    nextBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    });
+    prevBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    });
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    handleTestimonialSlider('{{ section.id }}');
+  });
+  document.addEventListener('shopify:section:load', (event) => {
+    if (event.detail.sectionId === '{{ section.id }}') {
+      handleTestimonialSlider('{{ section.id }}');
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Customer Testimonials",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#F5F5F5"
+    },
+    {
+      "type": "text",
+      "id": "trustpilot_summary_left",
+      "label": "Trustpilot Summary (Left Part)",
+      "default": "Excellent"
+    },
+    {
+      "type": "text",
+      "id": "trustpilot_summary_right",
+      "label": "Trustpilot Summary (Right Part)",
+      "default": "4.7 based on 1,234 reviews"
+    },
+    {
+      "type": "url",
+      "id": "trustpilot_link",
+      "label": "Trustpilot Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Image (Right Side)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "headline",
+          "label": "Headline",
+          "default": "Excellent service!"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Review Text",
+          "default": "The service and quality of the products was excellent. I would highly recommend."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name",
+          "default": "Jan"
+        },
+        {
+          "type": "image_picker",
+          "id": "review_image",
+          "label": "Review Image (Optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer Testimonials"
+    }
+  ]
+}
+{% endschema %}

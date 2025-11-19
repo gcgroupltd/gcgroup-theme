@@ -1,0 +1,32 @@
+{%- style -%}
+.footer-ribbon {
+  background-color: red;
+  padding: 20px 0;
+}
+.footer-ribbon .container {
+  display: flex;
+  justify-content: space-around;
+}
+.footer-ribbon img {
+  max-width: 100px;
+  height: auto;
+}
+  {%- endstyle -%}
+
+<div class="footer-image-ribbon">
+  <div class="container">
+    <div class="ribbon-content">
+      <img src="{{ 'image1_url' | asset_url }}" alt="Image 1">
+      <img src="{{ 'image2_url' | asset_url }}" alt="Image 2">
+      <img src="{{ 'image3_url' | asset_url }}" alt="Image 3">
+      <img src="{{ 'image4_url' | asset_url }}" alt="Image 4">
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "footer-image-ribbon",
+    "settings": []
+  }
+{% endschema %}

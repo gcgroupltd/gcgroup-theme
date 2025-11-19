@@ -1,0 +1,690 @@
+{% comment %}
+  Reviews & Ratings — mobile tiles carousel + review row scroller
+  - UK date input (dd/mm/yyyy) with "< 1 month ago", months, and years at 12+
+  - Review row is a single horizontal scroller with page-aware dots + counter
+  - Footer images: fixed height (desktop/mobile) with focal point (global + per-review)
+  - Scoped typography controls (CSS vars)
+  - JS is fully scoped to this section instance & resilient if blocks are missing
+{% endcomment %}
+
+<section id="reviews-{{ section.id }}" class="rr-wrap color-{{ section.settings.color_scheme }}"
+  style="
+    --tile-label: {{ section.settings.tile_label_size }}px;
+    --tile-rating: {{ section.settings.tile_rating_size }}px;
+    --tile-reviews: {{ section.settings.tile_reviews_size }}px;
+    --name-size: {{ section.settings.card_name_size }}px;
+    --date-size: {{ section.settings.card_date_size }}px;
+  "
+>
+  <div class="rr-inner page-width">
+
+    {%- if section.settings.header_style == 'single' -%}
+      <!-- Single stars + text -->
+      <div class="rr-top rr-top--single">
+        {%- if section.settings.single_stars != blank -%}
+          <div class="rr-stars">
+            <img src="{{ section.settings.single_stars | image_url: width: 320 }}"
+                 alt="{{ section.settings.single_stars.alt | escape | default: 'Overall rating' }}"
+                 loading="lazy">
+          </div>
+        {%- endif -%}
+        <div class="rr-head-copy">
+          {%- if section.settings.single_headline != blank -%}
+            <div class="rr-score">{{ section.settings.single_headline }}</div>
+          {%- endif -%}
+          {%- if section.settings.single_subline != blank -%}
+            <div class="rr-sub">{{ section.settings.single_subline }}</div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- else -%}
+      <!-- Three tiles (Overall / Trustpilot / Google etc.) -->
+      <div class="rr-top rr-top--tiles js-rr-tiles" role="region" aria-label="Ratings">
+        {%- assign tile_index = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'rating_tile' -%}
+            <div class="rr-tile" data-i="{{ tile_index }}" {{ block.shopify_attributes }}>
+              {%- if block.settings.tile_image != blank -%}
+                <img class="rr-tile-logo"
+                     src="{{ block.settings.tile_image | image_url: width: 160 }}"
+                     alt="{{ block.settings.tile_image.alt | escape | default: block.settings.tile_label | escape }}"
+                     loading="lazy">
+              {%- endif -%}
+              {%- if block.settings.tile_label != blank -%}
+                <div class="rr-tile-label">{{ block.settings.tile_label }}</div>
+              {%- endif -%}
+              <div class="rr-tile-metrics">
+                {%- if block.settings.tile_rating != blank -%}
+                  <span class="rr-tile-rating">{{ block.settings.tile_rating }}</span>
+                {%- endif -%}
+                {%- if block.settings.tile_reviews != blank -%}
+                  <span class="rr-tile-reviews">{{ block.settings.tile_reviews }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+            {%- assign tile_index = tile_index | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- assign tiles_count = 0 -%}
+      {%- for b in section.blocks -%}
+        {%- if b.type == 'rating_tile' -%}{%- assign tiles_count = tiles_count | plus: 1 -%}{%- endif -%}
+      {%- endfor -%}
+      {% comment %} {%- if tiles_count > 1 -%}
+        <div class="rr-tiles-dots js-rr-dots" aria-hidden="true"></div>
+      {%- endif -%} {% endcomment %}
+    {%- endif -%}
+
+    <!-- Reviews row: single horizontal line -->
+    {%-  if tiles_count > 2 -%}
+      <button type="button" class="al-carousel-arrow ar-carousel-arrow-prev all-reviews-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" style="transform: rotate(180deg); height: 1.5em; width: 0.875em;"><path fill="#0f3947" d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path></svg>
+      </button>
+    {%- endif-%}
+    <div class="rr-grid-wrapper">
+      <div class
+        ="rr-grid js-rr-grid" role="region" aria-label="Customer reviews">
+
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'review' -%}
+            <article class="rr-card" {{ block.shopify_attributes }}>
+              <header class="rr-card-head">
+                <h3 class="rr-name">{{ block.settings.name | escape }}</h3>
+
+                {%- if block.settings.head_image != blank -%}
+                  <div class="rr-head-image">
+                    <img src="{{ block.settings.head_image | image_url: width: 320 }}"
+                        alt="{{ block.settings.head_image.alt | escape | default: block.settings.name | escape }}"
+                        loading="lazy">
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.review_date != blank -%}
+                  {%- assign raw = block.settings.review_date | strip -%}
+                  {%- if raw contains '/' -%}
+                    {%- assign parts = raw | replace: '-', '/' | split: '/' -%}
+                    {%- assign d = parts[0] | strip | plus: 0 -%}
+                    {%- assign m = parts[1] | strip | plus: 0 -%}
+                    {%- assign y = parts[2] | strip | plus: 0 -%}
+                  {%- else -%}
+                    {%- assign y = raw | date: '%Y' | plus: 0 -%}
+                    {%- assign m = raw | date: '%m' | plus: 0 -%}
+                    {%- assign d = raw | date: '%d' | plus: 0 -%}
+                  {%- endif -%}
+
+                  {%- assign now_y = 'now' | date: '%Y' | plus: 0 -%}
+                  {%- assign now_m = 'now' | date: '%m' | plus: 0 -%}
+                  {%- assign now_d = 'now' | date: '%d' | plus: 0 -%}
+
+                  {%- assign months = now_y | minus: y | times: 12 | plus: now_m | minus: m -%}
+                  {%- if now_d < d -%}{%- assign months = months | minus: 1 -%}{%- endif -%}
+                  {%- if months < 0 -%}{%- assign months = 0 -%}{%- endif -%}
+
+                  {%- if months <= 0 -%}
+                    <div class="rr-age">&lt; 1 month ago</div>
+                  {%- elsif months >= 12 -%}
+                    {%- assign years = months | divided_by: 12 -%}
+                    <div class="rr-age">{{ years }} year{% if years != 1 %}s{% endif %} ago</div>
+                  {%- else -%}
+                    <div class="rr-age">{{ months }} month{% if months != 1 %}s{% endif %} ago</div>
+                  {%- endif -%}
+                {%- endif -%}
+              </header>
+
+              <div class="rr-body" style="-rr-foot-h-d: {{section.settings.foot_img_height_desktop }}px">
+                {{ block.settings.body }}
+              </div>
+
+              {%- if block.settings.foot_image != blank -%}
+                {%- assign pos_x = block.settings.foot_pos_x | default: section.settings.foot_default_pos_x -%}
+                {%- assign pos_y = block.settings.foot_pos_y | default: section.settings.foot_default_pos_y -%}
+                {%- assign fit_mode = block.settings.foot_fit | default: section.settings.foot_img_mode -%}
+                <figure class="rr-foot-image rr-foot--{{ fit_mode }}"
+                        style="
+                          --rr-foot-h-d: {{ section.settings.foot_img_height_desktop }}px;
+                          --rr-foot-h-m: {{ section.settings.foot_img_height_mobile }}px;
+                          --rr-foot-pos-x: {{ pos_x }}%;
+                          --rr-foot-pos-y: {{ pos_y }}%;
+                        ">
+                  <img src="{{ block.settings.foot_image | image_url: width: 1600 }}"
+                      alt="{{ block.settings.foot_image.alt | escape | default: 'Review image' }}"
+                      loading="lazy">
+                </figure>
+              {%- endif -%}
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+
+      </div>
+    </div>  
+
+    {%- if tiles_count > 2 -%}
+      <button type="button" class="ar-carousel-arrow ar-carousel-arrow-next all-reviews-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" style="transform: rotate(0deg); height: 1.5em; width: 0.875em;"><path fill="#0f3947" d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path></svg>
+      </button>
+    {%- endif -%}
+
+    {%- assign reviews_count = 0 -%}
+    {%- for b in section.blocks -%}
+      {%- if b.type == 'review' -%}{%- assign reviews_count = reviews_count | plus: 1 -%}{%- endif -%}
+    {%- endfor -%}
+    {%- if reviews_count > 1 -%}
+      <div class="rr-grid-dots" aria-hidden="true">
+        <div class="dots js-rr-grid-dots" role="tablist" aria-label="Review pages"></div>
+        <div class="count js-rr-grid-count" aria-live="polite">1 / 1</div>
+      </div>
+    {%- endif -%}
+
+  </div> <!-- /.rr-inner -->
+
+  <style>
+    /* Scope with unique section ID to beat theme styles */
+    #reviews-{{ section.id }} .rr-inner { max-width: var(--page-width, 1200px); margin: 0 auto; position: relative; }
+    #reviews-{{ section.id }} { background: {{ section.settings.bg_color }}; padding: {{ section.settings.pad_y }}px 0; }
+
+    /* Reviews Arrow Styling */
+    #reviews-{{section.id }} .rr-inner .all-reviews-button {position: absolute; top: 50%; border: 0;  background: transparent; opacity: 0.6; }
+    #reviews-{{section.id }} .rr-inner .all-reviews-button.ar-carousel-arrow-prev { left: 15px; }
+    #reviews-{{section.id }} .rr-inner .all-reviews-button.ar-carousel-arrow-next { right: 15px; }
+
+    #reviews-{{section.id }} .rr-inner .all-reviews-button:hover {opacity: 1; cursor: pointer; }
+
+    @media (max-width: 750px) {
+      #reviews-{{section.id }} .rr-inner .all-reviews-button {display: none;}
+    }
+
+    /* --- Top area --- */
+    #reviews-{{ section.id }} .rr-top { background:#fff; border-radius:12px; box-shadow:0 6px 30px rgba(10,10,10,.06); padding:20px 22px; display:flex; gap:16px; align-items:center; }
+    #reviews-{{ section.id }} .rr-top--single .rr-stars img { display:block; height:28px; width:auto; }
+    #reviews-{{ section.id }} .rr-head-copy .rr-score { font-size: var(--tile-rating); font-weight:800; line-height:1.1; }
+    #reviews-{{ section.id }} .rr-head-copy .rr-sub { font-size: var(--tile-reviews); opacity:.9; margin-top:2px; }
+
+    /* Tiles: grid ≥641px, swipe carousel ≤640px */ /*Matts edit to 804px*/
+    #reviews-{{ section.id }} .rr-top--tiles{ display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
+    #reviews-{{ section.id }} .rr-tile { background:#fff; border-radius:12px; padding:18px; box-shadow:0 6px 30px rgba(10,10,10,.06); display:flex; flex-direction:column; gap:10px; align-items:flex-start; }
+    #reviews-{{ section.id }} .rr-tile-logo { height:24px; width:auto; }
+    #reviews-{{ section.id }} .rr-tile-label { font-weight:700; font-size: var(--tile-label); opacity:.9; }
+    #reviews-{{ section.id }} .rr-tile-metrics { display:flex; gap:12px; align-items:baseline; }
+    #reviews-{{ section.id }} .rr-tile-rating { font-weight:800; font-size: var(--tile-rating); }
+    #reviews-{{ section.id }} .rr-tile-reviews { font-size: var(--tile-reviews); opacity:.9; }
+
+    @media (max-width: 804px){
+      #reviews-{{ section.id }} .rr-top--tiles{
+        display:flex; overflow-x:auto; -webkit-overflow-scrolling: touch;
+        scroll-snap-type:x mandatory; gap:12px; padding: 8px 4px; scrollbar-width:none;
+      }
+      #reviews-{{ section.id }} .rr-top--tiles::-webkit-scrollbar{ display:none; }
+      #reviews-{{ section.id }} .rr-top--tiles .rr-tile{ flex:0 0 85%; min-width:85%; scroll-snap-align:center; }
+      #reviews-{{ section.id }} .rr-tiles-dots{ display:flex; justify-content:center; gap:8px; margin: 8px 0 2px; }
+      #reviews-{{ section.id }} .rr-tiles-dots .dot{ width:10px; height:10px; border-radius:50%; background:#c9ced6; border:0; padding:6px; background-clip:content-box; cursor:pointer; }
+      #reviews-{{ section.id }} .rr-tiles-dots .dot.is-active{ background:#6b7280; }
+    }
+
+    /* --- Review cards: one horizontal row (scroll) on all screens --- */
+    #reviews-{{ section.id }} .rr-grid{
+      display:flex !important; gap:24px; overflow-x:auto; -webkit-overflow-scrolling:touch;
+      scroll-snap-type:x mandatory; padding-bottom:6px;
+    }
+    #reviews-{{ section.id }} .rr-grid::-webkit-scrollbar{ height:0; }
+    #reviews-{{ section.id }} .rr-grid{ scrollbar-width:none; }
+
+    /* Fix for arrows and scrolling */
+
+  #reviews-{{section.id }} .rr-grid-wrapper { width: 100%;  overflow: hidden; }
+
+    /* Card styling & widths */
+    #reviews-{{ section.id }} .rr-card { background:#fff; border-radius:12px; padding:20px; display:flex; flex-direction:column; min-height:420px; scroll-snap-align:start; }
+    {% comment %} this is styling for above that has been removed: box-shadow:0 6px 30px rgba(10,10,10,.06); {% endcomment %}
+    #reviews-{{ section.id }} .rr-card-head { display:flex; flex-direction:column; gap:8px; margin-bottom:8px; }
+    #reviews-{{ section.id }} .rr-name { margin:0; font-size: var(--name-size); font-weight:700; }
+    #reviews-{{ section.id }} .rr-head-image img { display:block; width:100px; height:auto; }
+    #reviews-{{ section.id }} .rr-age { font-size: var(--date-size); opacity:.8; }
+    #reviews-{{ section.id }} .rr-body { margin-top:10px; line-height:1.55; }
+
+    /* Footer image: fixed height + focal point / fit mode */
+    #reviews-{{ section.id }} .rr-foot-image{
+      margin:18px 0 0;
+      height: var(--rr-foot-h-d, 180px);
+      overflow:hidden;
+      border-radius:8px;
+    }
+    #reviews-{{ section.id }} .rr-foot-image img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-position: var(--rr-foot-pos-x,50%) var(--rr-foot-pos-y,50%);
+    }
+    #reviews-{{ section.id }} .rr-foot--cover img{ object-fit: cover; }
+    #reviews-{{ section.id }} .rr-foot--contain img{ object-fit: contain; background:#fff; padding:8px; }
+
+    @media (max-width: 640px){
+      #reviews-{{ section.id }} .rr-foot-image{ height: var(--rr-foot-h-m, 140px); }
+    }
+
+    /* Card widths per breakpoint */
+    @media (min-width: 990px){ #reviews-{{ section.id }} .rr-card{ flex: 0 0 calc(33.333% - 11px); } }
+    @media (max-width: 989px) and (min-width: 641px){ #reviews-{{ section.id }} .rr-card{ flex: 0 0 49%; } }
+    @media (max-width: 640px){ #reviews-{{ section.id }} .rr-card{ flex: 0 0 96%; scroll-snap-align:center; } }
+
+    /* Dots below reviews */
+    #reviews-{{ section.id }} .rr-grid-dots{ display:flex; align-items:center; justify-content:center; gap:12px; margin-top:24px; }
+    #reviews-{{ section.id }} .rr-grid-dots .dots{ display:flex; gap:10px; }
+    #reviews-{{ section.id }} .rr-grid-dots .dot{ width:12px; height:12px; border-radius:50%; border:0; padding:8px; background:#0f3947; cursor:pointer; opacity:.6; }
+    #reviews-{{ section.id }} .rr-grid-dots .dot.is-active{ background:#0f3947; opacity: 1; }
+    #reviews-{{ section.id }} .rr-grid-dots .count{ font-size:.9rem; color:#6b7280; display: none; }
+
+    /* Show count */
+    @media (max-width: 1000px) {
+    #reviews-{{ section.id }} .rr-grid-dots .count{ display: block; }
+    }
+
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce){
+      #reviews-{{ section.id }} .rr-grid, #reviews-{{ section.id }} .rr-top--tiles { scroll-behavior:auto; }
+    }
+  </style>
+
+<!-- Compact overrides: make all bits & images smaller without changing theme settings -->
+<style>
+  #reviews-{{ section.id }} .rr-top{ padding:12px 14px; margin-bottom: 2em; }
+  #reviews-{{ section.id }} .rr-top--single .rr-stars img{ height:22px; }
+
+  /* Tile tweaks */
+  #reviews-{{ section.id }} .rr-tile{ padding:12px; gap:8px; }
+  #reviews-{{ section.id }} .rr-tile-logo{ height:18px; }
+  #reviews-{{ section.id }} .rr-tile-metrics{ gap:8px; }
+  #reviews-{{ section.id }} .rr-tile-label{ font-size: calc(var(--tile-label) * .9); }
+  #reviews-{{ section.id }} .rr-tile-rating{ font-size: calc(var(--tile-rating) * .9); }
+  #reviews-{{ section.id }} .rr-tile-reviews{ font-size: calc(var(--tile-reviews) * .9); }
+
+  /* Review rail spacing */
+  #reviews-{{ section.id }} .rr-grid{ gap:16px; }
+
+  /* Card size & typography */
+  #reviews-{{ section.id }} .rr-card{ padding:16px; min-height:360px; }
+  #reviews-{{ section.id }} .rr-head-image img{ width: 12px; }
+  @media (max-width: 640px){
+    #reviews-{{ section.id }} .rr-head-image img{ width: 10px; }
+  }
+  @media (max-width: 640px){
+    #reviews-{{ section.id }} .rr-head-image img{ width: 14px; }
+  }
+  @media (max-width: 640px){
+    #reviews-{{ section.id }} .rr-head-image img{ width: 20px; }
+  }
+  @media (max-width: 640px){
+    #reviews-{{ section.id }} .rr-head-image img{ width: 40px; }
+  }
+  #reviews-{{ section.id }} .rr-name{ font-size: calc(var(--name-size) * .92); }
+  #reviews-{{ section.id }} .rr-age{ font-size: calc(var(--date-size) * .92); }
+  #reviews-{{ section.id }} .rr-body{ line-height:1.5; }
+
+  /* Footer images slightly shorter globally (respects per-setting values) */
+  #reviews-{{ section.id }} .rr-foot-image{ height: calc(var(--rr-foot-h-d, 180px) * .85); }
+  @media (max-width: 640px){
+    #reviews-{{ section.id }} .rr-foot-image{ height: calc(var(--rr-foot-h-m, 140px) * .85); }
+  }
+
+  /* Dots a touch smaller but keep good tap target */
+  #reviews-{{ section.id }} .rr-grid-dots .dot{ width:10px; height:10px; padding:6px; }
+
+  /* Mobile tiles a hair narrower so everything feels lighter */
+  @media (max-width: 640px){
+    #reviews-{{ section.id }} .rr-top--tiles .rr-tile{ flex:0 0 80%; min-width:80%; }
+  }
+
+  /* Scale the single-header sizes too */
+  #reviews-{{ section.id }} .rr-head-copy .rr-score{ font-size: calc(var(--tile-rating) * .9); }
+  #reviews-{{ section.id }} .rr-head-copy .rr-sub{ font-size: calc(var(--tile-reviews) * .9); }
+</style>
+</section>
+
+<!-- Mobile tiles: start on first, then auto-cycle -->
+<script>
+(function(){
+  const root = document.querySelector('#reviews-{{ section.id }}');
+  if(!root) return;
+  const wrap = root.querySelector('.js-rr-tiles');
+  const dotsWrap = root.querySelector('.js-rr-dots');
+  if(!wrap) return; // header may be "single"
+
+  const tiles = Array.from(wrap.querySelectorAll('.rr-tile'));
+  if(tiles.length <= 1 || !dotsWrap) return;
+
+  // Build dots (in case theme strips them)
+  dotsWrap.innerHTML = '';
+  tiles.forEach((_, i)=>{
+    const b = document.createElement('button');
+    b.className = 'dot' + (i===0 ? ' is-active' : '');
+    b.setAttribute('data-i', i);
+    b.setAttribute('tabindex','-1');
+    b.setAttribute('aria-label', `Go to tile ${i+1}`);
+    dotsWrap.appendChild(b);
+  });
+
+  let current = 0;
+  let autoTimer = null;
+
+  function getGapPx(el){
+    const g = getComputedStyle(el).gap || getComputedStyle(el).columnGap || '12px';
+    const n = parseFloat(g);
+    return Number.isFinite(n) ? n : 12;
+  }
+
+  function setActive(i){
+    dotsWrap.querySelectorAll('.dot').forEach((d,idx)=> d.classList.toggle('is-active', idx===i));
+  }
+
+  function scrollToTile(i){
+    current = Math.max(0, Math.min(i, tiles.length-1));
+    // Robust scroll calc accounting for container padding
+    const target = tiles[current];
+    const leftNow = wrap.scrollLeft;
+    const dx = target.getBoundingClientRect().left - wrap.getBoundingClientRect().left;
+    const nextLeft = leftNow + dx;
+    wrap.scrollTo({ left: nextLeft, behavior: 'smooth' });
+    setActive(current);
+  }
+
+  // Sync active dot while scrolling (closest tile to center)
+  let ticking=false;
+  function onScroll(){
+    if(ticking) return;
+    window.requestAnimationFrame(()=>{
+      const mid = wrap.getBoundingClientRect().left + wrap.clientWidth/2;
+      let bestI = 0, bestDist = Infinity;
+      tiles.forEach((t, i)=>{
+        const rect = t.getBoundingClientRect();
+        const center = rect.left + rect.width/2;
+        const d = Math.abs(center - mid);
+        if(d < bestDist){ bestDist = d; bestI = i; }
+      });
+      current = bestI; setActive(current); ticking=false;
+    });
+    ticking=true;
+  }
+
+  function startAuto(){
+    stopAuto();
+    if(window.matchMedia('(max-width: 640px)').matches){
+      autoTimer = setInterval(()=> scrollToTile((current+1) % tiles.length), 4000);
+    }
+  }
+  function stopAuto(){ if(autoTimer){ clearInterval(autoTimer); autoTimer=null; } }
+
+  // Init
+  wrap.scrollLeft = 0;
+  setActive(0);
+  onScroll();
+  wrap.addEventListener('scroll', onScroll, {passive:true});
+  wrap.addEventListener('pointerdown', stopAuto, {passive:true});
+  wrap.addEventListener('mouseenter', stopAuto, {passive:true});
+  wrap.addEventListener('mouseleave', startAuto, {passive:true});
+  dotsWrap.addEventListener('click', (e)=>{
+    const btn = e.target.closest('.dot');
+    if(!btn) return; scrollToTile(+btn.dataset.i || 0); stopAuto();
+  });
+  startAuto();
+  window.addEventListener('resize', startAuto);
+})();
+</script>
+
+<!-- Review row dots + page-aware counter -->
+<script>
+(function(){
+  const root = document.querySelector('#reviews-{{ section.id }}');
+  if(!root) return;
+  const rail = root.querySelector('.js-rr-grid');
+  const dotsWrap = root.querySelector('.js-rr-grid-dots');
+  const arPrevButton = root.querySelector('.ar-carousel-arrow-prev');
+  const arNextButton = root.querySelector('.ar-carousel-arrow-next');
+  const countEl = root.querySelector('.js-rr-grid-count');
+  if(!rail) return;
+
+  const cards = Array.from(rail.querySelectorAll('.rr-card'));
+  if(cards.length <= 1 || !dotsWrap) return;
+
+  function getGapPx(el){
+    const g = getComputedStyle(el).gap || getComputedStyle(el).columnGap || '24px';
+    const n = parseFloat(g);
+    return Number.isFinite(n) ? n : 24;
+  }
+
+  function perView(){
+    const w = window.innerWidth;
+    if(w >= 990) return 3;   // desktop
+    if(w >= 641) return 2;   // tablet
+    return 1;                // mobile
+  }
+
+  let pages = 1, currentPage = 0;
+
+  function buildDots(){
+    const pv = perView();
+    pages = Math.max(1, Math.ceil(cards.length / pv));
+    dotsWrap.innerHTML = '';
+    for(let i=0;i<pages;i++){
+      const b = document.createElement('button');
+      b.className = 'dot' + (i===0 ? ' is-active' : '');
+      b.setAttribute('data-i', i);
+      b.setAttribute('tabindex','-1');
+      b.setAttribute('aria-label', `Go to reviews page ${i+1}`);
+      dotsWrap.appendChild(b);
+    }
+    currentPage = 0;
+    updateCounter();
+  }
+
+  function setActiveDot(i){
+    currentPage = Math.max(0, Math.min(i, pages-1));
+    dotsWrap.querySelectorAll('.dot').forEach((d,idx)=> d.classList.toggle('is-active', idx===currentPage));
+    updateCounter();
+  }
+
+  function updateCounter(){ if(countEl) countEl.textContent = `${currentPage+1} / ${pages}`; }
+
+  function goToPage(i){
+    const pv = perView();
+    const firstIndex = i * pv;
+    const target = cards[Math.min(firstIndex, cards.length-1)];
+    const leftNow = rail.scrollLeft;
+    const dx = target.getBoundingClientRect().left - rail.getBoundingClientRect().left;
+    const nextLeft = leftNow + dx;
+    rail.scrollTo({ left: nextLeft, behavior: 'smooth' });
+    setActiveDot(i);
+  }
+
+  // Click dot -> go to that page
+  dotsWrap.addEventListener('click', (e)=>{
+    const btn = e.target.closest('.dot');
+    if(!btn) return; goToPage(+btn.dataset.i || 0);
+  });
+
+  // Update current page while scrolling
+  let ticking = false;
+  function onScroll(){
+    if(ticking) return;
+    window.requestAnimationFrame(()=>{
+      const pv = perView();
+      const cardW = cards[0].getBoundingClientRect().width;
+      const gap = getGapPx(rail);
+      const pageWidth = (cardW * pv) + (gap * (pv - 1));
+      const i = Math.round(rail.scrollLeft / pageWidth);
+      setActiveDot(Math.max(0, Math.min(i, pages-1)));
+      ticking = false;
+    });
+    ticking = true;
+  }
+
+  // Init + responsive rebuild
+  buildDots();
+  setActiveDot(0);
+  rail.addEventListener('scroll', onScroll, { passive: true });
+
+  let rTO=null;
+  window.addEventListener('resize', ()=>{
+    clearTimeout(rTO);
+    rTO = setTimeout(()=>{
+      const oldPage = currentPage;
+      buildDots();
+      goToPage(Math.min(oldPage, pages-1));
+    }, 120);
+  });
+
+  /* Functionlaity for arrows */
+  if (arPrevButton && arNextButton) {
+
+    arPrevButton.addEventListener('click', () => {
+          const targetPage = currentPage === 0 ? pages - 1 : currentPage - 1;
+          goToPage(targetPage);
+    });
+
+    arNextButton.addEventListener('click', () => {
+          const targetPage = currentPage === pages - 1 ? 0 : currentPage + 1;
+        goToPage(targetPage);
+    });
+  }
+
+})();
+</script>
+
+
+<!-- Layout tweak: tiles = logo next to text; review cards more compact -->
+<style>
+  /* --- Top 3 squares: place logo next to text --- */
+  #reviews-{{ section.id }} .rr-top--tiles .rr-tile{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 12px;
+    row-gap: 4px;
+    align-items: center;
+  }
+  #reviews-{{ section.id }} .rr-top--tiles .rr-tile-logo{
+    height: 18px;            /* a little smaller */
+    grid-column: 1;
+    grid-row: 1 / span 2;    /* logo spans label + metrics */
+  }
+  #reviews-{{ section.id }} .rr-top--tiles .rr-tile-label{
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+    font-size: calc(var(--tile-label) * .9);
+  }
+  #reviews-{{ section.id }} .rr-top--tiles .rr-tile-metrics{
+    grid-column: 2;
+    grid-row: 2;
+    gap: 8px;
+  }
+
+  /* Position on card to help place logo */
+
+  #reviews-{{section.id }} .rr-card{position: relative}
+
+  /* --- Review cards: reduce bottom white space & image sizes --- */
+  #reviews-{{ section.id }} .rr-card{$1min-height: 260px;       /* was 360/420 — trims excess white space */
+    padding: 14px;
+  }
+  #reviews-{{ section.id }} .rr-head-image img{ width: 56px; } /* smaller header image */
+  #reviews-{{ section.id }} .rr-body{ margin-top: 6px; line-height: 1.45; }
+
+  /* Add margin bottom to help place image at bottom */
+  #reviews-{{section.id }} .rr-body {margin-bottom: calc(var(--rr-foot-h-d, 180px) * .4); }
+
+  /* Footer image shorter overall */
+  #reviews-{{ section.id }} .rr-foot-image{ height: calc(var(--rr-foot-h-d, 180px) * .4); position: absolute; bottom: 14px; left:14px; right: 14px}
+  @media (max-width: 640px){
+    #reviews-{{ section.id }} .rr-foot-image{ height: calc(var(--rr-foot-h-m, 140px) * .45); }
+  }
+</style>
+
+
+<!-- Align header image to the left of text inside review cards -->
+<style>
+  #reviews-{{ section.id }} .rr-card-head{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-auto-rows: min-content;
+    column-gap: 10px;
+    row-gap: 2px;
+    align-items: center;
+  }
+  #reviews-{{ section.id }} .rr-head-image{ grid-column: 1; grid-row: 1 / span 2; justify-self: start; }
+  #reviews-{{ section.id }} .rr-name{ grid-column: 2; grid-row: 1; }
+  #reviews-{{ section.id }} .rr-age{ grid-column: 2; grid-row: 2; }
+</style>
+
+{% schema %}
+{
+  "name": "Reviews & ratings",
+  "settings": [
+    { "type": "select", "id": "header_style", "label": "Top style", "default": "tiles", "options": [
+      { "value": "single", "label": "Single row (stars + text)" },
+      { "value": "tiles",  "label": "Three tiles (Overall / Trustpilot / Google)" }
+    ]},
+    { "type": "select", "id": "foot_img_mode", "label": "Footer image mode (default)", "default": "contain", "options": [
+      { "value": "contain", "label": "Fit (no crop) — best for logos" },
+      { "value": "cover",   "label": "Fill & crop — best for photos" }
+    ]},
+    { "type": "image_picker", "id": "single_stars", "label": "Single row — stars image" },
+    { "type": "text", "id": "single_headline", "label": "Single row — headline", "default": "4.8" },
+    { "type": "text", "id": "single_subline", "label": "Single row — subline", "default": "42 reviews" },
+    { "type": "range", "id": "foot_img_height_desktop", "min": 100, "max": 380, "step": 10, "unit": "px", "label": "Footer image height (desktop)", "default": 180 },
+    { "type": "range", "id": "foot_img_height_mobile",  "min": 80,  "max": 280, "step": 10, "unit": "px", "label": "Footer image height (mobile)",  "default": 140 },
+    { "type": "range", "id": "foot_default_pos_x", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "Default focal X (left→right)", "default": 50 },
+    { "type": "range", "id": "foot_default_pos_y", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "Default focal Y (top→bottom)", "default": 50 },
+    { "type": "range", "id": "tile_label_size", "min": 10, "max": 22, "step": 1, "unit": "px", "label": "Tile label size", "default": 14 },
+    { "type": "range", "id": "tile_rating_size", "min": 14, "max": 32, "step": 1, "unit": "px", "label": "Tile rating size", "default": 22 },
+    { "type": "range", "id": "tile_reviews_size", "min": 12, "max": 24, "step": 1, "unit": "px", "label": "Tile reviews size", "default": 16 },
+    { "type": "range", "id": "card_name_size", "min": 12, "max": 28, "step": 1, "unit": "px", "label": "Card name size", "default": 18 },
+    { "type": "range", "id": "card_date_size", "min": 10, "max": 22, "step": 1, "unit": "px", "label": "Card date size", "default": 14 },
+    { "type": "color", "id": "bg_color", "label": "Background color", "default": "#f8f9fb" },
+    { "type": "range", "id": "pad_y", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Vertical padding", "default": 40 },
+    { "type": "select", "id": "color_scheme", "label": "Color scheme", "default": "default", "options": [
+      { "value": "default", "label": "Default" },
+      { "value": "inverse", "label": "Inverse" }
+    ]}
+  ],
+  "blocks": [
+    {
+      "type": "rating_tile",
+      "name": "Top: rating tile",
+      "limit": 6,
+      "settings": [
+        { "type": "text", "id": "tile_label", "label": "Label", "default": "Overall" },
+        { "type": "image_picker", "id": "tile_image", "label": "Logo / stars image" },
+        { "type": "text", "id": "tile_rating", "label": "Rating text", "default": "4.8" },
+        { "type": "text", "id": "tile_reviews", "label": "Reviews text", "default": "42 reviews" }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Review card",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Customer name", "default": "Customer name" },
+        { "type": "image_picker", "id": "head_image", "label": "Header image (e.g., stars or avatar)" },
+        { "type": "text", "id": "review_date", "label": "Date (dd/mm/yyyy or yyyy-mm-dd)", "info": "Shows “< 1 month ago”, months, or years (12+)" },
+        { "type": "richtext", "id": "body", "label": "Review text", "default": "<p>Great experience — highly recommend.</p>" },
+        { "type": "image_picker", "id": "foot_image", "label": "Footer image (beneath the text)" },
+        { "type": "range", "id": "foot_pos_x", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "Footer focal X (left→right)", "default": 50 },
+        { "type": "range", "id": "foot_pos_y", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "Footer focal Y (top→bottom)", "default": 50 },
+        { "type": "select", "id": "foot_fit", "label": "Footer image mode (this review)", "options": [
+          { "value": "contain", "label": "Fit (no crop)" },
+          { "value": "cover",   "label": "Fill & crop" }
+        ]}
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews & ratings",
+      "blocks": [
+        { "type": "rating_tile", "settings": { "tile_label": "Overall" } },
+        { "type": "rating_tile", "settings": { "tile_label": "Trustpilot" } },
+        { "type": "rating_tile", "settings": { "tile_label": "Google" } },
+        { "type": "review" }, { "type": "review" }, { "type": "review" }
+      ]
+    }
+  ]
+}
+{% endschema %} 

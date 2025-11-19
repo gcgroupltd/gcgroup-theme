@@ -1,0 +1,182 @@
+{%- style -%}
+  .next-steps-section {
+    background-color: {{ section.settings.background_color }};
+    padding: 40px 0;
+  }
+
+  .next-steps__main-heading {
+    text-align: center;
+    margin-top: 0;
+    font-size: 30px;
+    line-height: 34.5px;
+    margin-bottom: 40px;
+  }
+
+  .next-steps__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* side-by-side on desktop */
+    gap: 30px;
+    align-items: stretch;
+  }
+
+  .next-steps__card {
+    --pad: 30px;                        /* desktop padding */
+    background-color: var(--card-bg-color);
+    color: var(--card-text-color);
+    padding: var(--pad);
+    border-radius: 8px;
+    height: 100%;
+    display: flex;                      /* equal heights + button at bottom */
+    flex-direction: column;
+    text-align: center;
+    overflow: hidden;                   /* keep rounded corners tidy */
+  }
+
+  /* Full-bleed image: touches left/right/top, controlled height */
+  .next-steps__card-image {
+    margin: calc(-1 * var(--pad)) calc(-1 * var(--pad)) 20px;
+    height: clamp(180px, 22vw, 260px);  /* shallow on desktop like the ref */
+    overflow: hidden;
+    border-radius: 0;
+  }
+  .next-steps__card-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .next-steps__card-heading {
+    font-size: 30px;
+    margin: 0 0 15px 0;
+    color: var(--card-text-color);
+  }
+
+  .next-steps__card-text { 
+    color: var(--card-text-color);
+    font-size: 16px;
+    margin: 0 0 16px 0;
+    text-align: left;
+    flex: 1 1 auto;                     /* fills the middle space */
+  }
+  .next-steps__card-text p { margin: 0 0 16px 0; }
+
+  .next-steps__card .button {
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;                   /* pins the button to the bottom */
+  }
+
+  /* Mobile tweaks */
+  @media screen and (max-width: 768px) {
+    .next-steps-section { padding: 40px 0; }
+
+    .next-steps__main-heading {
+      text-align: left;                 /* per your request */
+      font-size: clamp(28px, 6.5vw, 36px);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .next-steps__grid {
+      grid-template-columns: 1fr;       /* single column on mobile */
+      gap: 16px;                         /* tighter card spacing */
+    }
+
+    .next-steps__card { --pad: 22px; }
+
+    .next-steps__card-image {
+      height: clamp(160px, 50vw, 220px);
+      margin-bottom: 16px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="next-steps-section">
+  <div class="page-width">
+    {%- if section.settings.main_heading != blank -%}
+      <h2 class="next-steps__main-heading">{{ section.settings.main_heading }}</h2>
+    {%- endif -%}
+
+    <div class="next-steps__grid">
+      {%- for block in section.blocks -%}
+        <div class="next-steps__card"
+             style="--card-bg-color: {{ block.settings.card_background_color }}; --card-text-color: {{ block.settings.card_text_color }};"
+             {{ block.shopify_attributes }}>
+
+          {%- if block.settings.card_image != blank -%}
+            <div class="next-steps__card-image">
+              <img
+                src="{{ block.settings.card_image | image_url: width: 800 }}"
+                alt="{{ block.settings.card_image.alt | default: block.settings.card_title | escape }}"
+                loading="lazy">
+            </div>
+          {%- endif -%}
+
+          {%- if block.settings.card_title != blank -%}
+            <h3 class="next-steps__card-heading">{{ block.settings.card_title }}</h3>
+          {%- endif -%}
+
+          {%- if block.settings.card_text != blank -%}
+            <div class="next-steps__card-text">{{ block.settings.card_text }}</div>
+          {%- endif -%}
+
+          {%- if block.settings.button_label != blank and block.settings.button_link != blank -%}
+            <a href="{{ block.settings.button_link }}" class="button button--primary" {%- if block.settings.external_link -%} target="_blank" rel="noopener noreferrer" {%- endif -%}>
+              {{ block.settings.button_label }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Next Steps Cards",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main Heading",
+      "default": "What to do next"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section Background Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "limit": 3,
+      "settings": [
+        { "type": "image_picker", "id": "card_image", "label": "Image" },
+        { "type": "text", "id": "card_title", "label": "Heading", "default": "Card Heading" },
+        { "type": "richtext", "id": "card_text", "label": "Text", "default": "<p>Add your descriptive text here.</p>" },
+        { "type": "text", "id": "button_label", "label": "Button Label", "default": "Learn More" },
+        { "type": "url", "id": "button_link", "label": "Button Link" },
+        { "type": "checkbox", "id": "external_link", "label": "Open in new tab?" },
+        { "type": "color", "id": "card_background_color", "label": "Card Background Color", "default": "#F5F5F5" },
+        { "type": "color", "id": "card_text_color", "label": "Card Text Color", "default": "#333333" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Next Steps Cards",
+      "blocks": [ { "type": "card" }, { "type": "card" }, { "type": "card" } ]
+    }
+  ]
+}
+{% endschema %}

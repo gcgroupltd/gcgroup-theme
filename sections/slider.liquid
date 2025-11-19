@@ -1,0 +1,120 @@
+<style>
+  #sli { 
+  max-width:1440px;
+  padding-top:1.2rem; 
+  margin:auto;
+}
+  .slider{
+  max-width:100%;
+  display:grid;
+  position:relative;
+  gap:1.2rem;
+  z-index:1;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  {% comment %} gap:0.12rem; {% endcomment %}
+      border: 1px solid rgba(16, 57, 72, 0.05);
+    {% comment %} padding: 1.5rem !important; {% endcomment %}
+    background: rgb(var(--color-background)) linear-gradient(rgba(16, 57, 72, 0.04), rgba(16, 57, 72, 0.04)) !important;
+  }
+  @media screen and (max-width:700px){
+    #sli { 
+    padding-top:0!important;
+    }
+      .slider { 
+        padding:1.2rem;
+        background:transparent!important;
+        border:none!important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+.slider-item {
+  width: 100%; /* or any specific width */
+  height: 0;
+  padding-top: 100%; /* This creates a square by using the padding trick */
+  position: relative;
+  z-index:1000;
+}
+
+.slider-item-img { 
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.slider-item-img::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit; /* Optional: inherit background for visibility */
+}
+.slider-btn { 
+  position:absolute;
+  left:0;
+  right:0;
+  margin:0 auto;
+  bottom:1rem;
+  z-index:10;
+  text-align:center;
+  min-height:52px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  {% comment %} max-width:calc(75% - 2.4rem); {% endcomment %}
+  color: rgba(255, 255, 255, 1);
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(3px);
+  border-radius:1px;
+}
+.slider-btn::after{
+  box-shadow:none;
+}
+.slider-btn::before{
+  box-shadow:none;
+}
+</style>
+<div id="sli">
+<div class="slider">
+
+{% for block in section.blocks %}
+  {% assign collection = collections[block.settings.collection] %}    
+    {% if collection %}
+      <a href="https://www.goldcrest-blinds.co.uk{{ collection.url }}" class="slider-item">
+         <div class="slider-btn">{{ collection.title | replace: 'Blinds', '' }}</div>
+        <img class="slider-item-img" src="{{ collection.metafields['custom']['marketing_image'] | file_url }}"  height="inherit" width="inherit" >
+      </a> 
+    {% endif %} 
+  {% endfor %}
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Collection Slider",
+  "settings": [ ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "label": "Select Collection",
+          "id": "collection",
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+  "name": "Collection Slider",
+    }
+  ]
+}
+{% endschema %}

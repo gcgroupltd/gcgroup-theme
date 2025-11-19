@@ -1,0 +1,168 @@
+<style>
+  .custom-popup-container { 
+    height:100vh;
+    width:100vw;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:100;
+    background:rgba(0, 0, 0,0.5);
+    backdrop-filter: blur(2px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+  }
+  .custom-popup { 
+    text-align:center;
+    max-width:482px;
+    box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset)) rgba(255,255,255, calc(1 - 1.0)), 0 0 0 var(--buttons-border-width) rgba(var(--color-button), var(--alpha-button-background));
+    width:calc(100% - 2rem);
+    border-radius:4px;
+    position:fixed;
+    color: rgba(var(--color-foreground), 0.75);
+    background-color: rgb(var(--color-background));
+    z-index:100000;
+    top: 50%;
+    display:none;
+    overflow:hidden;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .custom-popup-title { 
+    text-align: center;
+    font-size: 54px;
+    font-weight: 900;
+    font-family: var(--font-body-family);
+    line-height: 1;
+    color:rgb(16, 57, 72);
+    margin: 0;
+    padding: 0;
+  }
+  .custom-popup-subtitle { 
+    font-size: 22px;
+    font-weight: 700;
+    padding:0;
+    margin:0;
+    margin-bottom:-0.8rem;
+  }
+.custom-popup-img {
+  position: relative;
+  z-index: -10;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  height: 0;
+  width: 100%;
+  padding-bottom: 62.25%;
+}
+
+.custom-popup-img > img {
+  height: 100%;
+  position: absolute;
+  object-fit:cover;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.custom-popup-img > span { 
+  height:100%;
+  width:100%;
+  position:absolute;
+  left:0;
+  top:0;
+  backdrop-filter: blur(0.0125rem);
+  z-index:10;
+}
+.font-extralight{
+  font-weight:400;
+  padding:12px;
+  margin:0;
+}
+.custom-popup-content{
+  {% comment %} color:white; {% endcomment %}
+  padding:24px;
+  color:rgb(16, 57, 72);
+  background:rgb(235, 236, 237);
+}
+.custom-popup-close { 
+  font-weight:400;
+  z-index:100;
+  position:relative;
+  top:0;
+  right:0;
+  background:transparent;
+  color: rgb(16, 57, 72);
+  border:0px solid transparent;
+  border-radius:66px;
+  background: rgb(235, 236, 237)
+}
+.custom-popup-close:hover{
+  cursor:pointer;
+}
+</style>
+  <div class="custom-popup-container" id="custom-popup">
+  </div>
+    <div class="color-scheme-c05b1815-847e-4ca3-bc96-7d212beaa598" style="width:100%;max-width:446px;">
+    <div class="custom-popup" id="custom-box">
+        <div class="custom-popup-img ">
+        <button class="custom-popup-close" id="custom-popup-close">Close</button>
+        <span></span>
+        <img src="https://cdn.shopify.com/s/files/1/0631/1375/6761/files/Shutters_Kitchen_TierOnTier_02-min.jpg?v=1743417595" height="100%" width="100%">
+      </div>
+      <div class="custom-popup-content">
+        <p class="custom-popup-subtitle">We're offering YOU</p>
+        <h1 class="custom-popup-title">up to 50% OFF selected fabrics!</h1> 
+        <p class="font-extralight">To take advantage of this limited time offer book your appointment today!</p>
+        <a href="https://www.goldcrest-blinds.co.uk/pages/booking"  class="container-btn button button--primary">Book your FREE Appointment</a>
+      </div>
+      </div>
+    </div>
+    {% schema %}
+{
+  "name": "Custom Popup Bar",
+  "settings": [
+
+  ],
+  "presets": [
+    {
+      "name": "Custom Popup Bar",
+    }
+  ]
+}
+{% endschema %}
+
+
+<script>
+
+  function hidePopup(element,box){
+    element.style.display = 'none';
+    box.style.display = 'none'
+    document.body.style.overflowY = 'auto';   
+  }
+
+  function showPopup(element, box){
+   element.style.display = 'flex';
+   box.style.display = 'block';
+   document.body.style.overflowY = 'hidden';
+  }
+
+  (async () => {
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    const element = document.getElementById('custom-popup');
+    const box = document.getElementById('custom-box');
+    if(!element || !box) return;
+    console.log("Rendering user offer");
+    showPopup(element, box)
+    element.addEventListener('click', function() {
+      console.log('Element clicked!');
+      hidePopup(element, box);
+    });
+
+    const close = document.getElementById('custom-popup-close');
+    if (!close)return;
+    close.addEventListener('click', () => {
+      hidePopup(element, box)
+    })
+
+  })()
+</script>

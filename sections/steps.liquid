@@ -1,0 +1,150 @@
+<style>
+    .steps-para{
+      text-align:center;
+      padding:18px;
+      max-width:620px;
+      margin:0 auto;
+    }
+      .steps-title { 
+      text-align:center; 
+      font-size:48px;
+      font-weight:800;
+      line-height:1;
+      margin:0;
+      padding:0;
+  }
+.steps-step-title { 
+    font-size: 1.8rem;
+    margin: 0;
+    padding: 0;
+    padding-left:1.8rem;
+    letter-spacing: calc(var(--font-heading-scale) * 0.06rem);
+    color: rgb(var(--color-foreground));
+    display: flex;  /* Enables flexbox */
+    align-items: center; /* Aligns items vertically */
+    text-align:center;
+    position:relative;
+    gap: 0.5rem; /* Optional: Adjust spacing between elements */
+}
+  .steps-step-para { 
+      font-size: 1.2rem;
+      padding:0;
+      padding-left:1.8rem;
+      margin:0;
+    }
+    .steps { 
+    display:flex;
+    flex-direction:column;
+    list-style:none;
+    margin:0;
+    padding:0;
+    gap:1.8rem;
+  }
+  .steps-step { 
+  display:flex;
+  position:relative;
+  flex-direction:column;  
+}
+  .steps-container{ 
+    max-width:620px;
+    margin:3rem auto 6rem auto;  
+    {% comment %} border: 1px solid rgba(var(--color-foreground), 0.05); {% endcomment %}
+    {% comment %} background: rgb(var(--color-background)) linear-gradient(rgba(var(--color-foreground), 0.04), rgba(var(--color-foreground), 0.04)) !important; {% endcomment %}
+    padding:1.8rem;
+}
+
+.steps-step-bar { 
+  background:rgb(var(--color-foreground),.5);
+  height:90%;
+  bottom:0;
+  position:absolute;
+  width:1px;
+}
+.steps-step-bar::after{
+    width: 0;
+    height: 0;
+    content:'';
+    position:absolute;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 6px solid rgb(var(--color-foreground),.5);
+    top:100%;
+    right: 50%;
+    transform:rotate(180deg) translateX(-50%);
+  }
+
+</style>
+
+<div class="steps-container">
+<p class="title image-with-text__heading h1 rte steps-title">{{ section.settings.title }}</p>
+<p class="steps-para">{{ section.settings.text }}</p>
+<div class="row">
+      <div class="col s12 m6 multirow__inner">
+      <ul class="steps">
+        {%- for block in section.blocks -%}
+  <li class="steps-step">
+      {%- unless forloop.last -%}
+        <span class="steps-step-bar"></span>
+      {%- endunless -%}
+    <p class="steps-step-title">
+      <span>
+        {{ block.settings.text }}
+      </span>
+    </p>
+    <p class="steps-step-para">
+      {{ block.settings.description }}
+    </p>
+  </li>
+{%- endfor -%}
+      </ul>
+</div>
+</div>
+</div>
+    
+{% schema %}
+{
+  "name": "Steps",
+  "settings": [
+        {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-6"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+    }
+  ],
+    "blocks": [
+    {
+      "type": "text_block",
+      "name": "steps Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Steps",
+    }
+  ]
+}
+{% endschema %}
+

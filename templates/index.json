@@ -1,0 +1,419 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_popup_nHPGjB": {
+      "type": "custom-popup",
+      "disabled": true,
+      "settings": {}
+    },
+    "banner_kWmQqH": {
+      "type": "banner",
+      "blocks": {
+        "slide_6ja6iQ": {
+          "type": "slide",
+          "settings": {
+            "alt": ""
+          }
+        },
+        "slide_YAgXym": {
+          "type": "slide",
+          "settings": {
+            "alt": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_6ja6iQ",
+        "slide_YAgXym"
+      ],
+      "settings": {
+        "external": "",
+        "title": "September Sale",
+        "text": "This September, book your free measure appointment to enjoy exclusive discounts. Don't miss out - Our sale ends soon!",
+        "show_dots": true,
+        "interval_ms": 9000,
+        "transition_ms": 600
+      }
+    },
+    "custom_collection_grid_yi6cCK": {
+      "type": "custom-collection-grid",
+      "blocks": {
+        "collection_cnqJRn": {
+          "type": "collection",
+          "settings": {
+            "collection": "roller-blinds",
+            "custom_alt_text": "",
+            "custom_title": "Roller blinds"
+          }
+        },
+        "collection_Tb98XV": {
+          "type": "collection",
+          "settings": {
+            "collection": "vertical-blinds",
+            "custom_alt_text": "",
+            "custom_title": "Vertical Blind"
+          }
+        },
+        "collection_tQFCgi": {
+          "type": "collection",
+          "settings": {
+            "collection": "shutters",
+            "custom_alt_text": "",
+            "custom_title": ""
+          }
+        },
+        "collection_z9Gafw": {
+          "type": "collection",
+          "settings": {
+            "collection": "pleated-blinds",
+            "custom_alt_text": "",
+            "custom_title": "Pleated Blinds"
+          }
+        },
+        "collection_eCwPxM": {
+          "type": "collection",
+          "settings": {
+            "collection": "wood-blinds",
+            "custom_alt_text": "",
+            "custom_title": "Wooden Blinds"
+          }
+        },
+        "collection_wMJhNP": {
+          "type": "collection",
+          "settings": {
+            "collection": "day-night-blinds",
+            "custom_alt_text": "",
+            "custom_title": "Day & Night"
+          }
+        },
+        "collection_9CzFFG": {
+          "type": "collection",
+          "settings": {
+            "collection": "curtains",
+            "custom_alt_text": "",
+            "custom_title": "Curtains"
+          }
+        },
+        "collection_bYQyeK": {
+          "type": "collection",
+          "settings": {
+            "collection": "roman-blinds",
+            "custom_alt_text": "",
+            "custom_title": "Roman Blinds"
+          }
+        },
+        "collection_RYpYhb": {
+          "type": "collection",
+          "settings": {
+            "collection": "perfect-fit-blinds",
+            "custom_alt_text": "",
+            "custom_title": "Perfect Fit Blinds"
+          }
+        },
+        "collection_F4qVrH": {
+          "type": "collection",
+          "settings": {
+            "collection": "venetians",
+            "custom_alt_text": "",
+            "custom_title": "Venetian Blinds"
+          }
+        },
+        "collection_6F6kbr": {
+          "type": "collection",
+          "settings": {
+            "collection": "skylight-blinds",
+            "custom_alt_text": "",
+            "custom_title": "Skylight"
+          }
+        },
+        "collection_jNdGka": {
+          "type": "collection",
+          "settings": {
+            "collection": "electric-blinds",
+            "custom_alt_text": "",
+            "custom_title": "Electric Blinds"
+          }
+        }
+      },
+      "block_order": [
+        "collection_cnqJRn",
+        "collection_Tb98XV",
+        "collection_tQFCgi",
+        "collection_z9Gafw",
+        "collection_eCwPxM",
+        "collection_wMJhNP",
+        "collection_9CzFFG",
+        "collection_bYQyeK",
+        "collection_RYpYhb",
+        "collection_F4qVrH",
+        "collection_6F6kbr",
+        "collection_jNdGka"
+      ],
+      "name": "Custom Collection Grid",
+      "settings": {
+        "title": "",
+        "columns_desktop": 4,
+        "make_full_width": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "customer_testimonials_6VMF6y": {
+      "type": "customer-testimonials",
+      "blocks": {
+        "review_gLFLYN": {
+          "type": "review",
+          "settings": {
+            "headline": "A no fuss 5 star easy service",
+            "text": "A no fuss 5 star easy service who deliver as promised! It’s great to work with a company who know their business and deliver for their customers",
+            "author": "Lorraine Rowan"
+          }
+        },
+        "review_9GtBEH": {
+          "type": "review",
+          "settings": {
+            "headline": "Really pleased with the whole",
+            "text": "Really pleased with the whole experience. Good communication from the start. Friendly and efficient staff throughout the process and I'm absolutely delighted with the blinds that have been fitted.",
+            "author": "Elaine Mckenzie"
+          }
+        },
+        "review_YQhFkn": {
+          "type": "review",
+          "settings": {
+            "headline": "Replaced blinds in the conservatory door",
+            "text": "Replaced blinds in the conservatory door with a different frame design from the original. The quality of the replacement is excellent and we are very pleased withe the outcome. Should any other blinds need replacing Goldcrest will be the first choice.",
+            "author": "Derek Marshall"
+          }
+        },
+        "review_BdF4tp": {
+          "type": "review",
+          "settings": {
+            "headline": "Excellent service",
+            "text": "Lots of lovely blinds to choose from and good prices.\nSalesman Ronnie was excellent as was the guy who came to install my blinds. Very kindly took down old blind fittings as my husband and I could not manage this. Blinds fitted quickly and no mess.",
+            "author": "Mrs Elizabeth Young"
+          }
+        }
+      },
+      "block_order": [
+        "review_gLFLYN",
+        "review_9GtBEH",
+        "review_YQhFkn",
+        "review_BdF4tp"
+      ],
+      "name": "Customer Testimonials",
+      "settings": {
+        "background_color": "#ebeced",
+        "trustpilot_summary_left": "Rated Excellent",
+        "trustpilot_summary_right": "4.7 based on 58 reviews",
+        "trustpilot_link": "shopify://pages/reviews",
+        "button_label": "See our Reviews",
+        "autorotate": true,
+        "autorotate_speed": 4
+      }
+    },
+    "appointment_highlight_qbM4qA": {
+      "type": "appointment-highlight",
+      "name": "Appointment Highlight",
+      "settings": {
+        "left_bg_color": "#ededed",
+        "left_text_color": "#231f1f",
+        "main_heading": "The Right Fit, Every Time",
+        "body_text": "<p>As the local experts in made-to-measure blinds, curtains, and shutters, we handle every detail. We ensure your items are perfectly tailored and installed, giving you a flawless result that's guaranteed to last.</p>",
+        "button_label": "Book Your Appointment",
+        "button_link": "https://book.goldcrest-blinds.co.uk/",
+        "right_bg_color": "#f5f5f5"
+      }
+    },
+    "get_to_know_Xwzmpx": {
+      "type": "get-to-know",
+      "blocks": {
+        "card_mDwg4b": {
+          "type": "card",
+          "settings": {
+            "card_title": "Unrivalled Expertise",
+            "card_text": "<p>With over 35 years of experience, our knowledgeable team provides expert advice, guiding you to the perfect solution for your home.</p>",
+            "card_button_label": "Learn More",
+            "card_button_link": "shopify://pages/about-us"
+          }
+        },
+        "card_DNfXdm": {
+          "type": "card",
+          "settings": {
+            "card_title": "Made-to-Measure Perfection",
+            "card_text": "<p>Every blind, curtain, and shutter is custom-made in our factory in Scotland for a flawless fit, using the highest quality materials to complement your space beautifully.</p>",
+            "card_button_label": "Learn More",
+            "card_button_link": "shopify://pages/about-us"
+          }
+        },
+        "card_PAkbAm": {
+          "type": "card",
+          "settings": {
+            "card_title": "Local Showroom",
+            "card_text": "<p>For more than three decades, we have been an integral part of the local community, offering a showroom open on Weekdays from 9 am to 5 pm.</p>",
+            "card_button_label": "Learn More",
+            "card_button_link": "shopify://pages/about-us"
+          }
+        },
+        "card_UhtEdq": {
+          "type": "card",
+          "settings": {
+            "card_title": "Premium Craftsmanship & Design",
+            "card_text": "<p>We source the finest fabrics, materials, and finishes to create window dressings that are stylish, durable, and built to last.</p>",
+            "card_button_label": "Learn More",
+            "card_button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_mDwg4b",
+        "card_DNfXdm",
+        "card_PAkbAm",
+        "card_UhtEdq"
+      ],
+      "name": "Get to Know Carousel",
+      "settings": {
+        "other_products": false,
+        "heading": "Goldcrest Blinds",
+        "subheading": "",
+        "background_color": "#ebeced"
+      }
+    },
+    "how_it_works_JjgDJh": {
+      "type": "how-it-works",
+      "blocks": {
+        "step_pmrbBn": {
+          "type": "step",
+          "settings": {
+            "custom_number": "",
+            "title": "Your Free Appointment",
+            "text": "<p>It begins with a complimentary design consultation in your home. Explore our collections and get expert advice to find the perfect style for your space.</p>"
+          }
+        },
+        "step_7D6p3D": {
+          "type": "step",
+          "settings": {
+            "custom_number": "",
+            "title": "Survey & No Obligation Quote",
+            "text": "<p>Our experienced surveyor will confirm your choices and take precise measurements. We then provide a clear, competitive quote with no obligation to proceed.</p>"
+          }
+        },
+        "step_NgThpb": {
+          "type": "step",
+          "settings": {
+            "custom_number": "",
+            "title": "Quality Manufacturing",
+            "text": "<p>Once you're happy, we begin manufacturing your order. Each blind is made-to-measure by our skilled team to ensure a perfect fit and lasting quality.</p>"
+          }
+        },
+        "step_HWxziq": {
+          "type": "step",
+          "settings": {
+            "custom_number": "",
+            "title": "Expertly Fitted for You",
+            "text": "<p>Relax while our professional team installs your new blinds. We ensure a seamless, stress-free fitting, leaving you to simply enjoy the beautiful results.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "step_pmrbBn",
+        "step_7D6p3D",
+        "step_NgThpb",
+        "step_HWxziq"
+      ],
+      "name": "How it works",
+      "settings": {
+        "heading": "How it works",
+        "intro": "<p>From first visit to final fit, here’s our simple four‑step process.</p>",
+        "bg_color": "#ffffff",
+        "card_bg": "#ffffff",
+        "border_color": "#e5e7eb",
+        "arrow_color": "#103948",
+        "color_scheme": "background-1",
+        "show_numbers": true,
+        "body_font_size": 16,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "next_steps_cards_PkUjtY": {
+      "type": "next-steps-cards",
+      "blocks": {
+        "card_UNqTgp": {
+          "type": "card",
+          "settings": {
+            "card_title": "Book a Free Home Appointment",
+            "card_text": "<p>Let us bring the showroom to you. Our local expert will visit to measure your space, guide you through our samples and provide a free, no-obligation quote.</p>",
+            "button_label": "Book Your Appointment",
+            "button_link": "https://book.goldcrest-blinds.co.uk/goldcrest-blinds/",
+            "external_link": false,
+            "card_background_color": "#fcfcfc",
+            "card_text_color": "#333333"
+          }
+        },
+        "card_TVYxUU": {
+          "type": "card",
+          "settings": {
+            "card_title": "Visit our Showoom",
+            "card_text": "<p>Want to see and feel the quality for yourself? Visit our showroom to browse the complete collection. Our expert team will be on hand to offer advice and inspiration.</p>",
+            "button_label": "Visit Us",
+            "button_link": "https://maps.app.goo.gl/4gqQTu7xVxjb1Yt47",
+            "external_link": true,
+            "card_background_color": "#fcfcfc",
+            "card_text_color": "#333333"
+          }
+        },
+        "card_8dwfK9": {
+          "type": "card",
+          "settings": {
+            "card_title": "Join our community",
+            "card_text": "<p>Follow us on social media for the latest design inspiration, new product announcements, and exclusive offers. See our blinds in real homes and get fresh ideas.</p>",
+            "button_label": "Follow Us",
+            "button_link": "shopify://pages/social",
+            "external_link": false,
+            "card_background_color": "#fcfcfc",
+            "card_text_color": "#333333"
+          }
+        }
+      },
+      "block_order": [
+        "card_UNqTgp",
+        "card_TVYxUU",
+        "card_8dwfK9"
+      ],
+      "name": "Next Steps Cards",
+      "settings": {
+        "main_heading": "What to do next",
+        "background_color": "#ebeced"
+      }
+    },
+    "custom_newsletter_kJM3Aj": {
+      "type": "custom-newsletter",
+      "name": "Custom Newsletter",
+      "settings": {
+        "background_color": "#000000",
+        "text_color": "#ffffff",
+        "heading": "Sign up to our newsletter",
+        "text": "<p>Enter your email address to receive updates on our latest collections, trends and exclusive offers.</p>"
+      }
+    }
+  },
+  "order": [
+    "custom_popup_nHPGjB",
+    "banner_kWmQqH",
+    "custom_collection_grid_yi6cCK",
+    "customer_testimonials_6VMF6y",
+    "appointment_highlight_qbM4qA",
+    "get_to_know_Xwzmpx",
+    "how_it_works_JjgDJh",
+    "next_steps_cards_PkUjtY",
+    "custom_newsletter_kJM3Aj"
+  ]
+}

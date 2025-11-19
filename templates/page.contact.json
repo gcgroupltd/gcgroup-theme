@@ -1,0 +1,45 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "form_YH7TBw": {
+      "type": "form",
+      "settings": {
+        "title": "Arrange an appointment",
+        "text": "You’ll have all the time you need to have a proper look at the range\n          and we’ll help you narrow down your options with advice on the best\n          products for the job."
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "custom_css": [
+        "* {display: none;}"
+      ],
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_6P9NtT": {
+      "type": "custom-liquid",
+      "custom_css": [],
+      "settings": {
+        "custom_liquid": "<div style=\"min-height:25dvh;\"</div>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "form_YH7TBw",
+    "main",
+    "custom_liquid_6P9NtT"
+  ]
+}

@@ -1,0 +1,302 @@
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .testimonial-section {
+    /* background-color: {{ section.settings.background_color }}; */
+    padding: 60px 0;
+  }
+
+  .testimonial-section .page-width {
+    background-color: {{  section.settings.background_color }};
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start; /* keep original sizing; don't stretch the grid */
+  }
+
+  /* RIGHT IMAGE — height is set via JS to match the left column */
+  .testimonial-right {
+    border-radius: 8px;
+    overflow: visible;
+    margin-top: -40px;
+  }
+  .testimonial-right img {
+    width: 100%;
+    height: calc(100% + 80px);        /* fills the JS-set height */
+    object-fit: cover;
+    object-position: center; /* tweak to 'center 46%' to show a tad more bottom */
+    display: block;
+    border-radius: 8px;
+  }
+
+  .testimonial-trustpilot-summary {
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+  .testimonial-summary-container { display: flex; justify-content: flex-start; align-items: center; gap: 10px; }
+  .testimonial-summary-link--underlined { text-decoration: underline; color: inherit; }
+
+  /* Left column layout stays the same (button sits in last row) */
+  .testimonial-left {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 20px 0;
+  }
+
+  /* Slider container MUST have a height; JS sets --ts-min to the tallest slide */
+  .testimonial-slider { position: relative; min-height: var(--ts-min, 240px); }
+
+  .testimonial-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+    text-align: left;
+  }
+  .testimonial-slide.is-active { opacity: 1; pointer-events: auto; }
+
+  .testimonial-headline { font-size: 36px; font-weight: bold; margin: 0 0 15px; }
+  .testimonial-text { font-size: 20px; line-height: 1.6; margin: 0 0 15px; color: #333; }
+  .testimonial-author { font-weight: bold; text-align: right; font-style: italic; margin: 0 0 15px; }
+
+  .testimonial-review-image { text-align: right; }
+  .testimonial-review-image img { max-width: 150px; height: auto; border-radius: 4px; }
+
+  .testimonial-controls-footer {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .testimonial-slider-nav { display: flex; gap: 10px; }
+  .testimonial-slider-nav button { background: white; border: 1px solid #ccc; width: 40px; height: 40px; cursor: pointer; }
+
+  .testimonial-left .button {
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  .testimonial-left .button:hover {
+    background-color: {{ section.settings.button_color | color_modify: 'alpha', 0.8 }};
+    border-color: {{ section.settings.button_color | color_modify: 'alpha', 0.8 }};
+  }
+
+  /* Mobile: stack, hide image, no special heights */
+  @media (max-width: 768px) {
+    .testimonial-grid { grid-template-columns: 1fr; }
+    .testimonial-right { order: -1; display: none; }
+  }
+{%- endstyle -%}
+
+<div class="testimonial-section color-{{ section.settings.color_scheme }}" data-section-id="{{ section.id }}">
+  <div class="page-width">
+    <div class="testimonial-grid">
+
+      <div class="testimonial-left">
+        <div class="testimonial-trustpilot-summary">
+          <div class="testimonial-summary-container">
+            {%- if section.settings.trustpilot_summary_left != blank -%}
+              <p>{{ section.settings.trustpilot_summary_left }}</p>
+            {%- endif -%}
+
+            {%- if section.settings.trustpilot_summary_left != blank and section.settings.trustpilot_summary_right != blank -%}
+              <span class="summary-divider">|</span>
+            {%- endif -%}
+
+            {%- if section.settings.trustpilot_summary_right != blank and section.settings.trustpilot_link != blank -%}
+              <a href="{{ section.settings.trustpilot_link }}" class="testimonial-summary-link--underlined" target="_blank" rel="noopener">
+                {{ section.settings.trustpilot_summary_right }}
+              </a>
+            {%- elsif section.settings.trustpilot_summary_right != blank -%}
+              <p>{{ section.settings.trustpilot_summary_right }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+
+        <div class="testimonial-slider">
+          {%- for block in section.blocks -%}
+            <div class="testimonial-slide" {{ block.shopify_attributes }}>
+              {%- if block.settings.headline != blank -%}
+                <h3 class="testimonial-headline">{{ block.settings.headline }}</h3>
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}
+                <div class="testimonial-text">{{ block.settings.text }}</div>
+              {%- endif -%}
+              {%- if block.settings.author != blank -%}
+                <p class="testimonial-author">- {{ block.settings.author }}</p>
+              {%- endif -%}
+
+              {%- if block.settings.review_image != blank -%}
+                <div class="testimonial-review-image">
+                  <img src="{{ block.settings.review_image | image_url: width: 200 }}" alt="{{ block.settings.review_image.alt | default: 'Customer review image' }}" loading="lazy">
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="testimonial-controls-footer">
+          <div class="testimonial-slider-nav">
+            {%- if section.blocks.size > 1 -%}
+              <button class="testimonial-prev-btn" aria-label="Previous testimonial">&#8592;</button>
+              <button class="testimonial-next-btn" aria-label="Next testimonial">&#8594;</button>
+            {%- endif -%}
+          </div>
+
+          {%- if section.settings.trustpilot_link != blank -%}
+            <a href="{{ section.settings.trustpilot_link }}" class="button button--secondary" target="_blank" rel="noopener">{{ section.settings.button_label }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="testimonial-right">
+        {%- if section.settings.main_image != blank -%}
+          <img
+            src="{{ section.settings.main_image | image_url: width: 1200 }}"
+            srcset="
+              {{ section.settings.main_image | image_url: width: 640 }} 640w,
+              {{ section.settings.main_image | image_url: width: 960 }} 960w,
+              {{ section.settings.main_image | image_url: width: 1200 }} 1200w,
+              {{ section.settings.main_image | image_url: width: 1600 }} 1600w,
+              {{ section.settings.main_image | image_url: width: 2000 }} 2000w
+            "
+            sizes="(max-width: 768px) 0px, 50vw"
+            alt="{{ section.settings.main_image.alt | default: 'Customer testimonial' }}"
+            loading="lazy"
+          >
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  function handleTestimonialSlider(sectionId) {
+    const section = document.querySelector(`[data-section-id="${sectionId}"]`);
+    if (!section) return;
+
+    const slider = section.querySelector('.testimonial-slider');
+    const slides = slider ? slider.querySelectorAll('.testimonial-slide') : [];
+    if (!slider || slides.length === 0) return;
+
+    const leftCol  = section.querySelector('.testimonial-left');
+    const rightCol = section.querySelector('.testimonial-right');
+    const rightImg = rightCol ? rightCol.querySelector('img') : null;
+
+    const nextBtn = section.querySelector('.testimonial-next-btn');
+    const prevBtn = section.querySelector('.testimonial-prev-btn');
+
+    const autorotate = {{ section.settings.autorotate | json }};
+    const intervalSpeed = {{ section.settings.autorotate_speed | times: 1000 }};
+    let current = 0;
+    let timer;
+
+    function lockHeight() {
+      // Compute the tallest slide to keep the text area stable
+      let max = 0;
+      slides.forEach((s) => {
+        const prev = s.getAttribute('style') || '';
+        s.style.visibility = 'hidden';
+        s.style.position = 'static';
+        s.style.opacity = '1';
+        s.style.pointerEvents = 'none';
+        const h = s.offsetHeight;
+        if (h > max) max = h;
+        s.setAttribute('style', prev);
+      });
+      slider.style.setProperty('--ts-min', `${max}px`);
+    }
+
+    function syncImageHeight() {
+      if (!leftCol || !rightCol) return;
+      // Skip on mobile (image hidden)
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        rightCol.style.height = '';
+        return;
+      }
+      // Match the right image box to the left column height
+      rightCol.style.height = leftCol.offsetHeight + 'px';
+    }
+
+    function show(i) {
+      slides.forEach((s, idx) => s.classList.toggle('is-active', idx === i));
+      syncImageHeight();
+    }
+
+    function next() { current = (current + 1) % slides.length; show(current); }
+    function prev() { current = (current - 1 + slides.length) % slides.length; show(current); }
+
+    function start() {
+      if (!autorotate) return;
+      stop();
+      timer = setInterval(next, Math.max(2000, intervalSpeed || 5000));
+    }
+    function stop() { clearInterval(timer); }
+
+    lockHeight();
+    show(current);
+    start();
+
+    if (nextBtn) nextBtn.addEventListener('click', () => { stop(); next(); start(); });
+    if (prevBtn) prevBtn.addEventListener('click', () => { stop(); prev(); start(); });
+
+    slider.addEventListener('mouseenter', stop);
+    slider.addEventListener('mouseleave', start);
+
+    window.addEventListener('resize', () => { lockHeight(); syncImageHeight(); }, { passive: true });
+    // Re-sync when any image loads
+    slider.querySelectorAll('img').forEach(img => img.addEventListener('load', () => { lockHeight(); syncImageHeight(); }, { once: true }));
+    if (rightImg) rightImg.addEventListener('load', syncImageHeight, { once: true });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    handleTestimonialSlider('{{ section.id }}');
+  });
+  document.addEventListener('shopify:section:load', (e) => {
+    if (e.detail.sectionId === '{{ section.id }}') handleTestimonialSlider('{{ section.id }}');
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Customer Testimonials",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "color", "id": "background_color", "label": "Background Color", "default": "#F5F5F5" },
+    { "type": "text",  "id": "trustpilot_summary_left",  "label": "Trustpilot Summary (Left Part)",  "default": "Excellent" },
+    { "type": "text",  "id": "trustpilot_summary_right", "label": "Trustpilot Summary (Right Part)", "default": "4.7 based on 58 reviews" },
+    { "type": "url",   "id": "trustpilot_link", "label": "Button Link" },
+    { "type": "text",  "id": "button_label",    "label": "Button Label", "default": "See our Reviews" },
+    { "type": "image_picker", "id": "main_image", "label": "Main Image (Right Side)" },
+    { "type": "header", "content": "Slider Settings" },
+    { "type": "checkbox", "id": "autorotate", "label": "Auto-rotate reviews", "default": false },
+    { "type": "range", "id": "autorotate_speed", "min": 3, "max": 10, "step": 1, "unit": "s", "label": "Time between reviews", "default": 5 }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "limit": 5,
+      "settings": [
+        { "type": "text", "id": "headline", "label": "Headline", "default": "A no fuss 5 star easy service" },
+        { "type": "textarea", "id": "text", "label": "Review Text", "default": "A no fuss 5 star easy service who deliver as promised! It’s great to work with a company who know their business and deliver for their customers" },
+        { "type": "text", "id": "author", "label": "Author Name", "default": "Lorraine Rowan" },
+        { "type": "image_picker", "id": "review_image", "label": "Review Image (Optional)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Customer Testimonials" }]
+}
+{% endschema %}
+
+
