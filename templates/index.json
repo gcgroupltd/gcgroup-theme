@@ -398,7 +398,7 @@
       "type": "custom-newsletter",
       "name": "Custom Newsletter",
       "settings": {
-        "background_color": "#000000",
+        "background_color": "#515151",
         "text_color": "#ffffff",
         "heading": "Sign up to our newsletter",
         "text": "<p>Enter your email address to receive updates on our latest collections, trends and exclusive offers.</p>"
