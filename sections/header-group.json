@@ -18,7 +18,7 @@
     "topbar_ctwXzB": {
       "type": "topbar",
       "settings": {
-        "number": "01786 447 647",
+        "number": "01224 662 884",
         "topbar_button_url": "https://book.grampian-blinds.co.uk",
         "topbar_button_text": "Request Your Free Appointment"
       }
@@ -37,6 +37,7 @@
     "advert_a3xDxf": {
       "type": "advert",
       "settings": {
+        "text": "Offers now on. Book Now!",
         "external": "shopify://collections/all"
       }
     }
