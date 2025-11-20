@@ -175,33 +175,33 @@
         "review_gLFLYN": {
           "type": "review",
           "settings": {
-            "headline": "A no fuss 5 star easy service",
-            "text": "A no fuss 5 star easy service who deliver as promised! It’s great to work with a company who know their business and deliver for their customers",
-            "author": "Lorraine Rowan"
+            "headline": "",
+            "text": "This was our third cafe shutters to be fitted in our Steading. An excellent service from initial visit, measurement, update on arrival and final fitting. Highly recommend this company and service.",
+            "author": "Jeff Yates"
           }
         },
         "review_9GtBEH": {
           "type": "review",
           "settings": {
-            "headline": "Really pleased with the whole",
-            "text": "Really pleased with the whole experience. Good communication from the start. Friendly and efficient staff throughout the process and I'm absolutely delighted with the blinds that have been fitted.",
-            "author": "Elaine Mckenzie"
+            "headline": "",
+            "text": "Never go anywhere for our blinds but Grampian Blinds. Service is great, fits perfectly, great value. Always keep it local",
+            "author": "Margaret Williamson"
           }
         },
         "review_YQhFkn": {
           "type": "review",
           "settings": {
-            "headline": "Replaced blinds in the conservatory door",
-            "text": "Replaced blinds in the conservatory door with a different frame design from the original. The quality of the replacement is excellent and we are very pleased withe the outcome. Should any other blinds need replacing Goldcrest will be the first choice.",
-            "author": "Derek Marshall"
+            "headline": "",
+            "text": "Good customer facing and very helpful in helping us choose the blinds we required.\nThe installer was very professional and had the new blinds up in no time and very tidy and took away old blinds.",
+            "author": "Robert Hay"
           }
         },
         "review_BdF4tp": {
           "type": "review",
           "settings": {
-            "headline": "Excellent service",
-            "text": "Lots of lovely blinds to choose from and good prices.\nSalesman Ronnie was excellent as was the guy who came to install my blinds. Very kindly took down old blind fittings as my husband and I could not manage this. Blinds fitted quickly and no mess.",
-            "author": "Mrs Elizabeth Young"
+            "headline": "",
+            "text": "Very happy with my new blinds.\nALL staff involved, from the estimate to fitting were friendly, knowledgeable and helpful.",
+            "author": "Linda Cowie"
           }
         }
       },
@@ -215,7 +215,7 @@
       "settings": {
         "background_color": "#ebeced",
         "trustpilot_summary_left": "Rated Excellent",
-        "trustpilot_summary_right": "4.7 based on 58 reviews",
+        "trustpilot_summary_right": "4.5 based on 188 reviews",
         "trustpilot_link": "shopify://pages/reviews",
         "button_label": "See our Reviews",
         "main_image": "shopify://shop_images/Pleated_customer_conservatory.webp",
