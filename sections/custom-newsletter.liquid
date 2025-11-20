@@ -83,6 +83,15 @@
     /* max-width is now controlled by the inner container */
   }
 
+  #shopify-section-{{ section.id }} .newsletter-form-fw__field-wrapper input {
+    background: white;
+    color: var(--text-colour);
+  }
+
+  #shopify-section-{{ section.id }} .newsletter-form-fw__field-wrapper label {
+    color: var(--text-colour);
+  }
+
   #shopify-section-{{ section.id }} .newsletter-form__field-wrapper .field__input {
     flex-grow: 1;
     border: none;
@@ -241,10 +250,7 @@
 
         <div class="newsletter-privacy-text-fw">
           <p>
-            We take safeguarding your details seriously. See our
-            <a href="https://goldcrest-blinds.co.uk/policies/privacy-policy" 
-               style="color: inherit !important; text-decoration: underline !important;">
-              privacy policy</a>.
+              {{ section.settings.privacy_text }}
           </p>
         </div>
       
@@ -301,6 +307,12 @@
       "label": "Text",
       "default": "<p>Enter your email address to receive updates on our latest collections, trends and exclusive offers.</p>"
     },
+    {
+      "type": "richtext",
+      "id": "privacy_text",
+      "label": "Privacy Policy Text",
+      "default": "<p>We take safeguarding your details seriously. See our <a href='/privacy-policy'>privacy policy</a>."
+    }
   ],
   "presets": [
     {
