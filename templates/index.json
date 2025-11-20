@@ -371,6 +371,7 @@
         "card_TVYxUU": {
           "type": "card",
           "settings": {
+            "card_image": "shopify://shop_images/showroom.jpg",
             "card_title": "Visit our Showoom",
             "card_text": "<p>Want to see and feel the quality for yourself? Visit our showroom to browse the complete collection. Our expert team will be on hand to offer advice and inspiration.</p>",
             "button_label": "Visit Us",
