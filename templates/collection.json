@@ -208,6 +208,7 @@
         "trustpilot_summary_right": "4.7 based on 58 reviews",
         "trustpilot_link": "shopify://pages/reviews",
         "button_label": "See our Reviews",
+        "main_image": "shopify://shop_images/Pleated_customer_conservatory.webp",
         "autorotate": false,
         "autorotate_speed": 5
       }
@@ -222,6 +223,7 @@
         "body_text": "<p>As the local experts in made-to-measure blinds, curtains, and shutters, we handle every detail. We ensure your items are perfectly tailored and installed, giving you a flawless result that's guaranteed to last.</p>",
         "button_label": "Book your Appointment",
         "button_link": "https://book.goldcrest-blinds.co.uk/",
+        "right_image": "shopify://shop_images/Screenshot_2025-05-16_115925.webp",
         "right_bg_color": "#f5f5f5"
       }
     },
@@ -291,10 +293,12 @@
       "type": "custom-newsletter",
       "name": "Custom Newsletter",
       "settings": {
+        "image": "shopify://shop_images/ARENA-ROM-PALMIRO-CHARTREUSE-RT-11.webp",
         "background_color": "#2e2e2e",
         "text_color": "#ffffff",
         "heading": "Sign up to our newsletter",
-        "text": "<p>Enter your email address to receive updates on our latest collections, trends and exclusive offers.</p>"
+        "text": "<p>Enter your email address to receive updates on our latest collections, trends and exclusive offers.</p>",
+        "privacy_text": "<p>We take safeguarding your details seriously. See our <a href=\"/privacy-policy\">privacy policy</a>.</p>"
       }
     },
     "product-grid": {
