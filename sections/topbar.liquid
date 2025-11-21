@@ -87,9 +87,57 @@
 
 <section id='topbar' class="color-{{ section.settings.section_color_scheme }}">
   <div class="page-width container">
-    <a href="{{ shop.domain }}" class="container-itm container-logo"> <img src="{{ settings.logo.src  | img_url: 'medium' }}" height="auto" width="auto"></a>
+    <a href="/" class="container-itm container-logo"> <img src="{{ settings.logo.src  | img_url: 'medium' }}" height="auto" width="auto"></a>
     <a class="container-itm container-number full-unstyled-link" href="tel:{{ section.settings.number | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', '' }}">
-      <p>Call today: 8am-5pm</p>
+     {% assign day_of_week = 'now' | date: '%A' %}
+
+      {% case day_of_week %}
+        {% when 'Monday' %}
+          {% assign today_hours = settings.opening_hours_monday %}
+        {% when 'Tuesday' %}
+          {% assign today_hours = settings.opening_hours_tuesday %}
+        {% when 'Wednesday' %}
+          {% assign today_hours = settings.opening_hours_wednesday %}
+        {% when 'Thursday' %}
+          {% assign today_hours = settings.opening_hours_thursday %}
+        {% when 'Friday' %}
+          {% assign today_hours = settings.opening_hours_friday %}
+        {% when 'Saturday' %}
+          {% assign today_hours = settings.opening_hours_saturday %}
+        {% when 'Sunday' %}
+          {% assign today_hours = settings.opening_hours_sunday %}
+      {% endcase %}
+
+      {% if today_hours == "closed" %}
+        <p>We are closed today</p>
+      {% else %}
+        {% assign open_time = today_hours | split: " - " | first %}
+        {% assign close_time = today_hours | split: " - " | last %}
+
+        {% assign open_hour = open_time | slice: 0, 2 | plus: 0 %}
+        {% assign open_minute = open_time | slice: 3, 2 %}
+        {% assign close_hour = close_time | slice: 0, 2 | plus: 0 %}
+        {% assign close_minute = close_time | slice: 3, 2 %}
+
+        {% assign open_suffix = "am" %}
+        {% assign close_suffix = "am" %}
+
+        {% if open_hour >= 12 %}
+          {% assign open_suffix = "pm" %}
+          {% if open_hour > 12 %}
+            {% assign open_hour = open_hour | minus: 12 %}
+          {% endif %}
+        {% endif %}
+
+        {% if close_hour >= 12 %}
+          {% assign close_suffix = "pm" %}
+          {% if close_hour > 12 %}
+            {% assign close_hour = close_hour | minus: 12 %}
+          {% endif %}
+        {% endif %}
+
+        <p>Call today: {{ open_hour }}{% if open_minute != "00" %}:{{ open_minute }}{% endif %}{{ open_suffix }} - {{ close_hour }}{% if close_minute != "00" %}:{{ close_minute }}{% endif %}{{ close_suffix }}</p>
+      {% endif %}
       <p>{{ section.settings.number }}</p>
     </a>
     <div class="container-itm">
