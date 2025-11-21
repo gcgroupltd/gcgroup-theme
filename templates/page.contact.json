@@ -1,8 +1,28 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
-      "type": "contact-page"
+      "type": "contact-page",
+      "settings": {
+        "title": "Our Showroom & Office",
+        "content": "<p>Grampian Blinds Ltd</p><p>Unit 1B, Mugiemoss Road,<br/>Aberdeen<br/>AB21 9US</p><p>For Sales and Commercial enquiries please contact:</p><p>Telephone: <a href=\"tel:01224662884\">01224 662 884</a></p><p>Freephone: <a href=\"tel:0800590039\">0800 590 039</a></p><p>Email: <a href=\"mailto:Enquiries@grampian-blinds.co.uk?subject=Customer%20Enquiry%20\">Enquiries@grampian-blinds.co.uk</a></p>",
+        "embed_url": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2162.8338176128677!2d-2.151617322387028!3d57.17408828163353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4884121ff70538c1%3A0x4f91cf47aecdfebb!2sGrampian%20Blinds%20Ltd!5e0!3m2!1sen!2suk!4v1763715198845!5m2!1sen!2suk",
+        "opening_hours_title": "Store Opening Hours",
+        "opening_hours_content": "You can arrange for a free design consultation in the privacy of your own home or you can view our extensive range of blinds and other products at our shop. We look forward to hearing from you.",
+        "contact_us_title": "Contact Us",
+        "contact_us_content": "Complete this quick enquiry form and we will get back to you soon."
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
