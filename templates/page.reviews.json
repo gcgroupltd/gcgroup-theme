@@ -11,6 +11,10 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     },
     "reviews_and_ratings_nb3c3X": {
       "type": "reviews-and-ratings",
@@ -19,7 +23,6 @@
           "type": "rating_tile",
           "settings": {
             "tile_label": "Overall",
-            "tile_image": "shopify://shop_images/CSS_trustpilot-1-Powerpoint_CSS_-_2_1.png",
             "tile_rating": "4.7",
             "tile_reviews": "84 reviews"
           }
@@ -28,7 +31,6 @@
           "type": "rating_tile",
           "settings": {
             "tile_label": "Trustpilot",
-            "tile_image": "shopify://shop_images/review.png",
             "tile_rating": "4.7",
             "tile_reviews": "54 reviews"
           }
@@ -37,7 +39,6 @@
           "type": "rating_tile",
           "settings": {
             "tile_label": "Google",
-            "tile_image": "shopify://shop_images/CSS_trustpilot-1-Powerpoint_CSS_-_2_1.png",
             "tile_rating": "4.7",
             "tile_reviews": "30 reviews"
           }
@@ -45,10 +46,9 @@
         "review_7eDLYX": {
           "type": "review",
           "settings": {
-            "name": "Lorraine Rowan",
+            "name": "Lorraine Rowans",
             "review_date": "16/10/2025",
             "body": "<p>A no fuss 5 star easy service who deliver as promised! It’s great to work with a company who know their business and deliver for their customers</p>",
-            "foot_image": "shopify://shop_images/CSS_trustpilot-1-Powerpoint_CSS_-_2_1.png",
             "foot_pos_x": 50,
             "foot_pos_y": 50,
             "foot_fit": "contain"
@@ -60,7 +60,6 @@
             "name": "Derek Marshall",
             "review_date": "04/04/2025",
             "body": "<p>Replaced blinds in the conservatory door with a different frame design from the original. The quality of the replacement is excellent and we are very pleased withe the outcome. Should any other blinds need replacing Goldcrest will be the first choice.</p>",
-            "foot_image": "shopify://shop_images/CSS_trustpilot-1-Powerpoint_CSS_-_2_1.png",
             "foot_pos_x": 50,
             "foot_pos_y": 50,
             "foot_fit": "contain"
@@ -72,12 +71,11 @@
             "name": "George Grieve",
             "review_date": "29/05/2025",
             "body": "<p>Actually I’m not one for giving reviews but my whole experience in dealing with goldcrest was a pleasure from start to finish 👌🏻👌👌Top company and great staff .<br/><br/></p>",
-            "foot_image": "shopify://shop_images/CSS_trustpilot-1-Powerpoint_CSS_-_2_1.png",
             "foot_pos_x": 50,
             "foot_pos_y": 50,
             "foot_fit": "contain"
           }
-        },
+        }
       },
       "block_order": [
         "rating_tile_EJPdPy",
@@ -85,13 +83,31 @@
         "rating_tile_tfD7zG",
         "review_7eDLYX",
         "review_78cRBr",
-        "review_ybCyaf",
+        "review_ybCyaf"
       ],
       "name": "Reviews & ratings",
-    },
+      "settings": {
+        "header_style": "tiles",
+        "foot_img_mode": "contain",
+        "single_headline": "4.8",
+        "single_subline": "42 reviews",
+        "foot_img_height_desktop": 180,
+        "foot_img_height_mobile": 140,
+        "foot_default_pos_x": 50,
+        "foot_default_pos_y": 50,
+        "tile_label_size": 14,
+        "tile_rating_size": 22,
+        "tile_reviews_size": 16,
+        "card_name_size": 18,
+        "card_date_size": 14,
+        "bg_color": "#f8f9fb",
+        "pad_y": 40,
+        "color_scheme": "default"
+      }
+    }
   },
   "order": [
     "main",
-    "reviews_and_ratings_nb3c3X",
+    "reviews_and_ratings_nb3c3X"
   ]
 }
