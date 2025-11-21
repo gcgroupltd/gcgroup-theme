@@ -1,0 +1,97 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+    },
+    "reviews_and_ratings_nb3c3X": {
+      "type": "reviews-and-ratings",
+      "blocks": {
+        "rating_tile_EJPdPy": {
+          "type": "rating_tile",
+          "settings": {
+            "tile_label": "Overall",
+            "tile_image": "shopify://shop_images/CSS_trustpilot-1-Powerpoint_CSS_-_2_1.png",
+            "tile_rating": "4.7",
+            "tile_reviews": "84 reviews"
+          }
+        },
+        "rating_tile_HPXrCY": {
+          "type": "rating_tile",
+          "settings": {
+            "tile_label": "Trustpilot",
+            "tile_image": "shopify://shop_images/review.png",
+            "tile_rating": "4.7",
+            "tile_reviews": "54 reviews"
+          }
+        },
+        "rating_tile_tfD7zG": {
+          "type": "rating_tile",
+          "settings": {
+            "tile_label": "Google",
+            "tile_image": "shopify://shop_images/CSS_trustpilot-1-Powerpoint_CSS_-_2_1.png",
+            "tile_rating": "4.7",
+            "tile_reviews": "30 reviews"
+          }
+        },
+        "review_7eDLYX": {
+          "type": "review",
+          "settings": {
+            "name": "Lorraine Rowan",
+            "review_date": "16/10/2025",
+            "body": "<p>A no fuss 5 star easy service who deliver as promised! It’s great to work with a company who know their business and deliver for their customers</p>",
+            "foot_image": "shopify://shop_images/CSS_trustpilot-1-Powerpoint_CSS_-_2_1.png",
+            "foot_pos_x": 50,
+            "foot_pos_y": 50,
+            "foot_fit": "contain"
+          }
+        },
+        "review_78cRBr": {
+          "type": "review",
+          "settings": {
+            "name": "Derek Marshall",
+            "review_date": "04/04/2025",
+            "body": "<p>Replaced blinds in the conservatory door with a different frame design from the original. The quality of the replacement is excellent and we are very pleased withe the outcome. Should any other blinds need replacing Goldcrest will be the first choice.</p>",
+            "foot_image": "shopify://shop_images/CSS_trustpilot-1-Powerpoint_CSS_-_2_1.png",
+            "foot_pos_x": 50,
+            "foot_pos_y": 50,
+            "foot_fit": "contain"
+          }
+        },
+        "review_ybCyaf": {
+          "type": "review",
+          "settings": {
+            "name": "George Grieve",
+            "review_date": "29/05/2025",
+            "body": "<p>Actually I’m not one for giving reviews but my whole experience in dealing with goldcrest was a pleasure from start to finish 👌🏻👌👌Top company and great staff .<br/><br/></p>",
+            "foot_image": "shopify://shop_images/CSS_trustpilot-1-Powerpoint_CSS_-_2_1.png",
+            "foot_pos_x": 50,
+            "foot_pos_y": 50,
+            "foot_fit": "contain"
+          }
+        },
+      },
+      "block_order": [
+        "rating_tile_EJPdPy",
+        "rating_tile_HPXrCY",
+        "rating_tile_tfD7zG",
+        "review_7eDLYX",
+        "review_78cRBr",
+        "review_ybCyaf",
+      ],
+      "name": "Reviews & ratings",
+    },
+  },
+  "order": [
+    "main",
+    "reviews_and_ratings_nb3c3X",
+  ]
+}
