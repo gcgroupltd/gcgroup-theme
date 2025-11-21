@@ -169,6 +169,30 @@
   </header>
 </{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
 
+{% comment %} fix for nav {% endcomment %}
+<script>
+// Select all <details> elements with IDs starting with "Details-HeaderMenu-"
+const detailsElements = document.querySelectorAll('[id^="Details-HeaderMenu-"]');
+
+detailsElements.forEach(detail => {
+  // Open when mouse enters
+  detail.addEventListener('mouseenter', () => {
+    detail.setAttribute('open', '');
+  });
+
+  // Close when mouse leaves, but only if not hovering inside the element
+  detail.addEventListener('mouseleave', () => {
+    // Use a short timeout to allow moving into child elements
+    setTimeout(() => {
+      // Check if the mouse is still inside the element
+      if (!detail.matches(':hover')) {
+        detail.removeAttribute('open');
+      }
+    }, 50); // 50ms delay is usually enough
+  });
+});
+</script>
+
 {% javascript %}
   class StickyHeader extends HTMLElement {
     constructor() {
