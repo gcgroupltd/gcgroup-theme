@@ -267,7 +267,7 @@
             "card_title": "Local Showroom",
             "card_text": "<p>For more than three decades, we have been an integral part of the local community, offering a showroom open on Weekdays from 9 am to 5 pm.</p>",
             "card_button_label": "Learn More",
-            "card_button_link": "shopify://pages/about-us"
+            "card_button_link": "shopify://pages/contact-us"
           }
         },
         "card_UhtEdq": {
@@ -277,7 +277,7 @@
             "card_title": "Premium Craftsmanship & Design",
             "card_text": "<p>We source the finest fabrics, materials, and finishes to create window dressings that are stylish, durable, and built to last.</p>",
             "card_button_label": "Learn More",
-            "card_button_link": ""
+            "card_button_link": "shopify://pages/about-us"
           }
         }
       },
