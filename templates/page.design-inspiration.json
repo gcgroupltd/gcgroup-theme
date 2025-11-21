@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "page-content": {
+      "type": "main-page"
+    },
+    "design-inspiration": {
+      "type": "design-inspiration"
+    }
+  },
+  "order": ["page-content", "design-inspiration"]
+}

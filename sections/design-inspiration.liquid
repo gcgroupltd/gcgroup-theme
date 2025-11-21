@@ -1,0 +1,145 @@
+<section class="window-inspiration" id="window-inspiration--{{ section.id }}">
+  <div class="page-width">
+    <div class="window-inspiration__header">
+      <h2 class="window-inspiration__title">
+        <strong>{{ section.settings.section_title }}</strong>
+      </h2>
+    </div>
+
+    <div class="window-inspiration__grid">
+      {% for block in section.blocks %}
+        <div class="window-inspiration__image" {{ block.shopify_attributes }}>
+          {% if block.settings.image %}
+            <img
+              src="{{ block.settings.image | img_url: '1024x' }}"
+              alt="{{ block.settings.image_alt | escape }}"
+              loading="lazy"
+            >
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Fullscreen Viewer -->
+<div id="image-viewer" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:9999; justify-content:center; align-items:center; background: rgba(0,0,0,0.8);">
+  <img id="image-viewer-img" src="" alt="" style="max-width:95vw; max-height:95vh; object-fit:contain; cursor:zoom-out; box-shadow:0 4px 20px rgba(0,0,0,0.5);">
+</div>
+
+<style>
+.window-inspiration {
+  padding: 40px 0;
+}
+.window-inspiration__grid {
+  column-count: 4;
+  column-gap: 1.5rem;
+  padding: 1rem 0;
+}
+.window-inspiration__image {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+.window-inspiration img {
+  width: 100%;
+  display: block;
+  border-radius: 4px;
+  height: auto;
+  cursor: zoom-in;
+}
+@media (max-width: 768px) {
+  .window-inspiration__grid { column-count: 2; }
+}
+</style>
+
+<script>
+(function() {
+  function initWindowInspiration(section) {
+    const sectionEl = section || document.querySelector('#window-inspiration--{{ section.id }}');
+    if (!sectionEl) return;
+
+    const viewer = document.getElementById('image-viewer');
+    const viewerImg = document.getElementById('image-viewer-img');
+    const images = sectionEl.querySelectorAll('.window-inspiration__grid img');
+
+    let isViewerOpen = false;
+
+    images.forEach(img => {
+      img.addEventListener('click', function(e) {
+        e.stopPropagation();
+        viewerImg.src = img.src;
+        viewer.style.display = 'flex';
+        isViewerOpen = true;
+      });
+    });
+
+    function closeViewer() {
+      if (isViewerOpen) {
+        viewer.style.display = 'none';
+        viewerImg.src = '';
+        isViewerOpen = false;
+      }
+    }
+
+    document.addEventListener('click', closeViewer);
+    document.addEventListener('scroll', closeViewer);
+
+    viewerImg.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+  }
+
+  // Run on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    initWindowInspiration();
+  });
+
+  // Shopify theme editor dynamic events
+  document.addEventListener('shopify:section:load', function(e) {
+    initWindowInspiration(e.target);
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Design Inspiration",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Design Inspiration"
+    },
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Upload Image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image Alt Text",
+          "default": "Design Inspiration"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 50,
+  "presets": [
+    {
+      "name": "Design Inspiration"
+    }
+  ]
+}
+{% endschema %}
