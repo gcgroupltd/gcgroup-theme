@@ -371,7 +371,7 @@
         "card_TVYxUU": {
           "type": "card",
           "settings": {
-            "card_image": "shopify://shop_images/website_icons-2_2.png",
+            "card_image": "shopify://shop_images/website_icons-2_4.png",
             "card_title": "Visit our Showoom",
             "card_text": "<p>Want to see and feel the quality for yourself? Visit our showroom to browse the complete collection. Our expert team will be on hand to offer advice and inspiration.</p>",
             "button_label": "Visit Us",
@@ -384,7 +384,7 @@
         "card_8dwfK9": {
           "type": "card",
           "settings": {
-            "card_image": "shopify://shop_images/socials.webp",
+            "card_image": "shopify://shop_images/website_icons-1_2.png",
             "card_title": "Join our community",
             "card_text": "<p>Follow us on social media for the latest design inspiration, new product announcements, and exclusive offers. See our blinds in real homes and get fresh ideas.</p>",
             "button_label": "Follow Us",
