@@ -112,8 +112,8 @@
                         <ul class="list-unstyled flex flex-start flex-wrap flex-1" role="list">
                           {%- for grandchildlink in childlink.links -%}
                             <li class="flex gap-6 items-start flex-50 mb-6">
-                              {% if grandchildlink.object.image %}
-                                <img src="{{ grandchildlink.object.image.src  | img_url: 'medium' }}" height="32px" width="32px">
+                              {% if grandchildlink.object.metafields.icon %}
+                                <img src="{{ grandchildlink.object.metafields.custom.icon  | img_url: 'medium' }}" height="32px" width="32px">
                               {% endif %}
 
                               <a

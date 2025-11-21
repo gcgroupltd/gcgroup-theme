@@ -1,0 +1,245 @@
+<style>
+    .small-page-width {
+        max-width: 1140px;
+        margin: 0 auto;
+    }
+    .contact-page {
+      padding: 60px 0;
+    }
+    .contact-page__hero {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .contact-page__hero h1 {
+      margin-top: 0;
+    }
+
+    .contact-page__hero a {
+      color: var(--primary-button-colour);
+      text-decoration: none
+    }
+
+    .contact-page__hero a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-page__opening-hours {
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .contact-page__opening-hours ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .contact-page__form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 60px;
+    }
+
+    .contact-page__form__content {
+      width: calc(50% - 15px)
+    }
+
+    .contact-page__form form {
+      widtH: calc(50% - 15px);
+    }
+
+    .contact-page__form .fields {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .contact-page__form .fields p {
+      width: 100%;
+      font-size: 18px;
+      margin-bottom: 0;
+    }
+
+    .contact-page__form .fields p span {
+      font-size: 12px;
+    }
+
+    .contact-page__form .fields div {
+      width: 100%;
+    }
+    .contact-page__form .fields--half div {
+      width: calc(50% - 5px);
+    }
+    .contact-page__form .fields div label {
+      width: 100%;
+      display: block;
+      font-size: 12px;
+    }
+    .contact-page__form .fields div input, .contact-page__form .fields div textarea {
+      width: 100%;
+      font-size: 18px;
+      padding: 10px;
+    }
+
+
+</style>
+
+<div class="contact-page small-page-width">
+  <div class="contact-page__hero">
+    <div class="contact-page__hero__content">
+      <h1>{{ section.settings.title }}</h1>
+      {{ section.settings.content }}
+    </div>
+
+    <div class="contact-page__hero__map">
+      <iframe src="{{section.settings.embed_url }}"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+
+  <div class="contact-page__opening-hours">
+    <h2>{{ section.settings.opening_hours_title }}</h2>
+    <ul>
+      <li>Monday - {{ settings.opening_hours_monday }}</li>
+      <li>Tuesday - {{ settings.opening_hours_tuesday }}</li>
+      <li>Wednesday - {{ settings.opening_hours_wednesday }}</li>
+      <li>Thursday - {{ settings.opening_hours_thursday }}</li>
+      <li>Friday - {{ settings.opening_hours_friday }}</li>
+
+      {% if settings.opening_hours_saturday == 'closed' and settings.opening_hours_sunday == 'closed' %}
+        <li>Saturday & Sunday - Closed</li>
+      {% else %}
+      <li>Saturday - {{ settings.opening_hours_saturday }}</li>
+      <li>Sunday - {{ settings.opening_hours_sunday }}</li>
+      {% endif %}
+    </ul>
+
+    <p>{{ section.settings.opening_hours_content }}</p>
+  </div>
+
+  <div class="contact-page__form">
+    <div class="contact-page__form__content">
+      <h2>{{ section.settings.contact_us_title }}</h2>
+      <p>{{ section.settings.contact_us_content }}</p>
+    </div>
+    {% form 'contact' %}
+      {{ form.errors | default_errors }}
+
+      <div class="fields fields--half">
+          <p>Name <span>(required)</span></p>
+          <div>
+            <label>First Name</label>
+            <input type="text" name="contact[firstname]" required>
+          </div>
+          <div>
+            <label>Last Name</label>
+            <input type="text" name="contact[lastname]" required>
+          </div>
+      </div>
+
+      <div class="fields">
+        <p>Email <span>(required)</span></p>
+        <div>
+          <input type="email" name="contact[email]" required>
+        </div>
+      </div>
+
+      <div class="fields">
+          <p>Subject <span>(required)</span></p>
+          <div>
+            <input type="text" name="contact[name]" required>
+          </div>
+      </div>
+
+      <div class="fields">
+        <p>Message <span>(required)</span></p>
+        <div>
+          <textarea name="contact[body]" required rows="6"></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="button button--primary">Send message</button>
+
+      {% if form.posted_successfully? %}
+        <p class="success-message">Thanks — we'll get back to you soon!</p>
+      {% endif %}
+    {% endform %}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact Page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Section"
+    },
+    {
+      "type": "text",
+      "label": "Title",
+      "id": "title",
+      "default": "Our Showroom & Office"
+    },
+    {
+      "type": "richtext",
+      "label": "Content",
+      "id": "content",
+    },
+    {
+        "type": "text",
+        "label": "Map Embed URL",
+        "id": "embed_url",
+    },
+    {
+      "type": "header",
+      "content": "Opening Hours Section"
+    },
+    {
+      "type": "paragraph",
+      "content": "To change the opneing hours, see theme settings."
+    },
+    {
+      "type": "text",
+      "id": "opening_hours_title",
+      "label": "Title",
+      "default": "Store Opening Hours"
+    },
+    {
+      "type": "text",
+      "id": "opening_hours_content",
+      "label": "Content",
+      "default": "You can arrange for a free design consultation in the privacy of your own home or you can view our extensive range of blinds and other products at our shop. We look forward to hearing from you."
+    },
+    {
+      "type": "header",
+      "content": "Contact Us Section"
+    },
+    {
+      "type": "paragraph",
+      "content": "This form sends to sales@, which can be changed in the store admin."
+    },
+    {
+      "type": "text",
+      "id": "contact_us_title",
+      "label": "Contact Us Title",
+      "default": "Contact Us"
+    },
+    {
+      "type": "text",
+      "id": "contact_us_content",
+      "label": "Contact Us Content",
+      "default": "Complete this quick enquiry form and we will get back to you soon."
+    },
+  ],
+  "presets": [
+    {
+      "name": "Contact Page"
+    }
+  ]
+}
+{% endschema %}
