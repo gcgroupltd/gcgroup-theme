@@ -32,7 +32,7 @@
           "type": "link_list",
           "settings": {
             "heading": "Contact Us",
-            "menu": "our-information"
+            "menu": ""
           }
         }
       },
@@ -46,7 +46,7 @@
         ".footer-block__heading {font-weight: 600; font-size: 22px;}"
       ],
       "settings": {
-        "footer_background_colour": "#d92d3c",
+        "footer_background_colour": "#00c3ff",
         "footer_text_colour": "#ffffff",
         "newsletter_enable": false,
         "newsletter_heading": "Subscribe to our emails",

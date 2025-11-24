@@ -9,9 +9,9 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/baileys-logo.webp",
+    "logo": "shopify://shop_images/grampian_png_fba57ac9-d86a-499f-a24d-b2d69b98ecbc.webp",
     "logo_width": 170,
-    "favicon": "shopify://shop_images/rainbow-favicon.png",
+    "favicon": "shopify://shop_images/grampian-favicon.webp",
     "color_background": "#ffffff",
     "color_text": "#1a1a1a",
     "color_primary_button_background": "#00c3ff",
@@ -91,11 +91,11 @@
     "social_pinterest_link": "",
     "social_tumblr_link": "",
     "social_vimeo_link": "",
-    "opening_hours_monday": "09:00 - 17:00",
-    "opening_hours_tuesday": "09:00 - 17:00",
-    "opening_hours_wednesday": "09:00 - 17:00",
-    "opening_hours_thursday": "09:00 - 17:00",
-    "opening_hours_friday": "09:00 - 17:00",
+    "opening_hours_monday": "08:00 - 17:00",
+    "opening_hours_tuesday": "08:00 - 17:00",
+    "opening_hours_wednesday": "08:00 - 17:00",
+    "opening_hours_thursday": "08:00 - 17:00",
+    "opening_hours_friday": "08:00 - 17:00",
     "google_tag_id": "GTM-XXXXXX",
     "card_color_scheme": "scheme-1",
     "collection_card_color_scheme": "scheme-1",
