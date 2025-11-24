@@ -163,6 +163,17 @@
             "foot_pos_y": 50,
             "foot_fit": "contain"
           }
+        },
+        "review_3CWWRR": {
+          "type": "review",
+          "settings": {
+            "name": "Jeannie Birnie",
+            "review_date": "26/07/2025",
+            "body": "<p>From the initial booking of the appointment for measurements to the fitting of our blinds all the staff were first class very helpful and professional. Over the years we have used Grampian Blinds many times and will use again.</p>",
+            "foot_pos_x": 50,
+            "foot_pos_y": 50,
+            "foot_fit": "contain"
+          }
         }
       },
       "block_order": [
@@ -179,7 +190,8 @@
         "review_mpCEW9",
         "review_F8aP6L",
         "review_TirFcM",
-        "review_7E7hp3"
+        "review_7E7hp3",
+        "review_3CWWRR"
       ],
       "name": "Reviews & ratings",
       "settings": {
