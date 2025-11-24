@@ -111,6 +111,7 @@
           "type": "collection",
           "settings": {
             "collection": "eyelet-curtains-aberdeen",
+            "custom_image": "shopify://shop_images/arturo_porcelain.jpg",
             "custom_alt_text": "",
             "custom_title": "Eyelet Curtains"
           }
@@ -128,6 +129,7 @@
           "type": "collection",
           "settings": {
             "collection": "perfect-fit-blinds-aberdeen",
+            "custom_image": "shopify://shop_images/arena_24_perfect_fit_roller_athena-coral-26.jpg",
             "custom_alt_text": "",
             "custom_title": "Perfect Fit Blinds"
           }
@@ -136,6 +138,7 @@
           "type": "collection",
           "settings": {
             "collection": "venetian-blinds-aberdeen",
+            "custom_image": "shopify://shop_images/Venetian_Mojito_Open_Kids_Bedroom-min.jpg",
             "custom_alt_text": "",
             "custom_title": "Venetian Blinds"
           }
