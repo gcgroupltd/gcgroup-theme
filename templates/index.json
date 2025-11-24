@@ -394,7 +394,7 @@
             "card_title": "Join our community",
             "card_text": "<p>Follow us on social media for the latest design inspiration, new product announcements, and exclusive offers. See our blinds in real homes and get fresh ideas.</p>",
             "button_label": "Follow Us",
-            "button_link": "shopify://pages/social",
+            "button_link": "shopify://pages/socials",
             "external_link": false,
             "card_background_color": "#fcfcfc",
             "card_text_color": "#333333"
