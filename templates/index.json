@@ -11,7 +11,14 @@
   "sections": {
     "custom_popup_nHPGjB": {
       "type": "custom-popup",
-      "settings": {}
+      "settings": {
+        "image": "shopify://shop_images/Shutters_Kitchen_TierOnTier_02-min.webp",
+        "subtitle": "We're offering YOU",
+        "title": "up to 50% OFF selected fabrics!",
+        "extra_text": "To take advantage of this limited time offer book your appointment today!",
+        "button_text": "Book your FREE Appointment",
+        "button_url": "https://book.grampian-blinds"
+      }
     },
     "banner_kWmQqH": {
       "type": "banner",
