@@ -11,6 +11,7 @@
   "sections": {
     "custom_popup_nHPGjB": {
       "type": "custom-popup",
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/ARENA_24_ROMAN-BLIND-MAVERICK-AZURE-LANDSCAPE-01_1_44a34c43-f4b5-4f7f-a100-8b5cea2c9fe0.jpg",
         "subtitle": "We're offering YOU",
@@ -26,14 +27,12 @@
         "slide_6ja6iQ": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Kassala_Emerald_Kitchen_Roller.webp",
             "alt": ""
           }
         },
         "slide_KTj37H": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Shutters_Dining_Bay_02.jpg",
             "alt": ""
           }
         },
@@ -52,7 +51,6 @@
       ],
       "settings": {
         "external": "",
-        "image": "shopify://shop_images/Kassala_Emerald_Kitchen_Roller.webp",
         "title": "Christmas Sale",
         "text": "This November, book your free measure appointment to enjoy exclusive discounts. Don't miss out - Our sale ends soon!",
         "show_dots": true,
@@ -75,7 +73,6 @@
           "type": "collection",
           "settings": {
             "collection": "vertical-blinds-aberdeen",
-            "custom_image": "shopify://shop_images/aquarius-24-vertical_blinds_shona-moss_593-101_1ba721b0-524e-439b-a045-00ffd8357ddb.jpg",
             "custom_alt_text": "",
             "custom_title": "Vertical Blinds"
           }
@@ -84,7 +81,6 @@
           "type": "collection",
           "settings": {
             "collection": "window-shutters-aberdeen",
-            "custom_image": "shopify://shop_images/Shutters_Kitchen_TierOnTier_02_1.jpg",
             "custom_alt_text": "",
             "custom_title": "Shutters"
           }
@@ -93,7 +89,6 @@
           "type": "collection",
           "settings": {
             "collection": "pleated-blinds-aberdeen",
-            "custom_image": "shopify://shop_images/eclipse-Hive_Deluxe_Lemon.jpg",
             "custom_alt_text": "",
             "custom_title": "Pleated Blinds"
           }
@@ -102,7 +97,6 @@
           "type": "collection",
           "settings": {
             "collection": "wooden-blinds-aberdeen",
-            "custom_image": "shopify://shop_images/Starwood_Pavilion.jpg",
             "custom_alt_text": "",
             "custom_title": "Wooden Blinds"
           }
@@ -119,7 +113,6 @@
           "type": "collection",
           "settings": {
             "collection": "eyelet-curtains-aberdeen",
-            "custom_image": "shopify://shop_images/arturo_porcelain.jpg",
             "custom_alt_text": "",
             "custom_title": "Eyelet Curtains"
           }
@@ -128,7 +121,6 @@
           "type": "collection",
           "settings": {
             "collection": "roman-blinds-aberdeen",
-            "custom_image": "shopify://shop_images/PICNIC_MEADOW_4047d6a7-f753-4dad-8ab9-09628b1f17d2.jpg",
             "custom_alt_text": "",
             "custom_title": "Roman Blinds"
           }
@@ -137,7 +129,6 @@
           "type": "collection",
           "settings": {
             "collection": "perfect-fit-blinds-aberdeen",
-            "custom_image": "shopify://shop_images/arena_24_perfect_fit_roller_athena-coral-26.jpg",
             "custom_alt_text": "",
             "custom_title": "Perfect Fit Blinds"
           }
@@ -146,7 +137,6 @@
           "type": "collection",
           "settings": {
             "collection": "venetian-blinds-aberdeen",
-            "custom_image": "shopify://shop_images/Venetian_Mojito_Open_Kids_Bedroom-min.jpg",
             "custom_alt_text": "",
             "custom_title": "Venetian Blinds"
           }
@@ -240,7 +230,6 @@
         "trustpilot_summary_right": "4.5 based on 188 reviews",
         "trustpilot_link": "shopify://pages/reviews",
         "button_label": "See our Reviews",
-        "main_image": "shopify://shop_images/Untitled_13.png",
         "autorotate": true,
         "autorotate_speed": 4
       }
@@ -254,7 +243,7 @@
         "main_heading": "The Right Fit, Every Time",
         "body_text": "<p>As the local experts in made-to-measure blinds, curtains, and shutters, we handle every detail. We ensure your items are perfectly tailored and installed, giving you a flawless result that's guaranteed to last.</p>",
         "button_label": "Book Your Appointment",
-        "button_link": "https://book.grampian-blinds.co.uk/",
+        "button_link": "https://book.baileys-blinds.co.uk/",
         "right_image": "shopify://shop_images/Screenshot_2025-05-16_115925.webp",
         "right_bg_color": "#f5f5f5"
       }
@@ -265,7 +254,6 @@
         "card_mDwg4b": {
           "type": "card",
           "settings": {
-            "card_image": "shopify://shop_images/35-years.webp",
             "card_title": "Unrivalled Expertise",
             "card_text": "<p>With over 39 years of experience, our knowledgeable team provides expert advice, guiding you to the perfect solution for your home.</p>",
             "card_button_label": "Learn More",
@@ -275,7 +263,6 @@
         "card_DNfXdm": {
           "type": "card",
           "settings": {
-            "card_image": "shopify://shop_images/made-to-measure.webp",
             "card_title": "Made-to-Measure Perfection",
             "card_text": "<p>Every blind, curtain, and shutter is custom-made in our factory in Scotland for a flawless fit, using the highest quality materials to complement your space beautifully.</p>",
             "card_button_label": "Learn More",
@@ -384,7 +371,7 @@
             "card_title": "Book a Free Home Appointment",
             "card_text": "<p>Let us bring the showroom to you. Our local expert will visit to measure your space, guide you through our samples and provide a free, no-obligation quote.</p>",
             "button_label": "Book Your Appointment",
-            "button_link": "https://book.goldcrest-blinds.co.uk/goldcrest-blinds/",
+            "button_link": "https://book.baileys-blinds.co.uk/",
             "external_link": false,
             "card_background_color": "#fcfcfc",
             "card_text_color": "#333333"
@@ -393,7 +380,6 @@
         "card_TVYxUU": {
           "type": "card",
           "settings": {
-            "card_image": "shopify://shop_images/website_icons-2_4.png",
             "card_title": "Visit our Showoom",
             "card_text": "<p>Want to see and feel the quality for yourself? Visit our showroom to browse the complete collection. Our expert team will be on hand to offer advice and inspiration.</p>",
             "button_label": "Visit Us",
@@ -406,7 +392,7 @@
         "card_8dwfK9": {
           "type": "card",
           "settings": {
-            "card_image": "shopify://shop_images/website_icons-1_2.png",
+            "card_image": "shopify://shop_images/socials.webp",
             "card_title": "Join our community",
             "card_text": "<p>Follow us on social media for the latest design inspiration, new product announcements, and exclusive offers. See our blinds in real homes and get fresh ideas.</p>",
             "button_label": "Follow Us",
