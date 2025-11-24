@@ -277,7 +277,7 @@
         "card_PAkbAm": {
           "type": "card",
           "settings": {
-            "card_image": "shopify://shop_images/image.jpg",
+            "card_image": "shopify://shop_images/image_9.png",
             "card_title": "Local Showroom",
             "card_text": "<p>For more than three decades, we have been an integral part of the local community, offering a showroom open on Weekdays from 9 am to 5 pm.</p>",
             "card_button_label": "Learn More",
