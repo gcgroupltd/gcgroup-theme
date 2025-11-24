@@ -219,7 +219,7 @@
       ],
       "name": "Customer Testimonials",
       "settings": {
-        "background_color": "#ebeced",
+        "background_color": "#deced1",
         "trustpilot_summary_left": "Rated Excellent",
         "trustpilot_summary_right": "4.5 based on 188 reviews",
         "trustpilot_link": "shopify://pages/reviews",
@@ -417,8 +417,8 @@
       "name": "Custom Newsletter",
       "settings": {
         "image": "shopify://shop_images/ARENA-ROM-PALMIRO-CHARTREUSE-RT-11.webp",
-        "background_color": "#000000",
-        "text_color": "#ffffff",
+        "background_color": "#e3cfbf",
+        "text_color": "#1a1a1a",
         "heading": "Sign up to our newsletter",
         "text": "<p>Enter your email address to receive updates on our latest collections, trends and exclusive offers.</p>",
         "privacy_text": "<p>We take safeguarding your details seriously. See our <a href=\"/privacy-policy\">privacy policy</a>.</p>"
