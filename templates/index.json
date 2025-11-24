@@ -36,11 +36,19 @@
             "image": "shopify://shop_images/Shutters_Dining_Bay_02.jpg",
             "alt": ""
           }
+        },
+        "slide_HgJHGW": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Harper_Aqua_Kimbel_Damson_Curtain.jpg",
+            "alt": ""
+          }
         }
       },
       "block_order": [
         "slide_6ja6iQ",
-        "slide_KTj37H"
+        "slide_KTj37H",
+        "slide_HgJHGW"
       ],
       "settings": {
         "external": "",
