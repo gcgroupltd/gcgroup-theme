@@ -238,17 +238,17 @@
             "card_title": "Roman Blinds",
             "card_text": "<p>Combining the sleek functionality of blinds with the style status of curtains.</p>",
             "card_button_label": "View Roman Blinds",
-            "card_button_link": "shopify://blogs/case-studies"
+            "card_button_link": "shopify://collections/roman-blinds-aberdeen"
           }
         },
         "card_4RkLaC": {
           "type": "card",
           "settings": {
             "card_image": "shopify://shop_images/LL_Roller_Dunham_Terracotta_BO_Bed_Main2_Web.jpg",
-            "card_title": "Blackout blinds",
-            "card_text": "<p>Reduce the amount of light coming in to your home with specialist blackout fabrics and finishes.</p>",
+            "card_title": "Bedroom blinds",
+            "card_text": "<p>Reduce the amount of light coming into your bedroom with specialist blackout blind fabrics and finishes.<br/></p>",
             "card_button_label": "View Blackout Blinds",
-            "card_button_link": "shopify://blogs/case-studies"
+            "card_button_link": "shopify://collections/bedroom-blinds-aberdeen"
           }
         },
         "card_XkR8H7": {
@@ -258,7 +258,7 @@
             "card_title": "Day and Night Blinds",
             "card_text": "<p>This day and night blinds works like a Venetiion, giving you total control over light and privacy.</p>",
             "card_button_label": "View Day and Night Blinds",
-            "card_button_link": "shopify://collections/beige-natural-curtains"
+            "card_button_link": "shopify://collections/vision-blinds-aberdeen"
           }
         },
         "card_pbMmFD": {
@@ -268,7 +268,7 @@
             "card_title": "Wooden Blinds",
             "card_text": "<p>Wooden blinds sample text, sample text, sample text, sample text</p>",
             "card_button_label": "Learn More",
-            "card_button_link": "shopify://collections/white-blinds"
+            "card_button_link": "shopify://collections/wooden-blinds-aberdeen"
           }
         }
       },
