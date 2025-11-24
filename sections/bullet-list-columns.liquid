@@ -62,7 +62,7 @@
                 <li>
                     <svg class="custom-bullet-icon" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
                         <circle cx="12" cy="12" r="10" stroke="{{ settings.color_primary_button_background }}" stroke-width="1"/>
-                        <path d="M16 9L11 14L8 11" stroke="#{{ settings.color_primary_button_background }}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 9L11 14L8 11" stroke="{{ settings.color_primary_button_background }}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                   <p>{{ bullet | strip }}</p>
                 </li>
@@ -82,8 +82,8 @@
               {%- if bullet != blank -%}
                 <li>
                     <svg class="custom-bullet-icon" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="10" stroke="#28a745" stroke-width="1"/>
-                        <path d="M16 9L11 14L8 11" stroke="#28a745" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="12" cy="12" r="10" stroke="{{ settings.color_primary_button_background }}" stroke-width="1"/>
+                        <path d="M16 9L11 14L8 11" stroke="{{ settings.color_primary_button_background }}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                   <p>{{ bullet | strip }}</p>
                 </li>

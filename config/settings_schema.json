@@ -1000,5 +1000,16 @@
         "default": "closed"
       }
     ]
+  },
+  {
+    "name": "Google Tag Details",
+    "settings": [
+      {
+        "type": "text",
+        "id": "google_tag_id",
+        "label": "Google Tag ID",
+        "default": "GTM-XXXXXXX",
+      }
+    ]
   }
 ]

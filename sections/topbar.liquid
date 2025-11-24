@@ -88,7 +88,7 @@
 <section id='topbar' class="color-{{ section.settings.section_color_scheme }}">
   <div class="page-width container">
     <a href="/" class="container-itm container-logo"> <img src="{{ settings.logo.src  | img_url: 'medium' }}" height="auto" width="auto"></a>
-    <a class="container-itm container-number full-unstyled-link" href="tel:{{ section.settings.number | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', '' }}">
+    <a class="container-itm container-number full-unstyled-link" href="tel:{{ section.settings.number | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', '' }}"  onclick="gtag('event', 'conversion', {'send_to': '{{  settings.google_tag_id }}', 'value': 'topbar-tel'});">
      {% assign day_of_week = 'now' | date: '%A' %}
 
       {% case day_of_week %}
