@@ -13,6 +13,7 @@
       "type": "custom-popup",
       "disabled": true,
       "settings": {
+        "image": "shopify://shop_images/ARENA_24_ROMAN-BLIND-MAVERICK-AZURE-LANDSCAPE-01_1_44a34c43-f4b5-4f7f-a100-8b5cea2c9fe0.jpg",
         "subtitle": "We're offering YOU",
         "title": "up to 50% OFF selected fabrics!",
         "extra_text": "To take advantage of this limited time offer book your appointment today!",
@@ -34,11 +35,19 @@
           "settings": {
             "alt": ""
           }
+        },
+        "slide_HgJHGW": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Harper_Aqua_Kimbel_Damson_Curtain.jpg",
+            "alt": ""
+          }
         }
       },
       "block_order": [
         "slide_6ja6iQ",
-        "slide_KTj37H"
+        "slide_KTj37H",
+        "slide_HgJHGW"
       ],
       "settings": {
         "external": "",
@@ -263,6 +272,7 @@
         "card_PAkbAm": {
           "type": "card",
           "settings": {
+            "card_image": "shopify://shop_images/image_9.png",
             "card_title": "Local Showroom",
             "card_text": "<p>For more than three decades, we have been an integral part of the local community, offering a showroom open on Weekdays from 9 am to 5 pm.</p>",
             "card_button_label": "Learn More",
