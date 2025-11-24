@@ -281,14 +281,6 @@
         "background_color": "#ffffff"
       }
     },
-    "accordion_p3wrMb": {
-      "type": "accordion",
-      "settings": {
-        "section_color_scheme": "",
-        "title": "This is a basic section",
-        "text": "Add your custom text here."
-      }
-    },
     "custom_newsletter_Lazibr": {
       "type": "custom-newsletter",
       "name": "Custom Newsletter",
@@ -341,7 +333,6 @@
     "customer_testimonials_qbXa9y",
     "appointment_highlight_UyhQyH",
     "get_to_know_n9hFRy",
-    "accordion_p3wrMb",
     "custom_newsletter_Lazibr",
     "product-grid",
     "banner"
