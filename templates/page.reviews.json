@@ -23,32 +23,32 @@
           "type": "rating_tile",
           "settings": {
             "tile_label": "Overall",
-            "tile_rating": "4.7",
-            "tile_reviews": "84 reviews"
+            "tile_rating": "4.5",
+            "tile_reviews": "188 reviews"
           }
         },
         "rating_tile_HPXrCY": {
           "type": "rating_tile",
           "settings": {
             "tile_label": "Trustpilot",
-            "tile_rating": "4.7",
-            "tile_reviews": "54 reviews"
+            "tile_rating": "4.6",
+            "tile_reviews": "135 reviews"
           }
         },
         "rating_tile_tfD7zG": {
           "type": "rating_tile",
           "settings": {
             "tile_label": "Google",
-            "tile_rating": "4.7",
-            "tile_reviews": "30 reviews"
+            "tile_rating": "4.4",
+            "tile_reviews": "53 reviews"
           }
         },
         "review_7eDLYX": {
           "type": "review",
           "settings": {
-            "name": "Lorraine Rowan",
-            "review_date": "16/10/2025",
-            "body": "<p>A no fuss 5 star easy service who deliver as promised! It’s great to work with a company who know their business and deliver for their customers</p>",
+            "name": "Craig Michie",
+            "review_date": "01/10/2025",
+            "body": "<p>Superb from start to finish. From coming in and measuring up, providing ideas and their own opinions on what type of blinds would suit the room and to different colour options. All of which look the part once installed.</p>",
             "foot_pos_x": 50,
             "foot_pos_y": 50,
             "foot_fit": "contain"
@@ -57,9 +57,9 @@
         "review_78cRBr": {
           "type": "review",
           "settings": {
-            "name": "Derek Marshall",
-            "review_date": "04/04/2025",
-            "body": "<p>Replaced blinds in the conservatory door with a different frame design from the original. The quality of the replacement is excellent and we are very pleased withe the outcome. Should any other blinds need replacing Goldcrest will be the first choice.</p>",
+            "name": "Eileen Grassick",
+            "review_date": "11/10/2025",
+            "body": "<p>Our replacement blinds are lovely , just as we expected . Our fitter was most polite and friendly , carried out his work with utmost professionalism leaving his working area clean and tidy .<br/>We very much recommend Grampian Blinds Ltd.</p>",
             "foot_pos_x": 50,
             "foot_pos_y": 50,
             "foot_fit": "contain"
@@ -68,9 +68,9 @@
         "review_ybCyaf": {
           "type": "review",
           "settings": {
-            "name": "George Grieve",
-            "review_date": "29/05/2025",
-            "body": "<p>Actually I’m not one for giving reviews but my whole experience in dealing with goldcrest was a pleasure from start to finish 👌🏻👌👌Top company and great staff .<br/><br/></p>",
+            "name": "Ann Morrice",
+            "review_date": "27/07/2025",
+            "body": "<p>Very pleased with the service & fitting of 3 x roller blinds. Both members of staff who I dealt with were helpful, polite & professional. I would recommend Grampian Blinds to family & friends and wouldn’t hesitate to buy from them in the future.<br/></p>",
             "foot_pos_x": 50,
             "foot_pos_y": 50,
             "foot_fit": "contain"
