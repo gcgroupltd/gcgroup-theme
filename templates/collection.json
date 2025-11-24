@@ -12,7 +12,7 @@
     "stu_ygzGW6": {
       "type": "stu",
       "settings": {
-        "button_url": "shopify://collections",
+        "button_url": "https://book.grampian-blinds.co.uk",
         "button_text": "Request Your Free Appointment"
       }
     },
