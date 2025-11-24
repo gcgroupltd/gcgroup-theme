@@ -152,6 +152,17 @@
             "foot_pos_y": 50,
             "foot_fit": "contain"
           }
+        },
+        "review_7E7hp3": {
+          "type": "review",
+          "settings": {
+            "name": "Julie Fletcher",
+            "review_date": "30/08/2025",
+            "body": "<p>Great service, pleasant staff, blinds arrived and fitted on time.<br/>I would definitely recommend this company.</p>",
+            "foot_pos_x": 50,
+            "foot_pos_y": 50,
+            "foot_fit": "contain"
+          }
         }
       },
       "block_order": [
@@ -167,7 +178,8 @@
         "review_rc7iri",
         "review_mpCEW9",
         "review_F8aP6L",
-        "review_TirFcM"
+        "review_TirFcM",
+        "review_7E7hp3"
       ],
       "name": "Reviews & ratings",
       "settings": {
