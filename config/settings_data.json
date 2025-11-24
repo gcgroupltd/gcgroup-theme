@@ -9,9 +9,9 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/grampian_png.webp",
+    "logo": "shopify://shop_images/baileys-logo.webp",
     "logo_width": 170,
-    "favicon": "shopify://shop_images/grampian-favicon.webp",
+    "favicon": "shopify://shop_images/rainbow-favicon.png",
     "color_background": "#ffffff",
     "color_text": "#1a1a1a",
     "color_primary_button_background": "#00c3ff",
@@ -82,8 +82,8 @@
     "popup_shadow_horizontal_offset": 6,
     "popup_shadow_vertical_offset": 6,
     "popup_shadow_blur": 25,
-    "social_facebook_link": "https://www.facebook.com/GoldcrestBlinds",
-    "social_instagram_link": "https://www.instagram.com/goldcrestblinds/",
+    "social_facebook_link": "https://www.facebook.com/baileysofficial",
+    "social_instagram_link": "https://www.instagram.com/baileysblinds1968/",
     "social_youtube_link": "",
     "social_tiktok_link": "",
     "social_twitter_link": "",
@@ -91,7 +91,12 @@
     "social_pinterest_link": "",
     "social_tumblr_link": "",
     "social_vimeo_link": "",
-    "google_tag_id": "GTM-MBSKPZX",
+    "opening_hours_monday": "09:00 - 17:00",
+    "opening_hours_tuesday": "09:00 - 17:00",
+    "opening_hours_wednesday": "09:00 - 17:00",
+    "opening_hours_thursday": "09:00 - 17:00",
+    "opening_hours_friday": "09:00 - 17:00",
+    "google_tag_id": "GTM-XXXXXX",
     "card_color_scheme": "scheme-1",
     "collection_card_color_scheme": "scheme-1",
     "drawer_border_thickness": 1,
@@ -253,6 +258,11 @@
           "button_vertical_position": "lowest",
           "greeting_message": "Hi there! 👋 Welcome to Grampian Blinds. Can we help you find the perfect blinds today?"
         }
+      },
+      "18131037017812181619": {
+        "type": "shopify://apps/mailchimp-email-sms/blocks/mailchimp_for_shopify_script/e3b67dce-fd41-4b61-b3cf-961c12344cde",
+        "disabled": false,
+        "settings": {}
       }
     }
   },

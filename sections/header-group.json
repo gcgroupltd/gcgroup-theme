@@ -19,8 +19,8 @@
     "topbar_ctwXzB": {
       "type": "topbar",
       "settings": {
-        "number": "01224 662 884",
-        "topbar_button_url": "https://book.grampian-blinds.co.uk",
+        "number": "0800 731 0876",
+        "topbar_button_url": "https://book.bailey-blinds.co.uk",
         "topbar_button_text": "Request Your Free Appointment"
       }
     },
@@ -28,7 +28,7 @@
       "type": "header",
       "settings": {
         "logo_position": "top-center",
-        "menu": "main-menu",
+        "menu": "main-menu-1",
         "menu_type_desktop": "mega",
         "sticky_header_type": "none",
         "show_line_separator": true,
@@ -39,7 +39,7 @@
       "type": "advert",
       "settings": {
         "text": "Christmas Sale Now On!",
-        "external": "https://book.grampian-blinds.co.uk/"
+        "external": "https://book.baileys-blinds.co.uk/"
       }
     }
   },
