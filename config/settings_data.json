@@ -9,13 +9,13 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/grampian_png.webp",
+    "logo": "shopify://shop_images/baileys-logo.webp",
     "logo_width": 170,
     "favicon": "shopify://shop_images/grampian-favicon.webp",
     "color_background": "#ffffff",
     "color_text": "#1a1a1a",
     "color_primary_button_background": "#d92d3c",
-    "color_secondary_button_background": "#00c3ff",
+    "color_secondary_button_background": "#d92d3c",
     "color_secondary_button_text": "#ffffff",
     "type_header_font": "cormorant_n5",
     "heading_scale": 120,
