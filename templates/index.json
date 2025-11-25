@@ -57,7 +57,7 @@
         "title": "Christmas Sale",
         "text": "This November, book your free measure appointment to enjoy exclusive discounts. Don't miss out - Our sale ends soon!",
         "show_dots": true,
-        "interval_ms": 9000,
+        "interval_ms": 3000,
         "transition_ms": 600
       }
     },
