@@ -100,6 +100,7 @@
           "type": "collection",
           "settings": {
             "collection": "wooden-blinds-aberdeen",
+            "custom_image": "shopify://shop_images/arena-greige-15.png",
             "custom_alt_text": "",
             "custom_title": "Wooden Blinds"
           }
@@ -107,17 +108,17 @@
         "collection_mAeGxd": {
           "type": "collection",
           "settings": {
-            "collection": "blackout-curtains",
+            "collection": "vision-blinds-aberdeen",
             "custom_alt_text": "",
-            "custom_title": "Blackout Curtains"
+            "custom_title": "Vision Blinds"
           }
         },
         "collection_8eW9FR": {
           "type": "collection",
           "settings": {
-            "collection": "eyelet-curtains-aberdeen",
+            "collection": "made-to-measure-curtains-aberdeen",
             "custom_alt_text": "",
-            "custom_title": "Eyelet Curtains"
+            "custom_title": "Curtains"
           }
         },
         "collection_kjUeGP": {
