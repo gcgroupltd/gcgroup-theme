@@ -125,6 +125,7 @@
           "type": "collection",
           "settings": {
             "collection": "roman-blinds-aberdeen",
+            "custom_image": "shopify://shop_images/ARENA_24_ROMAN-BLIND-MAVERICK-AZURE-LANDSCAPE-01_1_44a34c43-f4b5-4f7f-a100-8b5cea2c9fe0.jpg",
             "custom_alt_text": "",
             "custom_title": "Roman Blinds"
           }
@@ -133,6 +134,7 @@
           "type": "collection",
           "settings": {
             "collection": "perfect-fit-blinds-aberdeen",
+            "custom_image": "shopify://shop_images/arena_24_perfect_fit_roller_athena-coral-26.jpg",
             "custom_alt_text": "",
             "custom_title": "Perfect Fit Blinds"
           }
@@ -141,6 +143,7 @@
           "type": "collection",
           "settings": {
             "collection": "venetian-blinds-aberdeen",
+            "custom_image": "shopify://shop_images/Venetian_FireEngineRed_Kids_Bedroom-min.jpg",
             "custom_alt_text": "",
             "custom_title": "Venetian Blinds"
           }
